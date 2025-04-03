@@ -1,0 +1,16 @@
+.gitignore
+# Ignorar archivos de configuración
+*.log
+*.tmp
+.DS_Store
+
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+
+# Ignorar dependencias
+venv/
+node_modules/
+
+# Ignorar imágenes temporales
+Image/*.png
