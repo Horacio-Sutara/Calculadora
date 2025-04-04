@@ -45,13 +45,13 @@ class Ecuacion_procesar:
         x = symbols('x')
         if ecuacion_txt is None:
             try:
-                ecuacion = sympify(self.ecuacion, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'log':log})  # Permite funciones trigonométricas
+                ecuacion = sympify(self.ecuacion, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'ln':log})  # Permite funciones trigonométricas
             except Exception as e:
                 #print(f"Error al interpretar la ecuación: {e}")
                 return False
         else:
             try:
-                ecuacion = sympify(ecuacion_txt, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'log':log})  # Permite funciones trigonométricas
+                ecuacion = sympify(ecuacion_txt, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'ln':log})  # Permite funciones trigonométricas
             except Exception as e:
                 #print(f"Error al interpretar la ecuación: {e}")
                 return False
