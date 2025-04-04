@@ -3,6 +3,7 @@ from tkinter import PhotoImage
 from PIL import Image, ImageTk
 import Ecuacion_guardar
 import Ecuacion_procesar
+from Graficadora import graficar_funcion
 class CalculadoraGUI:
     def __init__(self, root):
         self.root = root
@@ -71,8 +72,11 @@ class CalculadoraGUI:
             datos=self.texto.split(";")
             ecuacion=Ecuacion_procesar.Ecuacion_procesar(datos[0])
             if "X" in self.texto and len(datos)==1:
-                self.texto_var.set("Error")# cambiar por graficar
-                self.texto=""
+                if ecuacion.reconocer():
+                    graficar_funcion(datos[0].replace("X","x"))
+                else:
+                    self.texto_var.set("Error")
+                    self.texto=""
             elif "X" in self.texto and len(datos)==2 or "X" not in self.texto:
                 if ecuacion.reconocer() and type(ecuacion.resultado(datos[1] if len(datos)>1 else 0))==float:
                     resultado=str(ecuacion.resultado(datos[1] if len(datos)>1 else 0 ))
