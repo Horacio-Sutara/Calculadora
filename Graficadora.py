@@ -29,7 +29,7 @@ def graficar_funcion(expresion_usuario, datos=[],limite_inferior=-10,limite_supe
                 data = [["x", "f(x)"],]
                 for i in datos:
                     data.append([i,round(funcion_np(i), 4)])
-                    ax1.scatter(i, 0, color='red', label='Raices', zorder=3)
+                ax1.scatter(datos, [0]*len(datos), color='red', label='Raices', zorder=3)
             except:
                 data = [["x", "f(x)"], ["Error", "Error"]]
 
@@ -61,4 +61,4 @@ def graficar_funcion(expresion_usuario, datos=[],limite_inferior=-10,limite_supe
 if __name__ == "__main__":
     # 🚀 Prueba con entrada del usuario
     expresion = input("Ingresa una función en términos de x: ")
-    graficar_funcion(expresion,[5])
+    graficar_funcion(expresion,[5,9])

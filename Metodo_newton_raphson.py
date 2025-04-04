@@ -34,7 +34,12 @@ class Metodo_Newton_Raphson:
             #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
             xn=xn_1
         print("Bucles: ",cont," Resultado: ",xn_1)
-        return xn_1,True
+        error=self.error_max
+        while error<1:
+            error*=10
+            cont+=1
+            #print("error: ", error, "\tcont: ",cont)
+        return self.ecuacion.truncar_sympy(xn_1,cont),True
     
     def calculo_raices_multiples(self):
         error=100
@@ -64,9 +69,11 @@ class Metodo_Newton_Raphson:
 
         print("Bucles: ",cont," Resultado: ",xn_1)
         cont=0
+        error=self.error_max
         while error<1:
             error*=10
             cont+=1
+            #print("error: ", error, "\tcont: ",cont)
         return self.ecuacion.truncar_sympy(xn_1,cont),True
 if __name__ == "__main__":
     ecuacion=Metodo_Newton_Raphson(-0.4,1e-7)
