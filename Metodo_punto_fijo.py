@@ -1,6 +1,6 @@
 import Ecuacion_procesar
 
-class Metodod_punto_fijo:
+class Metodo_punto_fijo:
     def __init__(self,x0,error,funcion=None,iteracion=30):
         if funcion is not None:
             self.ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
@@ -60,5 +60,5 @@ class Metodod_punto_fijo:
         print("Resultado: ",self.x0, "\ncon la funcion despejada: ",ecuacion,"\n")
         return True
 if __name__ == "__main__":
-    ecuacion=Metodod_punto_fijo(x0=1.5,error=1e-4,iteracion=40)
+    ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-4,iteracion=40)
     ecuacion.calcular()

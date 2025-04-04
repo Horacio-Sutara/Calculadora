@@ -23,8 +23,8 @@ class Metodo_Newton_Raphson:
             f_derivada=self.ecuacion.resultado(xn,self.derivada)
             xn_1=xn-(f_xn/f_derivada)
             error=abs(xn_1-xn)
+            #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
             xn=xn_1
-
         print("Bucles: ",cont," Resultado: ",xn_1)
     
     def calculo_raices_multiples(self):
@@ -48,6 +48,6 @@ class Metodo_Newton_Raphson:
 
         print("Bucles: ",cont," Resultado: ",xn_1)
 if __name__ == "__main__":
-    ecuacion=Metodo_Newton_Raphson(1.1,1e-4)
+    ecuacion=Metodo_Newton_Raphson(1.5,1e-4)
     ecuacion.calculo()
     ecuacion.calculo_raices_multiples()

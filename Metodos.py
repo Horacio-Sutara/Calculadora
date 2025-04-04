@@ -1,0 +1,6 @@
+from Metodo_biseccion import Metodo_biseccion
+from Metodo_newton_raphson import Metodo_Newton_Raphson
+from Metodo_secante import MetodoSecante
+from Metodo_punto_fijo import Metodo_punto_fijo
+from Metodo_regula_falsi import Metodo_regula_falsi
+

@@ -90,7 +90,7 @@ class Ecuacion_procesar:
             tipo=self.procesar_ecuacion(ecuacion)
             if tipo=="B":
                 #print("La ecuación es una función matemática")
-                res=self.procesar_ecuacion(valor_x=valor)
+                res=self.procesar_ecuacion(ecuacion,valor)
                 if res!="B":
                     try:
                         return self.truncar_sympy(float(res),10)

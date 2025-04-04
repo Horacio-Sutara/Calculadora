@@ -3,7 +3,7 @@ import sympy as sp
 import matplotlib.pyplot as plt
 
 # Función para graficar y agregar una tabla a la derecha
-def graficar_con_tabla(expresion_usuario):
+def graficar_funcion(expresion_usuario):
     x = sp.symbols('x')  # Definir variable simbólica
 
     try:
@@ -48,7 +48,7 @@ def graficar_con_tabla(expresion_usuario):
 
     except Exception as e:
         print(f"Error al procesar la función: {e}")
-
-# 🚀 Prueba con entrada del usuario
-expresion = input("Ingresa una función en términos de x: ")
-graficar_con_tabla(expresion)
+if __name__ == "__main__":
+    # 🚀 Prueba con entrada del usuario
+    expresion = input("Ingresa una función en términos de x: ")
+    graficar_con_tabla(expresion)
