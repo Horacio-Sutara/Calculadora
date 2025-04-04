@@ -22,22 +22,26 @@ def graficar_funcion(expresion_usuario, datos=[],limite_inferior=-10,limite_supe
         condicion=True if len(datos)!=0 else False
         # Crear figura con dos áreas (1 para la gráfica, 1 para la tabla)
         if condicion:
-            fig, ax = plt.subplots(1, 2, figsize=(100, 5), gridspec_kw={'width_ratios': [3, 1]})
+            fig, ax = plt.subplots(1, 2, figsize=(10, 5), gridspec_kw={'width_ratios': [3, 1]})
             ax1,ax2=ax
             # 📋 Agregar una tabla en la parte derecha
             try:
                 data = [["x", "f(x)"],]
                 for i in datos:
                     data.append([i,round(funcion_np(i), 4)])
+                    ax1.scatter(i, 0, color='red', label='Raices', zorder=3)
             except:
                 data = [["x", "f(x)"], ["Error", "Error"]]
 
             table = ax2.table(cellText=data, loc='center', cellLoc='center', colWidths=[0.4, 0.4])
+            table.scale(2.1, 1.5)
             ax2.axis("off")  # Ocultar ejes en la tabla
             ax2.set_title("Raices")
+            
+
         else:
             fig, ax1 = plt.subplots(figsize=(10, 5))
-
+            
 
         # 📈 Graficar función
         ax1.plot(x_vals, y_vals, label=f'f(x) = {expresion_usuario}', color='b')
