@@ -33,7 +33,7 @@ class Metodo_Newton_Raphson:
             error=abs(xn_1-xn)
             #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
             xn=xn_1
-        print("Bucles: ",cont," Resultado: ",xn_1)
+        #print("Bucles: ",cont," Resultado: ",xn_1)
         error=self.error_max
         while error<1:
             error*=10
@@ -67,7 +67,7 @@ class Metodo_Newton_Raphson:
             error=abs(xn_1-xn)
             xn=xn_1
 
-        print("Bucles: ",cont," Resultado: ",xn_1)
+        #print("Bucles: ",cont," Resultado: ",xn_1)
         cont=0
         error=self.error_max
         while error<1:

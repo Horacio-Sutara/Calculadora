@@ -19,7 +19,7 @@ class Metodo_punto_fijo:
             ecuaciones_en_y.append(soluciones)
         return ecuaciones_en_y
     
-    def calcular(self):
+    def calculo(self):
         print("Metodo de punto fijo")
         soluciones=self.__funciones_en_y()
         salir=False
@@ -69,4 +69,4 @@ class Metodo_punto_fijo:
         return x0,True
 if __name__ == "__main__":
     ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-7,iteracion=40)
-    ecuacion.calcular()
+    ecuacion.calculo()
