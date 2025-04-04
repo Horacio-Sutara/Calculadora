@@ -71,20 +71,28 @@ class Ecuacion_procesar:
                 return resultado
             return "B"
         
-    def resultado(self,valor=None,ecuacion=None):
-        if valor is None:
-            valor=0
+    def resultado(self,valor,ecuacion=None):
         if ecuacion is None:
             tipo=self.procesar_ecuacion()
             if tipo=="B":
                 #print("La ecuación es una función matemática")
-                return float(self.procesar_ecuacion(valor_x=valor))
+                res=self.procesar_ecuacion(valor_x=valor)
+                if res!="B":
+                    try:
+                        return float(res)
+                    except:
+                        False
         else:
             tipo=self.procesar_ecuacion(ecuacion)
             if tipo=="B":
                 #print("La ecuación es una función matemática")
-                return float(self.procesar_ecuacion(ecuacion,valor_x=valor))
-        return -99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+                res=self.procesar_ecuacion(valor_x=valor)
+                if res!="B":
+                    try:
+                        return float(res)
+                    except:
+                        False
+        return False
 
     def derivar(self,ecuacion=None):
         if ecuacion is None:
@@ -113,13 +121,8 @@ class Ecuacion_procesar:
         #print(f"intervalo inicial encontrado ({a},{b})")
         return a,b
     def reconocer(self):
-        try:
-            res=int(self.resultado(1,self.ecuacion))
-            if res==-99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999:
-                return False
-            return True
-        except Exception:
-            return False
+        res=self.resultado(1,self.ecuacion)
+        return True if type(res)==float else False
         
     def reescribir(self,ecuacion):
         self.ecuacion=ecuacion

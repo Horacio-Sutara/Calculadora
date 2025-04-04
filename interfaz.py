@@ -22,12 +22,9 @@ class CalculadoraGUI:
         
         # Mostrar texto sobre el fondo sin caja de entrada
         self.texto=""
-        self.texto_anterior=[""]
-        self.intervalo=[]
 
 
         self.texto_var = tk.StringVar()
-        self.anterior=[""]
         self.texto_id = self.canvas.create_text(405, 110, text="", font=("Arial", 29), fill="gray", anchor="e")
         
         # Crear botones con imágenes en el canvas
@@ -63,7 +60,40 @@ class CalculadoraGUI:
     def boton_presionado(self, valor, boton_id):
         # Cambiar tamaño de la imagen temporalmente
         self.animar_boton(boton_id)
-        self.actualizar_texto()
+        if valor=="C":
+            self.texto_var.set("")
+            self.texto = ""
+        elif valor=="Del":
+            self.texto_var.set(str(self.texto_var.get())[:-1])
+            self.texto =self.texto[:-1]
+            self.mostrar_texto_izquierda()
+        elif valor=="=":
+            datos=self.texto.split(";")
+            ecuacion=Ecuacion_procesar.Ecuacion_procesar(datos[0])
+            if "X" in self.texto and len(datos)==1:
+                self.texto_var.set("Error")# cambiar por graficar
+                self.texto=""
+            elif "X" in self.texto and len(datos)==2 or "X" not in self.texto:
+                if ecuacion.reconocer() and type(ecuacion.resultado(datos[1] if len(datos)>1 else 0))==float:
+                    resultado=str(ecuacion.resultado(datos[1] if len(datos)>1 else 0 ))
+                    self.texto_var.set(resultado)
+                    self.texto=resultado
+                    self.ocultar_texto_derecha()
+                else:
+                    self.texto=""
+                    self.texto_var.set("Error")
+            elif "X" in self.texto and len(datos)>3:
+                self.texto_var.set("Error")#cambiar por graficar y algoritmo de raices
+                #self.texto=""
+        else:
+            self.texto+=valor
+            self.texto_var.set(self.texto)
+            self.ocultar_texto_izquierda()
+
+
+        
+
+        """
         if valor == "C":
             self.texto_var.set("")
             self.anterior = [""]
@@ -123,11 +153,10 @@ class CalculadoraGUI:
                 self.intervalo[len(self.intervalo)-1]+=valor
 
             self.anterior.append(self.texto_var.get())
-            self.texto_var.set(self.texto_var.get() + valor)
+            self.texto_var.set(self.texto_var.get() + valor)"""
         
         # Actualizar el texto en el canvas
         self.canvas.itemconfig(self.texto_id, text=self.texto_var.get())
-
     def animar_boton(self, boton_id):
         # Obtener el texto de la imagen
         for texto, boton in self.botones.items():
@@ -146,20 +175,22 @@ class CalculadoraGUI:
         # Restaurar la imagen original después de la animación
         self.canvas.itemconfig(boton_id, image=imagen_original)
 
-    def actualizar_texto(self):
+    def ocultar_texto_izquierda(self):
         texto = self.texto_var.get()
-        if len(texto) > 15:
+        if len(texto) > 13:
             self.texto_var.set("..."+texto[-12:])
-        else:
-            self.texto_var.set(texto)
+    def ocultar_texto_derecha(self):
+        texto = self.texto_var.get()
+        if len(texto) > 13:
+            self.texto_var.set(texto[:12]+"...")
+    def mostrar_texto_izquierda(self):
+        texto=self.texto_var.get()
+        if len(texto)<15:
+            self.texto_var.set(self.texto)
+        self.ocultar_texto_izquierda()
 
     def mostrar_texto(self):
         self.texto_var.set("")
-        self.anterior = [""]
-
-    def mostrar_texto(self):
-        self.texto_var.set("")
-        self.anterior = [""]
 
 if __name__ == "__main__":
     root = tk.Tk()
