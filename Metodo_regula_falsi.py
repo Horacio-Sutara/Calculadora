@@ -1,13 +1,15 @@
 import Metodo_biseccion
 
 class Metodo_regula_falsi():
-    def __init__(self,a=0.1,b=1,error=0.001,ecuacion=None):
+    def __init__(self,a=0.1,b=1,error=0.001,ecuacion=None, iteraciones=50):
         self.error_maximo=error
+        self.iteracciones=iteraciones
         if ecuacion is None:
             self.ecuacion=Metodo_biseccion.Metodo_biseccion(a,b,50)
         else:
-            self.ecuacion=Metodo_biseccion.Metodo_biseccion(a,b,50,ecuacion)
-        self.a,self.b=self.ecuacion.calcular()
+            self.ecuacion=Metodo_biseccion.Metodo_biseccion(a,b,50,ecuacion) 
+        self.a,self.b,self.salir=self.ecuacion.calcular()
+
     def __comprobar_signo(self):
         derivada=self.ecuacion.ecuacion.derivar()
         derivada_segunda=self.ecuacion.ecuacion.derivar(derivada)
@@ -22,6 +24,8 @@ class Metodo_regula_falsi():
             return False
     
     def calcular(self):
+        if self.salir==False:
+            return 0,False
         ef=0
         f_ef=0
         error=100
@@ -41,15 +45,17 @@ class Metodo_regula_falsi():
             #print("funcion A ", f_ef)
         cont=0
         while (error>self.error_maximo):
+            if cont>self.iteracciones:
+                return 0,False
             cont+=1
             if xn_1!=0:
                 xn=xn_1
             f_xn=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=xn) 
             xn_1=ef-((f_ef*(ef-xn))/(f_ef-f_xn))
             error=abs(xn_1-xn)
-
-        print(f"Bucles: {cont} xn: ",xn, "xn+1= ",xn_1, "Resultado: ",(xn_1+xn)/2)
-
+        resultado=(xn_1+xn)/2
+        print(f"Bucles: {cont} xn: ",xn, "xn+1= ",xn_1, "Resultado: ", resultado)
+        return resultado, True
 if __name__=="__main__":    
-    ecuacion=Metodo_regula_falsi(a=1,b=2,error=1e-4)
+    ecuacion=Metodo_regula_falsi(a=1,b=2,error=1e-7)
     ecuacion.calcular()
