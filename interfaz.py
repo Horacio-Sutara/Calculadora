@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import Ecuacion_guardar
 import Ecuacion_procesar
 from Graficadora import graficar_funcion
+from Metodos import Metodos
 class CalculadoraGUI:
     def __init__(self, root):
         self.root = root
@@ -73,7 +74,8 @@ class CalculadoraGUI:
             ecuacion=Ecuacion_procesar.Ecuacion_procesar(datos[0])
             if "X" in self.texto and len(datos)==1:
                 if ecuacion.reconocer():
-                    graficar_funcion(datos[0].replace("X","x"))
+                    raices=Metodos(datos[0],-4,4,1e-4,20)
+                    graficar_funcion(datos[0].replace("X","x"),raices,-4,4)
                 else:
                     self.texto_var.set("Error")
                     self.texto=""

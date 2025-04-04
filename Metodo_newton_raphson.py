@@ -63,7 +63,11 @@ class Metodo_Newton_Raphson:
             xn=xn_1
 
         print("Bucles: ",cont," Resultado: ",xn_1)
-        return xn_1,True
+        cont=0
+        while error<1:
+            error*=10
+            cont+=1
+        return self.ecuacion.truncar_sympy(xn_1,cont),True
 if __name__ == "__main__":
     ecuacion=Metodo_Newton_Raphson(-0.4,1e-7)
     res,valido=ecuacion.calculo()
