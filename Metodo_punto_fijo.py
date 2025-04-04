@@ -28,6 +28,7 @@ class Metodo_punto_fijo:
                 res,salir=self.__calcular(j)
                 if salir:
                     return res, True
+        return 0,False
                 
     def __calcular(self,ecuacion):
         derivada=self.ecuacion.derivar(ecuacion)
@@ -68,5 +69,6 @@ class Metodo_punto_fijo:
         print("Resultado: ",x0, "\ncon la funcion despejada: ",ecuacion,"\n")
         return x0,True
 if __name__ == "__main__":
-    ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-7,iteracion=40)
+    text="x**2+10*cos(x)"
+    ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-7,funcion=text,iteracion=40)
     ecuacion.calculo()

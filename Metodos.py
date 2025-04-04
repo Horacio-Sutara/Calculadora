@@ -27,11 +27,23 @@ def Metodos(funcion, a, b, tol=1e-7, iteraciones=100):
         return raices
     #print("Raices ",raices)
 
+    raices_encontradas=raices
+    res,funciona=Metodo_punto_fijo(a,tol,funcion,iteraciones).calculo()
+    a,b,raices,funciona=newton_raphson(funcion,a,b,tol,iteraciones,res,funciona,Metodo_punto_fijo)
+    print("raices: ",raices, "raices_encontradas: ",raices_encontradas)
+
+    raices=list(set(raices+raices_encontradas))
+    if funciona:
+        print("raices: ",raices)
+
+        return raices
+
     return raices
 
 def newton_raphson(funcion,a,b,tol,iteraciones,res_1,funciona,metodo, tipo=False):
     raices=[]
     if funciona:
+        #print(res_1)
         if a<=res_1<=b:
             raices.append(res_1) 
         extremo_derecho=b
