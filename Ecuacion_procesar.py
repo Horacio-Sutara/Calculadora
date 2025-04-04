@@ -1,4 +1,5 @@
 from sympy import symbols, Eq, sympify, solve,diff, sin, cos, tan,exp, asin, acos, atan,log
+from sympy import floor, S
 
 class Ecuacion_procesar:
     def __init__(self,nombre_archivo="ecuacion.txt"):
@@ -70,7 +71,10 @@ class Ecuacion_procesar:
                 #print(f"Ecuación reconocida: {ecuacion}\nEvaluada en x={valor_x}: {resultado}")
                 return resultado
             return "B"
-        
+    def truncar_sympy(self,numero, decimales):
+        factor = 10 ** decimales
+        return (int(floor(numero * factor)) / factor)
+    
     def resultado(self,valor,ecuacion=None):
         if ecuacion is None:
             tipo=self.procesar_ecuacion()
@@ -79,7 +83,7 @@ class Ecuacion_procesar:
                 res=self.procesar_ecuacion(valor_x=valor)
                 if res!="B":
                     try:
-                        return float(res)
+                        return self.truncar_sympy(float(res),10)
                     except:
                         False
         else:
@@ -89,7 +93,7 @@ class Ecuacion_procesar:
                 res=self.procesar_ecuacion(valor_x=valor)
                 if res!="B":
                     try:
-                        return float(res)
+                        return self.truncar_sympy(float(res),10)
                     except:
                         False
         return False
