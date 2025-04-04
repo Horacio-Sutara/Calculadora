@@ -25,7 +25,13 @@ def graficar_funcion(expresion_usuario):
             fig, ax = plt.subplots(1, 2, figsize=(10, 5), gridspec_kw={'width_ratios': [3, 1]})
             ax1,ax2=ax
             # 📋 Agregar una tabla en la parte derecha
-            data = [["x", "f(x)"], [-2, round(funcion_np(-2), 4)], [0, round(funcion_np(0), 4)], [2, round(funcion_np(2), 4)]]
+            try:
+                data = [["x", "f(x)"],
+                        [-2, round(funcion_np(-2), 4)],
+                        [2, round(funcion_np(2), 4)]]
+            except:
+                data = [["x", "f(x)"], ["Error", "Error"]]
+
             table = ax2.table(cellText=data, loc='center', cellLoc='center', colWidths=[0.4, 0.4])
             ax2.axis("off")  # Ocultar ejes en la tabla
             ax2.set_title("Tabla de Valores")
