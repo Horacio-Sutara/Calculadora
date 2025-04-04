@@ -51,4 +51,4 @@ def graficar_funcion(expresion_usuario):
 if __name__ == "__main__":
     # 🚀 Prueba con entrada del usuario
     expresion = input("Ingresa una función en términos de x: ")
-    graficar_con_tabla(expresion)
+    graficar_funcion(expresion)

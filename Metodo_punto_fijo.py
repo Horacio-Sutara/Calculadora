@@ -22,43 +22,54 @@ class Metodo_punto_fijo:
     def calcular(self):
         print("Metodo de punto fijo")
         soluciones=self.__funciones_en_y()
+        salir=False
         for i in soluciones:
             for j in i:
+
                 if self.__calcular(j):
-                    pass
+                    salir=True
+                    break
+            if salir:
+                break
                 
     def __calcular(self,ecuacion):
         derivada=self.ecuacion.derivar(ecuacion)
         f_derivada=self.ecuacion.resultado(self.x0,derivada)
         #print("Derivada: ",derivada," en x0: ",self.x0," = ",f_derivada)
-        try:
-            if -1>f_derivada or f_derivada>1:
-                print("No se puede aplicar el metodo de punto fijo con la funcion despejada: ",ecuacion,"\n Su modulo debe ser menor a 1\n")
-                return False
-        except Exception as e:
+        if -1>f_derivada or f_derivada>1:
+            print("No se puede aplicar el metodo de punto fijo con la funcion despejada: ",ecuacion,"\n Su modulo debe ser menor a 1\n")
+            return False
+        elif type(f_derivada)==bool:
             print("No se aplico el metodo para la funcion despejada: ",ecuacion,"\nEra imaginario el resultado de la derivada\n")
             return False        
         error=100.0
         iteracion=0
         x_ant=self.x0
+        x0=self.x0
+        print("ecuacion: ",ecuacion)
         while error>self.error_maximo:
-            x1=self.ecuacion.resultado(self.x0,ecuacion)
+            x1=self.ecuacion.resultado(x0,ecuacion)
+            if type(x1)==bool:
+                print("no se puede seguir aplicando el metodo es imaginario el resultado de la ecuacion\n")
+                break
             dif=abs(x1-x_ant)
             if dif<self.error_maximo/1000:
-                print("Ocila entre: ",x1," y ",self.x0)
+                print("Ocila entre: ",x1," y ",x0)
                 break
-            x_ant=self.x0
-            self.x0=x1
+            x_ant=x0
+            x0=x1
             iteracion+=1
-            error=abs(self.x0-x_ant)
+            error=abs(x0-x_ant)
+            #print("x_ant:", x_ant," x0: ",x0, type(x1)," error: ",error," iteracion: ",iteracion)
             if iteracion>self.iteracion_maxima:
+                print("Se excedio el numero de iteraciones: ",iteracion)
                 break
         print("Bucles: ",iteracion)
         if iteracion>self.iteracion_maxima or dif <self.error_maximo/1000:
             print("El metodo no converge con la funcion despejada: ",ecuacion,"\n")
             return False
-        print("Resultado: ",self.x0, "\ncon la funcion despejada: ",ecuacion,"\n")
+        print("Resultado: ",x0, "\ncon la funcion despejada: ",ecuacion,"\n")
         return True
 if __name__ == "__main__":
-    ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-4,iteracion=40)
+    ecuacion=Metodo_punto_fijo(x0=1.5,error=1e-7,iteracion=40)
     ecuacion.calcular()
