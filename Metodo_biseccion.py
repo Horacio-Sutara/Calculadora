@@ -46,9 +46,8 @@ class Metodo_biseccion():
             
             #print(f" ciclo: {cont}, a={self.a}, b={self.b}, error={error}, xr={self.xr}, xr anterior={self.xr_anterior}, f(xr)={f_xr}, f(a)={f_a}")
         self.xr=(self.a+self.b)/2
-        print(f"El punto debera estar comprendido entre los valores {self.a,self.b} , valor esperado: {self.xr}\n Con un error del {error} , Numero de intentos realizados {cont}")
+        print(f"valor esperado: {self.xr}\nNumero de intentos realizados {cont}")
         return self.a,self.b,True
 if __name__=="__main__":
     ecuacion=Metodo_biseccion(a=0.8,b=1.2,error_maximo=1e-7,iteraciones=40)
     ecuacion.calcular()
-    print(type(ecuacion.calcular()))

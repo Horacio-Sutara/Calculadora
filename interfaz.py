@@ -93,74 +93,10 @@ class CalculadoraGUI:
             self.texto+=valor
             self.texto_var.set(self.texto)
             self.ocultar_texto_izquierda()
-
-
-        
-
-        """
-        if valor == "C":
-            self.texto_var.set("")
-            self.anterior = [""]
-            self.texto=""
-            self.texto_anterior = [""]
-            self.intervalo=[]
-        elif valor == "=":
-            ecuacion=Ecuacion_procesar.Ecuacion_procesar(self.texto)
-            #print("self.texto")
-            try:
-                if ecuacion.reconocer():
-                    res=str(ecuacion.resultado())
-                    if len(res)>15:
-                        self.texto_var.set(res[0:14]+"...")
-                    else:
-                        self.texto_var.set(res)
-                    self.texo=res
-                else:
-                    print("paso")
-                    type()
-            except Exception:
-                if "X" in self.texto:
-                    if ecuacion.reconocer():
-                        self.ecuaciom.guardar_ecuacion(self.texto)
-                        print("ecuacion guardada")
-                        if 0<len(self.intervalo)<3:
-
-                            res=ecuacion.resultado(int(self.intervalo[1]))
-                            print(res, self.intervalo[1])
-                            self.texto=res, self.texto_var.set(res)
-
-                        elif len(self.intervalo)>3:
-                            ecuacion.resultado(self.intervalo[3])
-
-                else:
-                    self.texto_var.set("Error")
-            self.texto_anterior=[""]
-            self.anterior = [""]
-            self.intervalo=[]
-            
-        elif valor == "Del":
-            self.texto_var.set(self.anterior[len(self.anterior)-1])
-            self.texto=self.texto_anterior[len(self.texto_anterior)-1]
-            if len(self.anterior) > 1:
-                self.anterior.pop()
-                self.texto_anterior.pop()
-        elif valor==";":
-            self.intervalo.append(";"), self.intervalo.append("")
-            self.anterior.append(self.texto_var.get())
-            self.texto_var.set(self.texto_var.get() + valor)
-
-        else:
-            if len(self.intervalo)==0:
-                self.texto+=valor
-                self.texto_anterior.append(self.texto)
-            else:
-                self.intervalo[len(self.intervalo)-1]+=valor
-
-            self.anterior.append(self.texto_var.get())
-            self.texto_var.set(self.texto_var.get() + valor)"""
         
         # Actualizar el texto en el canvas
         self.canvas.itemconfig(self.texto_id, text=self.texto_var.get())
+        
     def animar_boton(self, boton_id):
         # Obtener el texto de la imagen
         for texto, boton in self.botones.items():
