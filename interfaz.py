@@ -74,8 +74,8 @@ class CalculadoraGUI:
             ecuacion=Ecuacion_procesar.Ecuacion_procesar(datos[0])
             if "X" in self.texto and len(datos)==1:
                 if ecuacion.reconocer():
-                    raices=Metodos(datos[0],-4,4,1e-7,50)
-                    graficar_funcion(datos[0].replace("X","x"),raices,-4,4)
+                    raices=Metodos(datos[0],-10,10,1e-7,50)
+                    graficar_funcion(datos[0].replace("X","x"),raices,-10,10)
                 else:
                     self.texto_var.set("Error")
                     self.texto=""

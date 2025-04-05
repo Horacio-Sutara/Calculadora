@@ -34,6 +34,7 @@ class Metodo_Newton_Raphson:
             #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
             xn=xn_1
         #print("Bucles: ",cont," Resultado: ",xn_1)
+        cont=0
         error=self.error_max
         while error<1:
             error*=10
@@ -63,7 +64,12 @@ class Metodo_Newton_Raphson:
             f_derivada=self.ecuacion.resultado(xn,self.derivada)
             f_derivada_segunda=self.ecuacion.resultado(xn,self.derivada_segunda)
             f_derivada_elevada=f_derivada**2
-            xn_1=xn-(f_xn*f_derivada)/(f_derivada_elevada-f_xn*f_derivada_segunda)
+            try:
+                xn_1=xn-(f_xn*f_derivada)/(f_derivada_elevada-f_xn*f_derivada_segunda)
+            except ZeroDivisionError:
+                print("Error en el calculo de la derivada segunda")
+                return 0, False
+            #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
             error=abs(xn_1-xn)
             xn=xn_1
 

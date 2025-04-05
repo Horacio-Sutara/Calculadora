@@ -19,12 +19,21 @@ class MetodoSecante:
                 print("No se puede resolver")
                 return 0,False
             cont+=1
-            xn_1 = self.x1 - (self.ecuacion.resultado(self.x1)*(self.x1-self.x0))/(self.ecuacion.resultado(self.x1)-self.ecuacion.resultado(self.x0))
+            try:
+                xn_1 = self.x1 - (self.ecuacion.resultado(self.x1)*(self.x1-self.x0))/(self.ecuacion.resultado(self.x1)-self.ecuacion.resultado(self.x0))
+            except:
+                print("Division por cero")
+                return 0,False
             error=abs(xn_1-self.x1)
             self.x0=self.x1
             self.x1=xn_1
-        print("Bucles: ",cont," Resultado: ",xn_1)
-        return xn_1,True
+        #print("Bucles: ",cont," Resultado: ",xn_1)
+        error=self.error_maximo
+        cont=0
+        while error<1:
+            error*=10
+            cont+=1
+        return self.ecuacion.truncar_sympy(xn_1,cont),True
 if __name__=="__main__":
-    ecuacion=MetodoSecante(x0=1.1,x1=1.3,error=1e-7)
+    ecuacion=MetodoSecante(x0=-2,x1=-1.5,error=1e-7)
     ecuacion.calcular()
