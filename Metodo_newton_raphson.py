@@ -1,87 +1,46 @@
 import Ecuacion_procesar
-
+import numpy as np
 class Metodo_Newton_Raphson:
-    def __init__(self,x0, error,ecuacion="ecuacion.txt", iteracciones=100):
+    def __init__(self, ecuacion="ecuacion.txt", error=1e-7, iteracciones=100):
         self.ecuacion = Ecuacion_procesar.Ecuacion_procesar(ecuacion)
         self.derivada = self.ecuacion.derivar()
         self.derivada_segunda = self.ecuacion.derivar()
-        self.x0 = x0
-        self.error_max=error
-        self.iteracciones=iteracciones
-    
-    def calculo(self):
-        error=100
-        xn=self.x0
-        cont=0
-        if self.ecuacion.resultado(xn,self.derivada)==0:
-            print("No se puede aplicar el metodo de Newton-Raphson")
-            return 0, False
-        elif -1<self.ecuacion.resultado(xn,self.derivada_segunda)<1:
-            print("No se puede aplicar el metodo de Newton-Raphson")
-            return 0, False
-        while error>self.error_max:
-            if cont>self.iteracciones:
-                print("Se ha alcanzado el numero maximo de iteraciones")
-                return 0, False
-            if -1<self.ecuacion.resultado(xn,self.derivada_segunda)<1:
-                print("No se puede aplicar el metodo de Newton-Raphson")
-                return 0, False
-            cont+=1
-            f_xn=self.ecuacion.resultado(xn)
-            f_derivada=self.ecuacion.resultado(xn,self.derivada)
-            xn_1=xn-(f_xn/f_derivada)
-            error=abs(xn_1-xn)
-            #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
-            xn=xn_1
-        #print("Bucles: ",cont," Resultado: ",xn_1)
-        cont=0
-        error=self.error_max
-        while error<1:
-            error*=10
-            cont+=1
-            #print("error: ", error, "\tcont: ",cont)
-        return self.ecuacion.truncar_sympy(xn_1,cont),True
-    
-    def calculo_raices_multiples(self):
-        error=100
-        xn=self.x0
-        cont=0
-        if self.ecuacion.resultado(xn,self.derivada)==0:
-            print("No se puede aplicar el metodo de Newton-Raphson para raices multiples")
-            return 0, False
-        if -1<self.ecuacion.resultado(xn,self.derivada_segunda)<1:
-                print("No se puede aplicar el metodo de Newton-Raphson")
-                return 0, False
-        while error>self.error_max:
-            if cont>self.iteracciones:
-                print("Se ha alcanzado el numero maximo de iteraciones ")
-                return 0, False
-            if -1<self.ecuacion.resultado(xn,self.derivada_segunda)<1:
-                print("No se puede aplicar el metodo de Newton-Raphson")
-                return 0, False
-            cont+=1
-            f_xn=self.ecuacion.resultado(xn)
-            f_derivada=self.ecuacion.resultado(xn,self.derivada)
-            f_derivada_segunda=self.ecuacion.resultado(xn,self.derivada_segunda)
-            f_derivada_elevada=f_derivada**2
-            try:
-                xn_1=xn-(f_xn*f_derivada)/(f_derivada_elevada-f_xn*f_derivada_segunda)
-            except ZeroDivisionError:
-                print("Error en el calculo de la derivada segunda")
-                return 0, False
-            #print("error: ", error, "\tf_xn ",f_xn, "\tderivada",self.derivada,"\tf_derivada ",f_derivada, "\txn_1 ",xn_1,"\txn ",xn)# Buscar error
-            error=abs(xn_1-xn)
-            xn=xn_1
+        self.error_max = error
+        self.iteracciones = iteracciones
 
-        #print("Bucles: ",cont," Resultado: ",xn_1)
-        cont=0
-        error=self.error_max
-        while error<1:
-            error*=10
-            cont+=1
-            #print("error: ", error, "\tcont: ",cont)
-        return self.ecuacion.truncar_sympy(xn_1,cont),True
+    def buscar_raiz(self, a,b):
+        x0 = (a + b) / 2
+        try:
+            if self.ecuacion.resultado(x0, self.derivada) == 0:
+                return 0, False
+            if -1 < self.ecuacion.resultado(x0, self.derivada_segunda) < 1:
+                return 0, False
+
+            xn = x0
+            error = 100
+            iteracion = 0
+            while error > self.error_max and iteracion < self.iteracciones:
+                f_xn = self.ecuacion.resultado(xn)
+                f_derivada = self.ecuacion.resultado(xn, self.derivada)
+
+                if f_derivada == 0:
+                    return 0, False
+
+                xn_1 = xn - f_xn / f_derivada
+                error = abs(xn_1 - xn)
+                xn = xn_1
+                iteracion += 1
+
+            if iteracion >= self.iteracciones:
+                return 0, False
+
+            # Redondear según el nivel de tolerancia
+            decimales = max(0, -int(round(np.log10(self.error_max))))
+            return self.ecuacion.truncar_sympy(xn, decimales), True
+
+        except Exception:
+            return 0, False
 if __name__ == "__main__":
-    ecuacion=Metodo_Newton_Raphson(-0.4,1e-7)
-    res,valido=ecuacion.calculo()
-    ecuacion.calculo_raices_multiples()
+    ecuacion=Metodo_Newton_Raphson("x**2-2",1e-7,100)
+    res,valido=ecuacion.buscar_raiz(1,2)
+    print(res)
