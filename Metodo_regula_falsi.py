@@ -1,61 +1,46 @@
-import Metodo_biseccion
-
+from Ecuacion_procesar import Ecuacion_procesar
+import numpy as np
 class Metodo_regula_falsi():
-    def __init__(self,a=0.1,b=1,error=0.001,ecuacion=None, iteraciones=50):
+    def __init__(self,ecuacion,error=0.001, iteraciones=50):
         self.error_maximo=error
         self.iteracciones=iteraciones
-        if ecuacion is None:
-            self.ecuacion=Metodo_biseccion.Metodo_biseccion(a,b,50)
-        else:
-            self.ecuacion=Metodo_biseccion.Metodo_biseccion(a,b,50,ecuacion) 
-        self.a,self.b,self.salir=self.ecuacion.calcular()
+        self.ecuacion=Ecuacion_procesar(ecuacion)
+        self.derivada=self.ecuacion.derivar()
+        self.derivada_segunda=self.ecuacion.derivar(self.derivada)
 
-    def __comprobar_signo(self):
-        derivada=self.ecuacion.ecuacion.derivar()
-        derivada_segunda=self.ecuacion.ecuacion.derivar(derivada)
-        derivada=self.ecuacion.ecuacion.procesar_ecuacion(derivada,self.a)
-        derivada_segunda=self.ecuacion.ecuacion.procesar_ecuacion(derivada_segunda,self.a)
-        #print(derivada,derivada_segunda)
-        if derivada*derivada_segunda>0:
-            print("Punto fijo B",self.a,self.b)
-            return True
-        else:
-            print("Punto fijo A ", self.a,self.b)
-            return False
+    def __comprobar_signo(self,x):
+        return self.ecuacion.procesar_ecuacion(self.derivada, x) * self.ecuacion.procesar_ecuacion(self.derivada_segunda, x) > 0
     
-    def calcular(self):
-        if self.salir==False:
-            return 0,False
-        ef=0
-        f_ef=0
-        error=100
-        xn_1=0
-        f_xn=0
-        if self.__comprobar_signo():
-            ef=self.b
-            f_ef=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=self.b)
-            xn=self.a
-            f_xn=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=xn)
-            #print("funcion B: ",f_ef)
+    def buscar_raiz(self,a, b):
+        # Determinar extremo fijo
+        if self.__comprobar_signo( a):
+            ef = b
+            mov = a
         else:
-            ef=self.a
-            f_ef=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=self.a)
-            xn=self.b 
-            f_xn=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=xn)
-            #print("funcion A ", f_ef)
-        cont=0
-        while (error>self.error_maximo):
-            if cont>self.iteracciones:
-                return 0,False
-            cont+=1
-            if xn_1!=0:
-                xn=xn_1
-            f_xn=self.ecuacion.ecuacion.procesar_ecuacion(valor_x=xn) 
-            xn_1=ef-((f_ef*(ef-xn))/(f_ef-f_xn))
-            error=abs(xn_1-xn)
-        resultado=(xn_1+xn)/2
-        print(f"Bucles: {cont} xn: ",xn, "xn+1= ",xn_1, "Resultado: ", resultado)
-        return resultado, True
+            ef = a
+            mov = b
+
+        f_ef = self.ecuacion.procesar_ecuacion(valor_x=ef)
+        error = float("inf")
+        cont = 0
+
+        while error > self.error_maximo and cont < self.iteracciones:
+            f_mov = self.ecuacion.procesar_ecuacion(valor_x=mov)
+            denominador = f_ef - f_mov
+            if denominador == 0:
+                return 0, False
+
+            xn = ef - (f_ef * (ef - mov)) / denominador
+            error = abs(xn - mov)
+            mov = xn
+            cont += 1
+
+        if cont >= self.iteracciones:
+            return 0, False
+
+        decimales = max(0, -int(np.floor(np.log10(self.error_maximo))))
+        return self.ecuacion.truncar_sympy(mov, decimales), True
 if __name__=="__main__":    
-    ecuacion=Metodo_regula_falsi(a=1,b=2,error=1e-7)
-    ecuacion.calcular()
+    ecuacion=Metodo_regula_falsi("10*cos(x)+x**2",error=1e-7)
+    res=ecuacion.buscar_raiz(1,2)
+    print(res)
