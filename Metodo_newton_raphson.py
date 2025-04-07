@@ -41,6 +41,6 @@ class Metodo_Newton_Raphson:
         except Exception:
             return 0, False
 if __name__ == "__main__":
-    ecuacion=Metodo_Newton_Raphson("x**2-2",1e-7,100)
+    ecuacion=Metodo_Newton_Raphson("cos(x)*10+x**2",1e-7,100)
     res,valido=ecuacion.buscar_raiz(1,2)
     print(res)
