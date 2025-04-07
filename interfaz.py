@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 import Ecuacion_guardar
 import Ecuacion_procesar
 from Graficadora import graficar_funcion
-from Metodos import Metodos
+from Metodos import Metodo
 class CalculadoraGUI:
     def __init__(self, root):
         self.root = root
@@ -74,8 +74,9 @@ class CalculadoraGUI:
             ecuacion=Ecuacion_procesar.Ecuacion_procesar(datos[0])
             if "X" in self.texto and len(datos)==1:
                 if ecuacion.reconocer():
-                    raices=Metodos(datos[0],-10,10,1e-7,50)
-                    graficar_funcion(datos[0].replace("X","x"),raices,-10,10)
+                    raices=Metodo(datos[0].replace("X","x"),intervalo=(0,10),subintervalos=800,tol=1e-7).encontrar_raices()
+                    #print(raices)
+                    graficar_funcion(datos[0].replace("X","x"),raices,0,10)
                 else:
                     self.texto_var.set("Error")
                     self.texto=""
@@ -88,9 +89,17 @@ class CalculadoraGUI:
                 else:
                     self.texto=""
                     self.texto_var.set("Error")
-            elif "X" in self.texto and len(datos)>3:
-                self.texto_var.set("Error")#cambiar por graficar y algoritmo de raices
-                #self.texto=""
+            elif "X" in self.texto and len(datos)==3:
+                if ecuacion.reconocer()and "X" not in datos[1]and "X" not in datos[2]:
+                    raices=Metodo(datos[0].replace("X","x"),intervalo=(float(datos[1]),float(datos[2])),subintervalos=800,tol=1e-2).encontrar_raices()
+                    #print(raices)""
+                    graficar_funcion(datos[0].replace("X","x"),raices,float(datos[1]),float(datos[2]))
+                else:
+                    self.texto_var.set("Error")
+                    self.texto=""
+            else:
+                self.texto_var.set("Error")
+                self.texto=""
         else:
             self.texto+=valor
             self.texto_var.set(self.texto)
