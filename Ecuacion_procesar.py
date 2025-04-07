@@ -23,9 +23,9 @@ class Ecuacion_procesar:
         ecuaciones.append(self.ecuacion+f"+{x}-{y}")
         return ecuaciones
 
-    def despejar_y(self,ecuacion_str):
+    def despejar_y(self,ecuacion_str,y="y"):
         # Convertir la ecuación de string a expresión simbólica
-        x, y = symbols('x y')
+        x, y = symbols(f'x {y}')
         ecuacion = sympify(ecuacion_str)
         
         # Intentar despejar y en función de x

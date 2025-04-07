@@ -91,7 +91,7 @@ class CalculadoraGUI:
                     self.texto_var.set("Error")
             elif "X" in self.texto and len(datos)==3:
                 if ecuacion.reconocer()and "X" not in datos[1]and "X" not in datos[2]:
-                    raices=Metodo(datos[0].replace("X","x"),intervalo=(float(datos[1]),float(datos[2])),subintervalos=800,tol=1e-2).encontrar_raices()
+                    raices=Metodo(datos[0].replace("X","x"),intervalo=(float(datos[1]),float(datos[2])),subintervalos=800,tol=1e-7).encontrar_raices()
                     #print(raices)""
                     graficar_funcion(datos[0].replace("X","x"),raices,float(datos[1]),float(datos[2]))
                 else:
