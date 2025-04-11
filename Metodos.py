@@ -5,8 +5,7 @@ from Metodo_biseccion import Metodo_biseccion
 from Metodo_regula_falsi import Metodo_regula_falsi
 from Metodo_secante import MetodoSecante
 from Metodo_punto_fijo import Metodo_punto_fijo
-# Supongamos que cada método implementado devuelve (raiz, True) si encuentra una raíz, o (None, False) si no
-# Por ahora usaremos solo Bisección como ejemplo (puedes reemplazar con tus métodos reales luego)
+
 
 class Metodo:
     def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=800, tol=1e-7):
@@ -46,7 +45,7 @@ class Metodo:
             #print("llego")
             #print("xi:", xi, "xi1:", xi1)
             for i in self.Metodos:
-                raiz, encontrada = self.Metodos[i](xi,xi1)#metodo_biseccion(func, xi, xi1, tol)
+                raiz, encontrada = self.Metodos[i](xi,xi1)#metodos
                 if encontrada:
                     # Verificar si ya está muy cerca de una raíz encontrada
                     #print("hola")
