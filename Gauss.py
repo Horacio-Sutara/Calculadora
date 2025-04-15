@@ -1,24 +1,35 @@
-from Ecuacion_procesar import Ecuacion_procesar
+import numpy as np
+def verificar_variables(matriz,longitud):
+    for i in range(longitud):
+        num=matriz[i][i]
+        for j in range(i+1,longitud):
+            num_2=matriz[j][i]
+            multiplicador=-1*num_2/num
+            #print(f"multiplicador: {multiplicador} num: {num} num_2: {num_2}")
+            matriz[j]=matriz[j]+ multiplicador*matriz[i]
+        #print(f"fila {i}: ",matriz[i])
 
-def verificar_variables(vect):
-    for j in range(len(vect)):
-        x_cant=vect[j].count("x")
-        cont=0
-        for i in range(1,len(vect)+1):
-            if f"x{i}" in vect[j]:
-                #print(f"Se encontro la ecuacion x{i} en la ecuacion {vect[j]}")
-                cont+=1
-        if cont<x_cant:
-            #print("error ecuacion: ", vect[j])
-            return False
-    return True
+    resultados=[]
+    for i in range(longitud-1,-1,-1):
+        resultado=matriz[i][longitud]
+        var=0
+        for j in range(i+1,longitud):
+            var+=matriz[i][j]
+        x=matriz[i][i]
+        resultados.append(float(np.round((resultado-var)/x,7)))
+        for j in range(i,-1,-1):
+            num=matriz[j][i]
+            matriz[j][i]=num*resultados[-1]
+    print(f"resultado: {resultados}")
+    return resultados
 
 if __name__ == '__main__':
-    vector = []
-    vector.append("x1+x2")
-    vector.append("x1+x2-x3")
-    vector.append("x1-x2+x2")
-    salir=verificar_variables(vector)
-    print(salir)
+    matriz=[[1.,1.0,1.0,2.0],
+            [3.0,-2.0,-1.0,4.0],
+            [-2.0,1.0,2.0,2.0]
+            ]
+    matriz=np.array(matriz)
+    tipo=3
+    verificar_variables(matriz,tipo)
 
 
