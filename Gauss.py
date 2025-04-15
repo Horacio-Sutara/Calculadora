@@ -1,5 +1,5 @@
 import numpy as np
-def verificar_variables(matriz):
+def Gauss(matriz):
     longitud=len(matriz)
     resultados=[]
     exito=False
@@ -59,6 +59,6 @@ if __name__ == '__main__':
         [1,1,1,3]
     ]"""
     matriz=np.array(matriz).astype(float)
-    verificar_variables(matriz)
+    Gauss(matriz)
 
 
