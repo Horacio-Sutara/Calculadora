@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{data.titulo}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+</head>
+
+
+<body>
+    <h1>prueba de pagina</h1>
+    <h2> {{ data.contenido }}</h2>
+    <p>personas trabajando en el proyecto 
+        {% for i in range(0,data.numero_persona-1,1) %}
+            {{data.nombres[i]}},
+        {% endfor %}
+        {{data.nombres[data.numero_persona-1]}}.
+            
+    </p>
+    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+</body>
+
+
+
+</html>
