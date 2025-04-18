@@ -1,6 +1,16 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+
 import numpy as np
 import sympy as sp
-from raices import Metodo_newton_raphson,Metodo_biseccion, Metodo_regula_falsi, Metodo_secante, Metodo_punto_fijo
+from raices import Metodo_newton_raphson
+from raices import Metodo_biseccion
+from raices import Metodo_regula_falsi
+from raices import Metodo_secante
+from raices import Metodo_punto_fijo
+
 class Metodos_raices:
     def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=800, tol=1e-7):
         self.x = sp.symbols('x')

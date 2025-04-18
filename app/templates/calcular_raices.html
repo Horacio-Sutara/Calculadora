@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Raíces</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: center;
+        }
+        table {
+            margin-top: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gráfica de la Función y Raíces Encontradas</h1>
+    
+    <!-- Mostrar la gráfica -->
+    <img src="data:image/png;base64,{{ img_data }}" alt="Gráfica de la Función">
+
+    <h2>Raíces Encontradas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>x</th>
+                <th>f(x)</th>
+                <th>Metodo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for raiz in tabla %}
+            <tr>
+                <td>{{ raiz.x }}</td>
+                <td>{{ raiz['f(x)'] }}</td>
+                <td>{{ raiz.Metodo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
