@@ -1,6 +1,6 @@
 import numpy as np
 import sympy as sp
-from Raices import Metodo_newton_raphson,Metodo_biseccion, Metodo_regula_falsi, Metodo_secante, Metodo_punto_fijo
+from raices import Metodo_newton_raphson,Metodo_biseccion, Metodo_regula_falsi, Metodo_secante, Metodo_punto_fijo
 class Metodos_raices:
     def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=800, tol=1e-7):
         self.x = sp.symbols('x')

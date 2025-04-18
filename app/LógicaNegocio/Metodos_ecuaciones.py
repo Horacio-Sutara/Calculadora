@@ -1,4 +1,4 @@
-from Ecuaciones import Gauss,jacobi,Seidel
+from ecuaciones import Gauss,jacobi,Seidel
 from utils import utils
 import numpy as np
 def Metodos_ecuaciones(matriz,metodo,iteraciones=100,error=1e-7):
