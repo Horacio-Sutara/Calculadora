@@ -1,4 +1,4 @@
-import Ecuacion_procesar
+from . import Ecuacion_procesar
 import numpy as np
 class Metodo_Newton_Raphson:
     def __init__(self, ecuacion="ecuacion.txt", error=1e-7, iteracciones=100):

@@ -1,4 +1,4 @@
-from Ecuacion_procesar import Ecuacion_procesar
+from .Ecuacion_procesar import Ecuacion_procesar
 import numpy as np
 
 #ecuacion=Ecuacion_procesar.Ecuacion_procesar()

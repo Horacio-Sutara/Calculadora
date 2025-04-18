@@ -1,4 +1,4 @@
-import Ecuacion_procesar
+from . import Ecuacion_procesar
 import numpy as np
 class Metodo_punto_fijo():
     def __init__(self, funcion, error=1e-7, iteracion=50):

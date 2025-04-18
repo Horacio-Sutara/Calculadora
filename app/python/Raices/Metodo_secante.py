@@ -1,4 +1,4 @@
-import Ecuacion_procesar
+from . import Ecuacion_procesar
 import numpy as np
 
 class MetodoSecante:

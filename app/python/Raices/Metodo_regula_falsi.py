@@ -1,4 +1,4 @@
-from Ecuacion_procesar import Ecuacion_procesar
+from .Ecuacion_procesar import Ecuacion_procesar
 import numpy as np
 class Metodo_regula_falsi():
     def __init__(self,ecuacion,error=0.001, iteraciones=50):
