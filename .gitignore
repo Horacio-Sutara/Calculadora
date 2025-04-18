@@ -1,2 +1,13 @@
 #Entorno virtual
 venv/
+
+#Archivos compilados
+__pycache__/
+*.pyc
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos específicos de IDEs
+.vscode/
