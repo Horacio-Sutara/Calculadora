@@ -1,6 +1,6 @@
 #Entorno virtual
 venv/
-
+env/
 #Archivos compilados
 __pycache__/
 *.pyc
