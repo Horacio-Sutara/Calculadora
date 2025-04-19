@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - BetaSolve</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre-nosotros.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="nav">
+            <!-- Logo principal -->
+            <div class="nav-section nav-logo">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <span class="brand-name">BetaSolve</span>
+            </div>
+    
+            <!-- Enlace de regreso al inicio -->
+            <div class="nav-section nav-home">
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="/" class="nav-link">Volver al Inicio</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content de la página Sobre nosotros -->
+    <main>
+        <div class="titles">
+            <h1>Acerca de <span style="color:#7e22ce;">BetaSolve</span></h1>
+            <p>Conocé nuestra historia, nuestra misión y lo que hace única a nuestra aplicación.</p>
+        </div>
+    
+        <section class="about-section">
+            <h2>¿Por qué existe esta aplicación?</h2>
+            <p>
+                BetaSolve nace del deseo de facilitar la vida académica y profesional a estudiantes, docentes y entusiastas de las matemáticas. 
+                Sabemos que muchos métodos numéricos pueden resultar complejos o difíciles de aplicar sin una herramienta adecuada.
+                Nuestra aplicación fue creada para hacer ese camino más accesible, ágil y visualmente claro.
+            </p>
+        </section>
+    
+        <section class="about-section">
+            <h2>¿Qué hace BetaSolve?</h2>
+            <p>
+                BetaSolve implementa métodos numéricos como <strong>Bisección</strong>, <strong>Regula Falsi</strong>, <strong>Newton-Raphson</strong>, 
+                <strong>Secante</strong>, <strong>Jacobi</strong> y <strong>Gauss-Seidel</strong>, entre otros, de forma clara e interactiva.
+                Está pensada para que cualquier persona pueda introducir datos, ver resultados paso a paso y comprender el proceso detrás de la solución.
+            </p>
+        </section>
+        
+    </main>
+    <div class="card">
+        <div class="card__front">
+            <div class="card__worker">
+                <img src="{{ url_for('static', filename='Image/aquiles.jpg') }}">
+            </div>
+            <div class="card__data">
+                <span>Aquiles Cancinos</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolore eveniet, optio suscipit asperiores nesciunt nam ab. Totam, exercitationem ut recusandae ipsa ratione sapiente voluptatum, quibusdam soluta illo neque iste</p>
+            </div>
+        </div>
+        <div class="card__back">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quasi iste voluptatum aperiam modi, fugiat doloremque id fuga adipisci voluptate consequuntur nisi soluta iure porro dicta reiciendis maiores consectetur quod.
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p><strong>BetaSolve · 2025</strong> </p>
+        </div>
+    </footer>
+</body>
+</html>

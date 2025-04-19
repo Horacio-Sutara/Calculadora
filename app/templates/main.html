@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_styles.css') }}">
+    <title>Betasolve</title>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <!-- Logo principal -->
+            <div class="nav-section nav-logo">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <span class="brand-name">BetaSolve</span>
+            </div>
+            <!-- Enlace de regreso al inicio -->
+            <div class="nav-section nav-home">
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                
+                <!-- modificar el enlace para que apunte a la ruta correcta -->
+                <a href="/sobre-nosotros" class="nav-link">Sobre nosotros</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="titles">
+            <h1>BetaSolve</h1>
+            <p>Haz tus calculos mas simples aqui</p>
+        </div>
+        <!-- Tarjeta de las caluculadoras -->
+        <div class="card-container">
+            <a href="/calculadora" class="card">
+                <div class="card-content">
+                    <h2>Calculadora simple</h2>
+                    <p>Realizar cálculos con nuestra calculadora simple</p>
+                </div>
+                <img src="{{ url_for('static', filename='Image/calculadora-icono.svg') }}" alt="Calculadora" class="icon-img">
+                <span class="arrow">→</span>
+            </a>
+            <a href="/raices" class="card">
+                <div class="card-content">
+                    <h2>Raíces de funciones</h2>
+                    <p>Encontrar las raíces de una función matemática</p>
+                </div>
+                <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Funcion" class="icon-img">
+                <span class="arrow">→</span>
+            </a>
+                <a href="/sistemas_ecuaciones" class="card">
+                <div class="card-content">
+                    <h2>Sistemas de ecuaciones</h2>
+                    <p>Resolver sistemas de ecuaciones usando distintos métodos numéricos</p>
+                </div>
+                <img src="{{ url_for('static', filename='Image/matriz-icono.svg') }}" alt="Sistema" class="icon-img">
+                <span class="arrow">→</span>
+            </a>
+        </div>
+        <div class="symbol-container">
+            <img src="{{ url_for('static', filename='Image/informacion-icono.svg') }}" alt="Símbolo" class="symbol-image" /> 
+            <p class="select-text">Seleccione una opción para empezar</p>
+        </div> 
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p><strong>BetaSolve · 2025</strong> </p>
+        </div>
+    </footer>
+</body>
+</html>

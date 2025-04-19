@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{data.titulo}}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Raíces de Funciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Enlaza tu archivo CSS -->
 </head>
-
-
 <body>
-    <h1>prueba de pagina</h1>
-    <h2> {{ data.contenido }}</h2>
-    <p>personas trabajando en el proyecto 
-        {% for i in range(0,data.numero_persona-1,1) %}
-            {{data.nombres[i]}},
-        {% endfor %}
-        {{data.nombres[data.numero_persona-1]}}.
-            
-    </p>
-    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+    <h1>Raíces de Funciones</h1>
+    
+    <!-- Formulario para ingresar la función y el intervalo -->
+    <div class="container">
+        <div class="form-container">
+            <form action="/calculadora" method="POST">
+                <label for="funcion">Función:</label>
+                <input type="text" id="funcion" name="funcion" placeholder="Ej: x**2 + 2*x" required>
+                <!--  
+                <label for="intervalo">Intervalo (opcional):</label>
+                <input type="text" id="intervalo" name="intervalo" placeholder="Ej: -10,10">
+                -->
+                
+                <button type="submit">Calcular Raíces</button>
+            </form>
+        </div>
+
+        <!-- Calculadora (Ejemplo de cómo podrías integrar la calculadora de la imagen) -->
+        <div class="calculator">
+            <!-- Aquí iría el código de la calculadora -->
+            <p>Calculadora en JavaScript (aquí va tu implementación)</p>
+        </div>
+    </div>
 </body>
-
-
-
 </html>

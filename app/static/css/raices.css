@@ -1,0 +1,263 @@
+/* === ESTILOS GENERALES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Apila header, contenido y footer verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    background-color: #fff;
+    position: relative;
+}
+header {
+    background: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.nav-section{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo-icon {
+    width: 30px; /* Ajusta el tamaño del icono */
+    height: 30px;
+}
+
+.brand-name {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.page-title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #c78eff;
+}
+
+
+/*Main*/
+.contenedor-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+}
+/*Input*/
+.bloque-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    background-color: #222;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 0.8s ease;
+}
+
+.campo label {
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.display-funcion,.display-intervalo {
+    background-color: #111;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 1.3rem 0.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    color: #222;
+}
+
+.btn-calcular {
+    background-color: #c78eff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-calcular:hover {
+    background-color: #a259e4;
+    transform: scale(1.03);
+}
+/* === CALCULADORA === */
+.calculadora {
+    background-color: #222; /* Fondo negro de la calculadora */
+    border-radius: 20px;
+    width: 330px;
+    padding: 1.5rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+/* "BetaSolve" en la esquina superior derecha */
+.calculadora .titulo {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    color: #fff; /* Color violeta */
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Pantalla */
+.pantalla {
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    color: #000;
+    overflow-x: auto;
+}
+/* Contenedor de botones */
+/* === HEADER - FILAS DE BOTONES DE FUNCIONES === */
+
+.buttons-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.row-math, .row-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+}
+.row-math:first-child {
+    margin-top: 1.2rem;
+}
+
+/* === BOTONES=== */
+.btn-header,.btn-math,  .btn-especial, .btn-especial.igual {
+    flex: 1;                       /* Cada botón ocupa el mismo ancho */
+    min-width: 0;                  /* Permite que se achiquen si no hay espacio */
+    font-size: 1rem;
+    padding: 0.2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-align: center;
+}
+.btn-math,.btn-especial.igual { /* Que todos crezcan proporcionalmente */
+    margin-bottom:10px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+}
+.btn-header, .btn-especial:not(.igual) {
+    height: 40px;
+    font-size: 0.8rem;
+    padding: 0.3rem;
+}
+.btn-header:hover, .btn-math:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+/* === BOTONES ESPECIALES (Del, C, =) === */
+.btn-especial, .btn-especial.igual {
+    background-color:#c78eff;
+    font-weight: bold;
+}
+
+.btn-especial:hover,.btn-especial.igual:hover {
+    background-color: #a259e4;
+    transform: scale(1.08);
+}
+/* === FOOTER === */
+footer {
+    width: 100%;
+    margin-top: auto; /* Lo empuja hacia abajo */
+    background-color: #222;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+}
+
+  /* Animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }}
+/* MEDIAS QUERIS */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+}

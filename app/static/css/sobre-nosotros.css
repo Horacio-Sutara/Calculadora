@@ -1,0 +1,195 @@
+/* === ESTILOS GENERALES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Apila header, contenido y footer verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    background-color: #fff;
+    position: relative;
+}
+header {
+    background: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.nav-section{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo-icon {
+    width: 30px; /* Ajusta el tamaño del icono */
+    height: 30px;
+}
+
+.brand-name {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.page-title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #c78eff;
+}
+/* Sobre nosotros*/
+/* Títulos principales */
+.titles h1 {
+    font-size: 3rem;
+    color: #333;
+    margin: 0.6em;
+    text-align: center;
+}
+
+.titles p {
+    font-size: 1.2rem;
+    color: #777;
+    text-align: center;
+}
+.about-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f3e8ff; /* violeta muy claro */
+    border-left: 6px solid #c78eff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    animation: fadeIn 1s ease-in-out;
+    text-align: left;
+}
+
+.about-section h2 {
+    color: #7e22ce;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.about-section p {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.6;
+}
+/* Tarjetas */
+.card{
+    max-width: clamp(160px,50%,320px);
+    background-color: var(--card-bg-color);
+    margin: 50px auto;
+    position: relative;
+    border-radius: 20px;
+}
+.card__back, .card__front{
+    backface-visibility: hidden;
+    transition: transform 1s;
+    background-color:var(--card-color) ;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card:hover .card__front{
+    transform: perspective(1200px) rotateY(180deg);
+}
+.card:hover .card__back{
+    transform: perspective(1200px) rotateY(360deg);
+}
+.card__front{
+    transform: perspective(1200px) rotateY(0deg);
+}
+.card__back{
+    position: absolute;
+    top: 0 ;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center ;
+    padding: 12px;
+    transform: perspective(900px) rotateY(180deg);
+}
+.card__worker{
+    max-height: 200px;
+    overflow: hidden;
+    display: block;
+}
+.card__worker img{
+    max-width: 100%;
+}
+.card__data{
+    padding: 12px;
+}
+.card__data span{
+    font-size: 1.4rem;
+    margin: 6px 0;
+    display: block;
+}
+
+/* FOOTER */
+footer {
+    width: 100%;
+    margin-top: auto; /* Lo empuja hacia abajo */
+    background-color: #222;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+}
+
+
+/* MEDIAS QUERIS */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
