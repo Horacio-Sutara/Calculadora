@@ -1,6 +1,6 @@
 from flask import Flask,render_template
-from controllers import racies
-
+from controllers import racies,calculadora_basica
+#from controllers.calculadora import calcular
 app = Flask(__name__)
 
 #Ruta de prueba
@@ -13,15 +13,29 @@ def index():
 def sobre_nosotros():
     return render_template('sobre-nosotros.html')
 
+
+
+# !!!! Esto es lo que tenes que unir luego!!!!
 # Ruta para la calculadora de raíces
 @app.route('/calcular_raices', methods=['GET', 'POST'])
 def calcular_raices():
     # Llamamos a la función en el controlador 'raices.py'
     return racies.calcular_raices()
 
+
+
+
+
 @app.route('/calculadora')
 def calculadora():
     return render_template('calculadora.html')
+
+@app.route('/resolver', methods=['POST'])
+def resolver():
+    print("Recibido")
+    return calculadora_basica.calcular()
+    #return calcular()
+
 
 @app.route('/raices')
 def raices():

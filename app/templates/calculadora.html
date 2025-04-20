@@ -36,6 +36,7 @@
 
         <!-- Pantalla donde se muestra la operación -->
         <div class="pantalla">
+            <input type="text" id="pantalla" readonly>
             <!-- Aquí va la operación que se está realizando -->
         </div>
 
@@ -101,6 +102,6 @@
         </div>
     </footer>
 
-    <script src="calculator.js"></script>
+    <script src="{{ url_for('static', filename='js/calculadora.js') }}"></script>
 </body>
 </html>
