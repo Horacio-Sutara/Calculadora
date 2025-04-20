@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import math
 from LogicaNegocio.raices import Ecuacion_procesar
 
 app = Flask(__name__)
@@ -7,6 +6,13 @@ def calcular():
     data = request.get_json()
     expresion = data['expresion']
     print("Hola, estoy en el calculadora.py\n",expresion, type(expresion))
+    if expresion=="" or expresion==" ":
+        return jsonify({'resultado': "", 'detalle': "vacio"})
+    if "^" in expresion:
+        expresion=expresion.replace("^","**")
+    if "√" in expresion:
+        expresion=expresion.replace("√","sqrt")
+        print("Hola, estoy en el calculadora.py\n",expresion, type(expresion))
     try:
         # Prepará un entorno seguro para evaluar
         datos=expresion.split(";")
