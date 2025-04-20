@@ -13,16 +13,13 @@ def index():
 def sobre_nosotros():
     return render_template('sobre-nosotros.html')
 
-
-
 # !!!! Esto es lo que tenes que unir luego!!!!
 # Ruta para la calculadora de raíces
-@app.route('/calcular_raices', methods=['GET', 'POST'])
+@app.route('/calcular_raices', methods=['POST'])
 def calcular_raices():
     # Llamamos a la función en el controlador 'raices.py'
+    print("Recibido")
     return racies.calcular_raices()
-
-
 
 
 
