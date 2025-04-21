@@ -101,25 +101,13 @@ header {
     line-height: 1.6;
 }
 /* Tarjetas */
-.card__container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas */
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-}
 .card{
     max-width: clamp(160px,50%,320px);
     background-color: var(--card-bg-color);
     margin: 50px auto;
     position: relative;
     border-radius: 20px;
-    flex: 1 1 calc(50% - 40px); /* Dos tarjetas por fila */
-    max-width: 320px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: white; /* o el color que quieras */
 }
-
 .card__back, .card__front{
     backface-visibility: hidden;
     transition: transform 1s;
@@ -146,22 +134,6 @@ header {
     padding: 12px;
     transform: perspective(900px) rotateY(180deg);
 }
-.card__back .contacto {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.8;
-}
-.card__back .contacto a {
-    text-decoration: none; 
-    font-size: 1.1rem;
-    color: black; 
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-.card__back .contacto i {
-    margin-right: 8px;
-    color:black; /* color azul linkedin */
-}
 .card__worker{
     max-height: 200px;
     overflow: hidden;
@@ -172,7 +144,6 @@ header {
 }
 .card__data{
     padding: 12px;
-    text-align: center;
 }
 .card__data span{
     font-size: 1.4rem;
@@ -210,11 +181,6 @@ footer {
     }
     .logo {
         margin-bottom: 1rem;
-    }
-}
-@media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
     }
 }
 @keyframes fadeIn {

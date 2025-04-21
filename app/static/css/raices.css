@@ -75,7 +75,6 @@ header {
     padding: 1.5rem;
     width: 100%;
     max-width: 1200px;
-    animation: fadeIn 0.8s ease;
 }
 /*Input*/
 .bloque-inputs {
@@ -88,7 +87,7 @@ header {
     background-color: #222;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    
+    animation: fadeIn 0.8s ease;
 }
 
 .campo label {

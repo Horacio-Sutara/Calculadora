@@ -73,7 +73,6 @@ main {
     margin: 0 auto;
     max-width: 1200px;
     margin-top: 0;
-    animation: subirDesdeAbajo 0.8s ease-out forwards;
 }
 .titles {
     text-align: center;
@@ -248,16 +247,6 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-@keyframes subirDesdeAbajo {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
     }
 }
 
