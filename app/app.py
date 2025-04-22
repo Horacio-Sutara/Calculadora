@@ -39,6 +39,20 @@ def calcular_raices():
 def sistemas_ecuaciones():
     return render_template('sistemas.html')
 
+@app.route('/solucion_sistema')
+def solucion_sistema():
+    matrices = [
+        [[1, 2, 3.22], [3.2, 4, 4], [3, 4, 5]],
+        [[5, 6, 7], [8, 9, 10], [3.2, 5, 1]],
+        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
+        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
+        [[5, 3, 2], [1, 2, 10.2], [1.2, 5, 2]],
+        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
+        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
+    ]
+    letras = [f"Matriz {chr(65 + i)}" for i in range(len(matrices))]  # ['Matriz A', 'Matriz B', 'Matriz C']
+    soluciones = ['x = ...', 'y = ...', 'z = ...']
+    return render_template('solucion_sistema.html', matrices=matrices, letras=letras, soluciones=soluciones)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000

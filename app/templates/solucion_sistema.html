@@ -3,36 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="soluciones_raices.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solucion_sistema.css') }}">
+    <title>Solucion_Sistema</title>
 </head>
 <body>
     <header>
         <nav class="nav">
             <!-- Logo principal -->
             <div class="nav-section nav-logo">
-                <img src="../img/icono-logo.svg" alt="Ícono de BetaSolve" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
     
             <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="../img/calculadora-icono.svg" alt="Ícono de calculadora" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/calculadora-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
                 <h1 class="page-title">Solucion del Sistema</h1>
             </div>
     
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
-                <img src="../img/home.svg" alt="Ícono de Home" class="logo-icon">
-                <a href="../Main_sobrenosotros/main.html" class="nav-link">Volver al Inicio</a>
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="/" class="nav-link">Volver al Inicio</a>
             </div>
         </nav>
     </header>
+    <main class="contenido">
+        <!-- Sección de matrices -->
+        <section class="cuadro-matrices">
+            <h2 class="matrices-titulo">Procedimiento</h2>
+            <!-- Aca iria las matrices -->
+            <div class="matrices-grid" id="procedimiento">
+                {% for matriz in matrices %}
+                    <div class="bloque-matriz paso" style="display: none;">
+                        <div class="matriz-cuerpo">
+                            {% for fila in matriz %}
+                                <div class="fila">
+                                    {% for elemento in fila %}
+                                        <div class="celda">{{ elemento }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% if not loop.last %}
+                            <div class="flecha">→</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Sección de soluciones -->
+        <section class="cuadro-soluciones">
+            <h2>Soluciones</h2>
+            <ul>
+                <li>x = </li>
+                <li>y = </li>
+                <li>z = </li>
+            </ul>
+        </section>
+    </main>
     <footer>
         <div class="footer-content">
-            <p>Horacio Sutara · Aquiles Cansinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/sistemas.js') }}"></script>
 </body>
 </html>

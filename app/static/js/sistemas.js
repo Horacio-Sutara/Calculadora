@@ -40,3 +40,29 @@ function generarSistema() {
         contenedor.appendChild(fila);
     }
 }
+//Boton para dirigirse al sistema
+function dirigir() {
+    document.getElementById('btn-calcular').addEventListener('click', function() {
+        window.location.href = '/solucion_sistema';
+    });
+}
+document.addEventListener('DOMContentLoaded', dirigir);
+
+//Animacion de aparacer las matrices
+
+document.addEventListener("DOMContentLoaded", function () {
+    const pasos = document.querySelectorAll(".paso");
+    let index = 0;
+
+    function mostrarPaso() {
+        if (index >= pasos.length) return;
+
+        const paso= pasos[index]
+        paso.style.display = "flex"; 
+        paso.classList.add("aparecer");
+        index++;
+        setTimeout(mostrarPaso, 300); // cada cuánto se muestra
+    }
+
+    mostrarPaso();
+});
