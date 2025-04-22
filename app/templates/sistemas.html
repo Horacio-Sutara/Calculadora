@@ -33,12 +33,13 @@
         <div class="bloque-generador">
             <label for="cantidadEcuaciones">Numero de Ecuaciones</label>
             <div class="fila-input-generador">
-                <input type="number" id="cantidadEcuaciones" min="2" max="4" placeholder="2, 3 o 4">
+                <input type="number" id="cantidadEcuaciones" min="2" max="5" placeholder="2, 3, 4 o 5">
                 <button class="btn-generar" onclick="generarSistema()">Generar sistema</button> 
             </div>
+            
             <div id="sistemaContenedor"></div>
             <div class="campo">
-                <label for="metodo">Seleccionar método:</label>
+                <label for="metodo">Seleccionar método</label>
                 <select id="metodo">
                     <option value="gauss">Gauss</option>
                     <option value="gauss-jordan">Gauss-Jordan</option>
@@ -46,13 +47,17 @@
                     <option value="seidel">Gauss-Seidel</option>
                 </select>
             </div>
+            <div id="Mensaje_calcular"></div>
+            <button class="btn-raices">Calcular Raíces</button>
         </div>
     <!-- CALCULADORA -->
-    <div class="calculadora">
-        <!-- Título BetaSolve en la esquina superior derecha -->
+     
+
+    <!--<div class="calculadora">
+        Título BetaSolve en la esquina superior derecha 
         <div class="titulo">BetaSolve</div> 
 
-        <!-- Pantalla donde se muestra la operación -->
+         Pantalla donde se muestra la operación 
         <div class="pantalla"></div>
 
         <div class="buttons">
@@ -83,6 +88,7 @@
         </div>
         <button id="btn-calcular" class="btn-raices">Calcular Raíces</button>
     </div>
+    -->
     
 </div>
     <footer>

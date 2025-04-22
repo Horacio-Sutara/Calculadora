@@ -1,8 +1,8 @@
-from flask import Flask,render_template
-from controllers import racies,calculadora_basica
+from flask import Flask,render_template,session
+from controllers import racies,calculadora_basica,ecuaciones
 #from controllers.calculadora import calcular
 app = Flask(__name__)
-
+app.secret_key = 'clave-secreta'
 #Ruta de prueba
 @app.route('/')
 def index():
@@ -28,6 +28,7 @@ def resolver():
 def raices():
     return render_template('raices.html')
 
+
 # Ruta para la calculadora de raíces
 @app.route('/calcular_raices', methods=['POST'])
 def calcular_raices():
@@ -39,20 +40,14 @@ def calcular_raices():
 def sistemas_ecuaciones():
     return render_template('sistemas.html')
 
-@app.route('/solucion_sistema')
+@app.route('/resolver_sistema', methods=['POST'])
+def resolver_sistema():
+    return ecuaciones.calcular()
+
+@app.route('/solucion')
 def solucion_sistema():
-    matrices = [
-        [[1, 2, 3.22], [3.2, 4, 4], [3, 4, 5]],
-        [[5, 6, 7], [8, 9, 10], [3.2, 5, 1]],
-        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
-        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
-        [[5, 3, 2], [1, 2, 10.2], [1.2, 5, 2]],
-        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
-        [[5, 3, 2], [1, 2, 10], [1, 5, 2]],
-    ]
-    letras = [f"Matriz {chr(65 + i)}" for i in range(len(matrices))]  # ['Matriz A', 'Matriz B', 'Matriz C']
-    soluciones = ['x = ...', 'y = ...', 'z = ...']
-    return render_template('solucion_sistema.html', matrices=matrices, letras=letras, soluciones=soluciones)
+    return render_template('solucion_sistema.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000
