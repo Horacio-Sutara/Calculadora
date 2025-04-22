@@ -7,6 +7,7 @@ import numpy as np
 from io import BytesIO
 import base64
 from LogicaNegocio.Metodos_raices import Metodos_raices
+from LogicaNegocio.raices import Ecuacion_procesar
 
 app = Flask(__name__)
 
@@ -80,20 +81,26 @@ def calcular_raices():
     try:
         data = request.get_json()
         funcion = data['funcion']
+        if "^" in funcion:
+            funcion=funcion.replace("^","**")
+        if "√" in funcion:
+            funcion=funcion.replace("√","sqrt")
         print(funcion)
         intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
         print(intervalo_str)
 
+        ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
+        if not ecuacion.reconocer():
+            return render_template('error_raices.html')
+
         # Crear la instancia de la clase Metodos_raices
 
-        #Falta pasar el intervalo abajo!!
-        intervalo = tuple(map(float, intervalo_str.split(','))) if intervalo_str else (-10, 10)
+        print(intervalo_str)
+        intervalo = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
         metodos_raices = Metodos_raices(funcion,intervalo=intervalo)
         raices = metodos_raices.encontrar_raices()  # Encuentra las raíces usando los métodos
-        #print(raices)
         #print("HOLAAAA")
 
-        intervalo = tuple(map(float, intervalo_str.split(','))) if intervalo_str else (-10, 10)
         #Crear la gráfica
         x_vals = np.linspace(intervalo[0], intervalo[1], 800)
         #print("Valores de x generados:", x_vals)
