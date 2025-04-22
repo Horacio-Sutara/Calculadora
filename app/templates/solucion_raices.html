@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="soluciones_raices.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
     <title>Solucion</title>
 </head>
 <body>
@@ -11,29 +11,48 @@
         <nav class="nav">
             <!-- Logo principal -->
             <div class="nav-section nav-logo">
-                <img src="../img/icono-logo.svg" alt="Ícono de BetaSolve" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
     
             <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="../img/calculadora-icono.svg" alt="Ícono de calculadora" class="logo-icon">
-                <h1 class="page-title">Solucion de Raices</h1>
+                <img src="{{ url_for('static', filename='Image/calculadora-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <h1 class="page-title">Solución de raíces</h1>
             </div>
     
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
-                <img src="../img/home.svg" alt="Ícono de Home" class="logo-icon">
-                <a href="../Main_sobrenosotros/main.html" class="nav-link">Volver al Inicio</a>
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="/" class="nav-link">Volver al Inicio</a>
             </div>
         </nav>
     </header>
     
-    <footer>
-    <div class="footer-content">
-        <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
-        <p><strong>BetaSolve · 2025</strong> </p>
-    </div>
+    <h1>Gráfica de la Función y Raíces Encontradas</h1>
+
+    <!-- Mostrar la gráfica -->
+    <img src="data:image/png;base64,{{ img_data }}" alt="Gráfica de la Función">
+
+    <h2>Raíces Encontradas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>x</th>
+                <th>f(x)</th>
+                <th>Metodo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for raiz in tabla %}
+            <tr>
+                <td>{{ raiz.x }}</td>
+                <td>{{ raiz['f(x)'] }}</td>
+                <td>{{ raiz.Metodo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     </footer>
 </body>
 </html>
