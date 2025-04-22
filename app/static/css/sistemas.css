@@ -98,8 +98,8 @@ header {
 #sistemaContenedor {
     background-color: #1c1c1c;
     border-radius: 12px;
-    padding: 1rem;
-    height:240px; /* Espacio inicial aunque no haya contenido */
+    padding: 0rem;
+    height:260px; /* Espacio inicial aunque no haya contenido */
     color: white;
     display: flex;
     flex-direction: column;
@@ -115,7 +115,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 350px;
+    width: 500px;/* Cambiado a 500px para que ocupe 50% del ancho de la pantalla */
     box-sizing: border-box;
 }
 
@@ -160,6 +160,7 @@ header {
     border-radius: 8px;
     background-color: #2a2a2a;
     color: white;
+    
 }
 
 .fila-input-generador input::placeholder {
@@ -197,11 +198,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .campo label {
     font-weight: 600;
-    margin-bottom: 10px;
-    color: #333; /* O blanco si usás fondo oscuro */
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #fff; /* O blanco si usás fondo oscuro */
 }
 select#metodo {
-    padding: 8px 12px;
+    text-align: center;
+    height: 30px;
     border-radius: 8px;
     border: 2px solid #8a2be2; /* Violeta crack */
     background-color: #f9f9f9;
@@ -211,7 +215,7 @@ select#metodo {
 }
 select#metodo:focus {
     border-color: #6a0dad;
-    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+    box-shadow: 0 0 0px rgba(138, 43, 226, 0.5);
 }
 select#metodo option {
     background-color: white;
@@ -296,10 +300,21 @@ select#metodo option {
     background-color: #a259e4;
     transform: scale(1.08);
 }
+#Mensaje_calcular{
+    background-color: #1c1c1c;
+    margin-bottom: 5px;
+    height:0px; /* Espacio inicial aunque no haya contenido */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    text-align: center;
+}
 
 /* Botón Calcular Raíces */
 .btn-raices {
     margin-top: 1rem;
+    margin-left: 1.5rem;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;

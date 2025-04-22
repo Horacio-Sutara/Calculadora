@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="soluciones_raices.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -11,28 +11,44 @@
         <nav class="nav">
             <!-- Logo principal -->
             <div class="nav-section nav-logo">
-                <img src="../img/icono-logo.svg" alt="Ícono de BetaSolve" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
     
             <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="../img/calculadora-icono.svg" alt="Ícono de calculadora" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/calculadora-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
                 <h1 class="page-title">Solucion del Sistema</h1>
             </div>
     
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
-                <img src="../img/home.svg" alt="Ícono de Home" class="logo-icon">
-                <a href="../Main_sobrenosotros/main.html" class="nav-link">Volver al Inicio</a>
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="/" class="nav-link">Volver al Inicio</a>
             </div>
         </nav>
     </header>
+    <div class="zona-sistemas">
+        <!-- Bloque de generación del sistema -->
+        <div class="bloque-generador">
+            <script>
+                const resultado = {{ session.get('resultado', []) | tojson }};
+                const iteraciones = {{ session.get('iteraciones', 0) | tojson }};
+                const historial = {{ session.get('historial', []) | tojson }};
+                const funciono = {{ session.get('funciono', false) | tojson }};
+            </script>
+            <div id="Mensaje_calcular"></div> <!-- Aquí se mostrará el mensaje de éxito o error -->
+            <div id="historial"></div> <!-- Aquí se mostrará el historial si lo deseas -->
+
+              
+        </div>
+    </div>
     <footer>
         <div class="footer-content">
             <p>Horacio Sutara · Aquiles Cansinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/solucion_sistema.js') }}"></script>
 </body>
 </html>
