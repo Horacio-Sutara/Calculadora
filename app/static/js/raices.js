@@ -123,13 +123,14 @@ document.addEventListener('DOMContentLoaded', function () {
     btnCalcularRaices.addEventListener('click', function() {
         // Capturar la función y el intervalo
         const funcion = pantallaFuncion.value.trim();
-        const intervalo = pantallaIntervalo.value.trim().split(',').map(i => i.trim());
+        const intervalo = pantallaIntervalo.value.trim();
 
         // Validación de los campos
         if (!funcion) {
             alert("Por favor ingresa una función.");
             return;
         }
+        
 
         // if (intervalo.length !== 2 || isNaN(intervalo[0]) || isNaN(intervalo[1])) {
         //     alert("El intervalo debe tener el formato: 'inicio, fin'.");
@@ -147,23 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 intervalo: intervalo  // Enviar el intervalo como array [inicio, fin]
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            // Aquí puedes manipular los datos devueltos y mostrar los resultados
-            const resultadoDiv = document.getElementById('resultado');
-            
-            // Mostrar las raíces
-            let resultadoHtml = '<h3>Raíces encontradas:</h3><ul>';
-            data.raices.forEach(raiz => {
-                resultadoHtml += `<li>x = ${raiz.x}, f(x) = ${raiz.fx}, Método: ${raiz.metodo}</li>`;
-            });
-            resultadoHtml += '</ul>';
-            
-            // Mostrar la gráfica
-            resultadoHtml += `<h3>Gráfica:</h3><img src="data:image/png;base64,${data.img_data}" alt="Gráfica de la función">`;
-            
-            // Inyectar el resultado en el div
-            resultadoDiv.innerHTML = resultadoHtml;
+        .then(response => response.text())
+        .then(html => {
+            document.open();
+            document.write(html);
+            document.close();
         })
         .catch(error => {
             console.error('Error:', error);
