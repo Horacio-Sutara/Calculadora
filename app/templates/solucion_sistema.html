@@ -36,6 +36,7 @@
                 const iteraciones = {{ session.get('iteraciones', 0) | tojson }};
                 const historial = {{ session.get('historial', []) | tojson }};
                 const funciono = {{ session.get('funciono', false) | tojson }};
+                const metodo = {{ session.get('metodo', '') | tojson }};
             </script>
             <div id="Mensaje_calcular"></div> <!-- Aquí se mostrará el mensaje de éxito o error -->
             <div id="historial"></div> <!-- Aquí se mostrará el historial si lo deseas -->

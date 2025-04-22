@@ -4,7 +4,7 @@ window.onload = function() {
 
     if (funciono) {
         // Si funcionó, mostramos los resultados
-        contenedor.innerHTML = '<p style="color:green;">¡El sistema se resolvió exitosamente!</p>';
+        contenedor.innerHTML = '<p style="color:green;">¡El sistema se resolvió exitosamente! con el metodo ' + metodo + '</p>';        
         // Aquí puedes mostrar el resultado de la solución
         const resultadoHTML = resultado.map((valor, index) => {
             return `<p>x${index + 1} = ${valor}</p>`;
@@ -26,4 +26,5 @@ window.onload = function() {
         });
         historialContenedor.innerHTML = historialHTML;
     }
+
 };

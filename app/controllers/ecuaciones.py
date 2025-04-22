@@ -20,9 +20,11 @@ def calcular():
     session['iteraciones'] = iteraciones
     session['historial'] = historial
     session['funciono'] = funciono
+    session['metodo'] = metodo
 
     return {
     'resultado': res,
+    'metodo':metodo,
     'iteraciones': iteraciones,
     'historial': historial,
     'funciono': funciono,

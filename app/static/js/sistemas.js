@@ -138,7 +138,6 @@ function calcularRaices() {
       if (res.funciono) {
         window.location.href = res.redirect;
       } else {
-        const contenedor = document.getElementById('Mensaje_calcular');
         contenedor.innerHTML = '<p style="color:red;">El sistema no se pudo resolver. Revisá los datos.</p>';
       }
       
