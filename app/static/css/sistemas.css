@@ -10,9 +10,9 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column; /* Apila header, contenido y footer verticalmente */
+    justify-content: flex-start;
     align-items: center; /* Centra horizontalmente */
     background-color: #fff;
-    position: relative;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -92,7 +92,7 @@ header {
     align-items: center;
     gap: 4rem;
     flex-wrap: wrap;
-    padding: 1rem 1rem;
+    padding: 1.7rem 1rem;
     max-width: 1200px;
     animation: fadeIn 0.8s ease;
 }
@@ -190,14 +190,21 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #c78eff;
     color: #000;
 }
-/* === Selector === */
+/* === Selector y Boton === */
+.fila-metodo-boton {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem auto 0;
+}
 .campo {
-
     display: flex;
     flex-direction: column;
 }
-
 .campo label {
+    flex: 1;
     font-weight: 600;
     text-align: center;
     margin-top: 5px;
@@ -205,14 +212,19 @@ input[type=number]::-webkit-outer-spin-button {
     color: #fff; /* O blanco si usás fondo oscuro */
 }
 select#metodo {
+    flex:1;
     text-align: center;
-    height: 30px;
-    border-radius: 8px;
+    padding: 0.8rem;
+    height: 25px;
+    border-radius: 12px;
     border: 2px solid #8a2be2; /* Violeta crack */
     background-color: #f9f9f9;
-    font-size: 14px;
     outline: none;
     transition: all 0.3s ease;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    outline: none;
 }
 select#metodo:focus {
     border-color: #6a0dad;
@@ -222,85 +234,7 @@ select#metodo option {
     background-color: white;
     color: #333;
 }
-/* === CALCULADORA === */
 
-.calculadora {
-    margin: 2rem 0;
-    background-color: #222;
-    border-radius: 20px;
-    width: 275px; /* achicada */
-    padding: 1.5rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
-    position: relative;
-    flex-shrink: 0;
-}
-
-.calculadora .titulo {
-    position: absolute;
-    top: 4px;
-    right: 17px;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.pantalla {
-    background-color: #fff;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 0.3rem;
-    border-radius: 10px;
-    text-align: right;
-    font-size: 1.2rem;
-    padding: 1rem;
-    color: #000;
-    overflow-x: auto;
-}
-
-.row-math {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* === Botones comunes === */
-
-.btn-math, .btn-especial {
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    height: 45px;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-}
-.btn-math:hover {
-    background-color: #444;
-    transform: scale(1.05);
-}
-/* Botones especiales (Del, C) */
-.btn-especial {
-    width: 100%;
-    background-color: #c78eff;
-    color: white;
-    font-weight: bold;
-}
-
-.btn-especial:hover {
-    background-color: #a259e4;
-    transform: scale(1.08);
-}
 #Mensaje_calcular{
     background-color: #1c1c1c;
     margin-bottom: 5px;
@@ -314,8 +248,8 @@ select#metodo option {
 
 /* Botón Calcular Raíces */
 .btn-raices {
+    flex-shrink: 0;
     margin-top: 1rem;
-    margin-left: 1.5rem;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
@@ -325,7 +259,7 @@ select#metodo option {
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 90%;
+    width: auto;
     text-align: center;
 }
 
@@ -341,6 +275,7 @@ footer {
     color: #fff;
     padding: 1rem 0;
     text-align: center;
+    margin-top: auto;
 }
 .footer-content {
     display: flex;

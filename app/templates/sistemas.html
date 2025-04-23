@@ -28,69 +28,31 @@
             </div>
         </nav>
     </header>
-    <div class="zona-sistemas">
-        <!-- Bloque de generación del sistema -->
-        <div class="bloque-generador">
-            <label for="cantidadEcuaciones">Numero de Ecuaciones</label>
-            <div class="fila-input-generador">
-                <input type="number" id="cantidadEcuaciones" min="2" max="5" placeholder="2, 3, 4 o 5">
-                <button class="btn-generar" onclick="generarSistema()">Generar sistema</button> 
+    <main>
+        <div class="zona-sistemas">
+            <!-- Bloque de generación del sistema -->
+            <div class="bloque-generador">
+                <div class="fila-input-generador">
+                    <input type="number" id="cantidadEcuaciones" min="2" max="5" placeholder="2, 3, 4 o 5">
+                    <button class="btn-generar" onclick="generarSistema()">Generar sistema</button> 
+                </div>
+                
+                <div id="sistemaContenedor"></div>
+                <div class="fila-metodo-boton">
+                    <div class="campo">
+                        <label for="metodo">Seleccionar método</label>
+                        <select id="metodo">
+                            <option value="gauss">Gauss</option>
+                            <option value="gauss-jordan">Gauss-Jordan</option>
+                            <option value="jacobi">Jacobi</option>
+                            <option value="seidel">Gauss-Seidel</option>
+                        </select>
+                    </div>
+                    <div id="Mensaje_calcular"></div>
+                    <button class="btn-raices">Calcular Raíces</button>
+                </div>
             </div>
-            
-            <div id="sistemaContenedor"></div>
-            <div class="campo">
-                <label for="metodo">Seleccionar método</label>
-                <select id="metodo">
-                    <option value="gauss">Gauss</option>
-                    <option value="gauss-jordan">Gauss-Jordan</option>
-                    <option value="jacobi">Jacobi</option>
-                    <option value="seidel">Gauss-Seidel</option>
-                </select>
-            </div>
-            <div id="Mensaje_calcular"></div>
-            <button class="btn-raices">Calcular Raíces</button>
-        </div>
-    <!-- CALCULADORA -->
-     
-
-    <!--<div class="calculadora">
-        Título BetaSolve en la esquina superior derecha 
-        <div class="titulo">BetaSolve</div> 
-
-         Pantalla donde se muestra la operación 
-        <div class="pantalla"></div>
-
-        <div class="buttons">
-            <div class="row-math">
-                <button class="btn-especial">Del</button>
-                <button class="btn-especial">C</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">7</button>
-                <button class="btn-math">8</button>
-                <button class="btn-math">9</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">4</button>
-                <button class="btn-math">5</button>
-                <button class="btn-math">6</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">1</button>
-                <button class="btn-math">2</button>
-                <button class="btn-math">3</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">.</button>
-                <button class="btn-math">0</button>
-                <button class="btn-math">.</button>
-            </div>
-        </div>
-        <button id="btn-calcular" class="btn-raices">Calcular Raíces</button>
-    </div>
-    -->
-    
-</div>
+    </main>
     <footer>
         <div class="footer-content">
             <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>

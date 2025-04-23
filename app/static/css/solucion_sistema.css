@@ -84,6 +84,13 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 100%;
 }
+#intro-paso {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: green;
+}
 
 .matrices-grid {
     display: flex;
@@ -119,12 +126,17 @@ header {
 }
 
 .celda {
-    min-width: 30px;
+    min-width: 45px;
+    width: 45px;
     padding: 5px;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     background-color: white;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 } 
 .flecha {
     font-size: 28px;
@@ -135,6 +147,38 @@ header {
     color: #555;
     justify-content: center;
 }
+/* ===Iteraciones === */
+
+.tabla-iteraciones {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: monospace;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-iteraciones th,
+.tabla-iteraciones td {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    min-width: 80px;
+}
+
+.tabla-iteraciones thead {
+    background-color: #c78eff;
+    color: white;
+    font-weight: bold;
+}
+
+.tabla-iteraciones tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
 /* ===Soluciones === */
 .cuadro-soluciones {
     flex: 0 0 220px;
