@@ -4,6 +4,7 @@ from sympy.core.sympify import SympifyError
 from sympy.parsing.sympy_parser import parse_expr
 from sympy import Interval
 from sympy.calculus.util import continuous_domain
+from sympy.utilities.lambdify import lambdify
 
 class Ecuacion_procesar:
     def __init__(self,nombre_archivo):
@@ -151,18 +152,29 @@ class Ecuacion_procesar:
         self.ecuacion=ecuacion
 
     def verificar_dominio_y_subintervalo(self, a, b,expr_str=None):
+        x = symbols('x')
         if expr_str is None:
             expr_str = self.ecuacion
-        x = symbols('x')
         expr = parse_expr(expr_str)
+
+        # Verifica que la expresión tenga dominio en los reales
         dominio = continuous_domain(expr, x, S.Reals)
-        sub_intervalo_abierto = Interval.open(a, b)
-        sub_intervalo_cerrado= Interval(a, b)
-        if sub_intervalo_abierto.is_subset(dominio) and (not sub_intervalo_cerrado.is_subset(dominio)):
-            return (a+(a+b)*1e-7,b),True
-        if sub_intervalo_cerrado.is_subset(dominio):
-            return (a,b),True
-        return dominio, False
+        intervalo = Interval.open(a, b)
+
+        if not intervalo.is_subset(dominio):
+            return dominio, False
+
+        # Ahora verificar si el resultado es real en ese intervalo
+        f = lambdify(x, expr, modules="sympy")
+        try:
+            for val in [a + (b - a) * i / 10 for i in range(1, 10)]:  # puntos dentro del intervalo
+                if f(val).has(I):
+                    return dominio, False
+        except Exception:
+            return dominio, False
+
+        return (a,b), True
+
 
 
 
@@ -212,7 +224,7 @@ if __name__ == "__main__":
     print(dominio,sub_intervalo)
 
     print("octava ecuacion:")
-    ecuacion = Ecuacion_procesar("sqrt(x)-sqrt(-1)")
+    ecuacion = Ecuacion_procesar("x-sqrt(-1)")
     print(ecuacion.reconocer())
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
     print(dominio,sub_intervalo)
