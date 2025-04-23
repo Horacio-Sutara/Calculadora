@@ -13,6 +13,7 @@ body {
     align-items: center; 
     background-color: #fff;
     position: relative;
+    justify-content: space-between;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -70,12 +71,13 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
-    flex-wrap: wrap;
+    gap: 5rem;
+    height: 80vh;
     padding: 1.5rem;
     width: 100%;
     max-width: 1200px;
     animation: fadeIn 0.8s ease;
+    margin-bottom: 120px; 
 }
 /*Input*/
 .bloque-inputs {
@@ -193,7 +195,7 @@ header {
 }
 
 /* === BOTONES=== */
-.btn-header,.btn-math,  .btn-especial, .btn-especial.igual {
+.btn-header,.btn-math,  .btn-especial {
     flex: 1;                       
     min-width: 0;                
     font-size: 1rem;
@@ -206,7 +208,7 @@ header {
     transition: background-color 0.2s ease, transform 0.2s ease;
     text-align: center;
 }
-.btn-math,.btn-especial.igual { 
+.btn-math { 
     margin-bottom:10px;
     width: 45px;
     height: 45px;
@@ -223,12 +225,12 @@ header {
 }
 
 /* === BOTONES ESPECIALES (Del, C, =) === */
-.btn-especial, .btn-especial.igual {
+.btn-especial {
     background-color:#c78eff;
     font-weight: bold;
 }
 
-.btn-especial:hover,.btn-especial.igual:hover {
+.btn-especial:hover {
     background-color: #a259e4;
     transform: scale(1.08);
 }
@@ -238,7 +240,7 @@ footer {
     margin-top: auto; 
     background-color: #222;
     color: #fff;
-    padding: 1rem 0;
+    padding: 1rem;
     text-align: center;
 }
 .footer-content {
@@ -271,5 +273,19 @@ footer {
     }
     .logo {
         margin-bottom: 1rem;
+    }
+    .contenedor-flex {
+        flex-direction: column;
+        gap: 2rem; /* Menos espacio para celulares */
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        margin-top: 120px;
+    }
+
+    .bloque-inputs,
+    .calculadora {
+        width: 100%;
+        max-width: 340px;
     }
 }
