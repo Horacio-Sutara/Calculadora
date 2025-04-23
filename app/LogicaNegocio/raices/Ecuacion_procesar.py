@@ -127,7 +127,7 @@ class Ecuacion_procesar:
     def reconocer(self):
         res=self.resultado(1,self.ecuacion)
         return True if type(res)==float else False
-        
+       
     def reescribir(self,ecuacion):
         self.ecuacion=ecuacion
 

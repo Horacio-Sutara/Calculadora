@@ -80,39 +80,38 @@ def calcular_raices():
 
     try:
         data = request.get_json()
+
+        #Procesamiento de la función
         funcion = data['funcion']
         if "^" in funcion:
             funcion=funcion.replace("^","**")
         if "√" in funcion:
             funcion=funcion.replace("√","sqrt")
         print(funcion)
-        intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
-        print(intervalo_str)
-
         ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
         if not ecuacion.reconocer():
             return render_template('error_raices.html')
-
-        # Crear la instancia de la clase Metodos_raices
-
+        funcion=funcion.replace("X","x")
+        print(funcion)
+        #Procesamiento del intervalo
+        intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
         print(intervalo_str)
         intervalo = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
+
+        # Crear la instancia de la clase Metodos_raices
         metodos_raices = Metodos_raices(funcion,intervalo=intervalo)
         raices = metodos_raices.encontrar_raices()  # Encuentra las raíces usando los métodos
-        #print("HOLAAAA")
-
+        print(raices)
+        
         #Crear la gráfica
         x_vals = np.linspace(intervalo[0], intervalo[1], 800)
-        #print("Valores de x generados:", x_vals)
         y_vals = [metodos_raices.func(x) for x in x_vals]
-        #print("PRUEBA")
         
         fig, ax = plt.subplots()
         ax.plot(x_vals, y_vals, label=f'f(x) = {funcion}')
         ax.axhline(0, color='black', linewidth=1)
         
         # Marcar las raíces en la gráfica
-        #print("HOLAAAs")
         for raiz, metodo in raices:
             ax.plot(raiz, 0, 'ro')  # Marca las raíces en rojo
 
@@ -125,11 +124,9 @@ def calcular_raices():
         plt.savefig(buf, format='png')
         buf.seek(0)
         img_str = base64.b64encode(buf.getvalue()).decode('utf-8')
-        #print(img_str)
         
         # Crear la tabla con las raíces
         tabla_raices = [{"x": raiz, "f(x)": 0, "Metodo": metodo} for raiz, metodo in raices]
-        #print(tabla_raices)
 
         # Redirigir al template de resultados, pasando la gráfica y las raíces
         return render_template('solucion_raices.html', img_data=img_str, tabla=tabla_raices)
