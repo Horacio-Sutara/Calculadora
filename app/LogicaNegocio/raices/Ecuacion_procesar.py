@@ -109,7 +109,7 @@ class Ecuacion_procesar:
         return None
 
     def reconocer(self):
-        funciones_permitidas = {'sin', 'cos', 'tan','exp','asin', 'acos', 'atan','ln'}
+        funciones_permitidas = {sin, cos, tan, exp, asin, acos, atan, log}
         variables_permitidas = {'x'}
         funciones = {
             'sin': sin, 'cos': cos, 'tan': tan, 'exp': exp,
@@ -133,7 +133,7 @@ class Ecuacion_procesar:
                     return False
 
                 # Validar funciones
-                funciones_encontradas = {str(f.func) for f in expr.atoms(Function)}
+                funciones_encontradas = {f.func for f in expr.atoms(Function)}
                 if not funciones_encontradas.issubset(funciones_permitidas):
                     return False
 
@@ -184,3 +184,4 @@ if __name__ == "__main__":
     ecuacion = Ecuacion_procesar("ln(x)")
     print(ecuacion.reconocer())
     print(ecuacion.resultado(1))
+    print(ecuacion.resultado(10))
