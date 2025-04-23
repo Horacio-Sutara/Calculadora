@@ -170,7 +170,7 @@ if __name__ == "__main__":
     print(ecuacion.resultado(5))
 
     print("quinta ecuacion:")
-    ecuacion = Ecuacion_procesar("sqrt(x)")
+    ecuacion = Ecuacion_procesar("x+sqrt(-5)")
     print(ecuacion.reconocer())
     print(ecuacion.resultado(10))
 

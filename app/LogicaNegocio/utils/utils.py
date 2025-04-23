@@ -1,4 +1,4 @@
-from sympy import sympify, Interval, symbols, I, S
+from sympy import sympify, Interval, symbols, I, S, zoo, nan
 from sympy.calculus.util import continuous_domain
 
 def ordenar(matriz):
@@ -71,7 +71,7 @@ def validar_expresion_real(funcion_str):
             return True
 
         # Si NO depende de x y tiene parte imaginaria => no válida
-        if expr.has(I):
+        if expr.has(I) or expr == zoo or expr == nan:
             return False
         
         return True
