@@ -79,7 +79,7 @@ header {
 }
 .cuadro-matrices {
     flex: 3;
-    background-color: #f5f5f5;
+    background-color: #e1dcdcab;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -174,7 +174,7 @@ header {
 }
 
 .tabla-iteraciones thead {
-    background-color: #c78eff;
+    background-color: #B700FF;
     color: white;
     font-weight: bold;
 }
@@ -186,7 +186,7 @@ header {
 /* ===Soluciones === */
 .cuadro-soluciones {
     flex: 0 0 220px;
-    background-color: #f5f5f5;
+    background-color:#e1dcdcab;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -210,7 +210,6 @@ ul li {
     border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
 }
 .paso {
     opacity: 0;

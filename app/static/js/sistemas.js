@@ -1,17 +1,34 @@
 //variable para almacenar el número de ecuaciones
 let numEcuaciones = 0;
+function mostrarError(texto) {
+  const mensaje = document.getElementById('Mensaje_calcular');
+  const flecha = document.getElementById('flechita');
+  mensaje.innerHTML = texto;
+  mensaje.style.display = 'block';
+  mensaje.style.color= 'red'; 
+  flecha.style.display = 'block';
+
+}
+function ocultarError() {
+  const mensaje = document.getElementById('Mensaje_calcular');
+  const flecha = document.getElementById('flechita');
+
+  mensaje.innerHTML = '';
+  mensaje.style.display = 'none';
+  flecha.style.display = 'none';
+}
 
 function generarSistema() {
     const letras = ['x', 'y', 'z', 'w','v']; 
     const cantidad = parseInt(document.getElementById('cantidadEcuaciones').value);
     const contenedor = document.getElementById('sistemaContenedor');
-    const mensaje_calcular= document.getElementById('Mensaje_calcular');
     // Limpiar el mensaje de error anterior
     contenedor.innerHTML = '';
-    mensaje_calcular.innerHTML = ''; 
+    ocultarError();
+
     numEcuaciones = cantidad; // Guardar el número de ecuaciones
     if (isNaN(cantidad) || cantidad < 2 || cantidad > 5) {
-        contenedor.innerHTML = '<p style="color:red;">Ingresá un número válido entre 2 y 5.</p>';
+        mostrarError('Ingresa un numero valido entre 2 y 5');
         return;
     }
     for (let i = 0; i < cantidad; i++) {
@@ -32,13 +49,10 @@ function generarSistema() {
             fila.appendChild(input);
         }
 
-        const igual = document.createTextNode(' = ');
-        fila.appendChild(igual);
+        fila.appendChild(document.createTextNode(' = '));
 
         const resultado = document.createElement('input');
         resultado.type = 'number';
-        resultado.style.width = '70px';
-
         resultado.classList.add('input-sistema'); //
         fila.appendChild(resultado);  
 
@@ -50,64 +64,35 @@ function generarSistema() {
 }
 
 function calcularRaices() {
-    // Obtener la cantidad de ecuaciones seleccionada
-    const contenedor = document.getElementById('Mensaje_calcular');
-    contenedor.innerHTML = '';
-    // Verificar si se ha generado un sistema
+    ocultarError();
+    
+    // Obtener todas las filas del sistema
+    const filas = document.querySelectorAll(".fila-sistema")
+    // Obtener la cantidad de ecuaciones seleccionada;
     if (isNaN(numEcuaciones) || numEcuaciones < 2 || numEcuaciones > 5) {
       //alert("Primero debes generar un sistema de ecuaciones válido.")
-      contenedor.innerHTML = '<p style="color:red;">Primero debes generar un sistema de ecuaciones válido.</p>';
+      mostrarError('Primero debes generar un sistema valido');
       return
     }
   
-    // Obtener todas las filas del sistema
-    const filas = document.querySelectorAll(".fila-sistema")
-
     // Verificar que todas las filas tengan todos los campos completos
     let todosCompletos = true
-    const camposFaltantes = []
   
-    filas.forEach((fila, indiceFila) => {
-      const inputs = fila.querySelectorAll("input")
+    filas.forEach(fila => {
+      const inputs = fila.querySelectorAll("input");
+      inputs.forEach(input => {
+          if (input.value === "") todosCompletos = false;
+      });
+    });
   
-      // Cada fila debe tener cantidad + 1 inputs (los coeficientes + el resultado)
-      if (inputs.length !== numEcuaciones + 1) {
-        todosCompletos = false
-        return
-      }
-  
-      // Verificar que cada input tenga un valor
-      inputs.forEach((input, indiceInput) => {
-        if (input.value === "") {
-          todosCompletos = false
-  
-          // Determinar qué campo falta
-          let nombreCampo
-          if (indiceInput < numEcuaciones) {
-            nombreCampo = `X${indiceInput + 1 === 1 ? "" : indiceInput + 1} en ecuación ${indiceFila + 1}`
-          } else {
-            nombreCampo = `Resultado en ecuación ${indiceFila + 1}`
-          }
-  
-          camposFaltantes.push(nombreCampo)
-        }
-      })
-    })
   
     if (!todosCompletos) {
-      // Mostrar mensaje de error con los campos faltantes
-      //contenedor.innerHTML = '<p style="color:red;">Ingresá un número válido entre 2 y 5.</p>';
-      contenedor.innerHTML = '<p style="color:red;">Por favor, completa todos los campos.</p>';
+      mostrarError('Porfavor, completa todos los campos');
       return
     }
   
     // Si todos los campos están completos, proceder con el cálculo
     const metodo = document.getElementById("metodo").value
-  
-    // Aquí iría la lógica para calcular las raíces según el método seleccionado
-    // Por ahora, solo mostramos un mensaje de éxito
-    //alert(`Calculando raíces usando el método: ${metodo}`)
-    
 
     // Construir la matriz del sistema (coeficientes + resultados)
     const sistema = [];
@@ -137,21 +122,35 @@ function calcularRaices() {
     .then(response => response.json())
     .then(res => {
       if (res.funciono) {
-        window.location.href = res.redirect;
+        const mensaje = document.getElementById('Mensaje_calcular');
+        const flecha = document.getElementById('flechita');
+        mensaje.innerHTML = `
+          <span>Procesando resultados...</span>
+          <div class="barra-carga">
+            <div class="barra-carga-interna"></div>
+          </div>
+        `;
+        mensaje.style.color='white';
+        mensaje.style.display = 'block';
+        flecha.style.display = 'block';
+        setTimeout(() => {
+          mensaje.innerHTML = '¡Sistema resuelto con éxito!';
+          mensaje.style.color = '#00ff88';
+          flecha.style.display = 'none';
+          setTimeout(() => {
+              window.location.href = res.redirect;
+          }, 800);
+      }, 1300);
       } else {
-        contenedor.innerHTML = '<p style="color:red;">El sistema no se pudo resolver. Revisá los datos.</p>';
+        mostrarError('El sistema no se pudo resolver. Revisá los datos.');
       }
       
     })
     .catch(error => {
       console.error('Error al resolver el sistema:', error);
+      mostrarError('Error inesperado en el servidor')
     });
-    
-    
-
-
   }
-  
   // Asegurarse de que el botón de calcular raíces tenga un event listener cuando se carga la página
   document.addEventListener("DOMContentLoaded", () => {
     // Agregar event listener al botón de calcular raíces

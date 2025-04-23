@@ -34,9 +34,7 @@ window.onload = function () {
         listaSoluciones.appendChild(li);
     });
     const procedimiento = document.getElementById("Procedimiento");
-    procedimiento.innerHTML = ""; // Limpiar lo que había  
-    console.log(historial)
-
+    procedimiento.innerHTML = ""; // Limpiar lo que había   
     // Aca hace la generacion de la matrices si son estos 2 procedimientos
     if (metodo === "Gauss" || metodo === "Gauss-jordan") {
         // 2. Crear bloques pero no animarlos todavía
@@ -89,6 +87,7 @@ window.onload = function () {
 
         mostrarPaso(); // inicia animación
     } else {
+        console.log(historial)
         const cantidadVariables = resultado.length; 
         // Historial viene como array plano
         const historialPlano = historial;
