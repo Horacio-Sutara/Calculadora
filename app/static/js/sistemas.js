@@ -2,13 +2,13 @@
 let numEcuaciones = 0;
 
 function generarSistema() {
-    const letras = ['X', 'X2', 'X3', 'X4','X5']; 
+    const letras = ['x', 'y', 'z', 'w','v']; 
     const cantidad = parseInt(document.getElementById('cantidadEcuaciones').value);
     const contenedor = document.getElementById('sistemaContenedor');
-    contenedor.innerHTML = '';
-
     const mensaje_calcular= document.getElementById('Mensaje_calcular');
-    mensaje_calcular.innerHTML = ''; // Limpiar el mensaje de error anterior
+    // Limpiar el mensaje de error anterior
+    contenedor.innerHTML = '';
+    mensaje_calcular.innerHTML = ''; 
     numEcuaciones = cantidad; // Guardar el número de ecuaciones
     if (isNaN(cantidad) || cantidad < 2 || cantidad > 5) {
         contenedor.innerHTML = '<p style="color:red;">Ingresá un número válido entre 2 y 5.</p>';

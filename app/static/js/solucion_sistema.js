@@ -36,39 +36,60 @@ window.onload = function () {
     const procedimiento = document.getElementById("Procedimiento");
     procedimiento.innerHTML = ""; // Limpiar lo que había  
     console.log(historial)
+
+    // Aca hace la generacion de la matrices si son estos 2 procedimientos
     if (metodo === "Gauss" || metodo === "Gauss-jordan") {
-        // 2. Mostrar procedimiento en #Procedimiento
+        // 2. Crear bloques pero no animarlos todavía
+        const bloques = [];
+
         historial.forEach((matriz, index) => {
             const bloque = document.createElement("div");
-            bloque.classList.add("bloque-matriz", "paso");        
+            bloque.classList.add("bloque-matriz", "paso");
+
             const cuerpo = document.createElement("div");
-            cuerpo.classList.add("matriz-cuerpo");        
+            cuerpo.classList.add("matriz-cuerpo");
+
             matriz.forEach(fila => {
                 const filaDiv = document.createElement("div");
-                filaDiv.classList.add("fila");        
+                filaDiv.classList.add("fila");
+
                 fila.forEach(valor => {
                     const celda = document.createElement("div");
                     celda.classList.add("celda");
                     celda.textContent = parseFloat(parseFloat(valor).toFixed(2));
                     filaDiv.appendChild(celda);
-                });        
+                });
+
                 cuerpo.appendChild(filaDiv);
-            });        
-            bloque.appendChild(cuerpo);        
-        // Flecha (si no es la última iteración)
-        if (index < historial.length - 1) {
-            const flecha = document.createElement("div");
-            flecha.classList.add("flecha");
-            flecha.textContent = "→";
-            bloque.appendChild(flecha);
-        }        
-        procedimiento.appendChild(bloque);
-    });
+            });
+
+            bloque.appendChild(cuerpo);
+
+            // Flecha (si no es la última iteración)
+            if (index < historial.length - 1) {
+                const flecha = document.createElement("div");
+                flecha.classList.add("flecha");
+                flecha.textContent = "→";
+                bloque.appendChild(flecha);
+            }
+
+            procedimiento.appendChild(bloque);
+            bloques.push(bloque); // guardamos cada bloque
+        });
+
+        // 3. Mostrar de a uno con animación
+        let i = 0;
+        function mostrarPaso() {
+            if (i < bloques.length) {
+                bloques[i].classList.add("mostrar");
+                i++;
+                setTimeout(mostrarPaso, 200); // ajustá el tiempo si querés más lento o más rápido
+            }
+        }
+
+        mostrarPaso(); // inicia animación
     } else {
-                // Asumimos que este dato viene desde el backend o lo sabés:
-        const cantidadVariables = resultado.length; // ← ajustalo si lo necesitas
-
-
+        const cantidadVariables = resultado.length; 
         // Historial viene como array plano
         const historialPlano = historial;
 

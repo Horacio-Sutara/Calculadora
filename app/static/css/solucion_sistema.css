@@ -75,6 +75,7 @@ header {
 }
 .matrices-titulo{
     margin-bottom: 15px;
+    text-align: center;
 }
 .cuadro-matrices {
     flex: 3;
@@ -90,6 +91,7 @@ header {
     font-size: 16px;
     font-weight: 500;
     color: green;
+    text-align: center;
 }
 
 .matrices-grid {
@@ -106,6 +108,8 @@ header {
     gap: 12px;
     margin-bottom: 20px;
     flex-shrink: 0;
+
+    
 }
 .matriz-contenedor {
     display: flex;
@@ -127,7 +131,6 @@ header {
 
 .celda {
     min-width: 45px;
-    width: 45px;
     padding: 5px;
     font-size: 16px;
     text-align: center;
@@ -137,6 +140,7 @@ header {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 } 
 .flecha {
     font-size: 28px;
@@ -186,7 +190,7 @@ header {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: aparecer 0.4s ease-out forwards;
 }
 
 .cuadro-soluciones h2 {
@@ -203,11 +207,21 @@ ul {
 ul li {
     background-color: white;
     padding: 7px;
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+.paso {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
 }
 
+.paso.mostrar {
+    animation: aparecer 0.6s ease forwards; 
+    pointer-events: auto;
+}
 /* === FOOTER === */
 footer {
     width: 100%;
@@ -255,7 +269,7 @@ footer {
 @keyframes aparecer {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.8);
     }
     to {
         opacity: 1;

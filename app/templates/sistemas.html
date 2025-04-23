@@ -36,8 +36,8 @@
                     <input type="number" id="cantidadEcuaciones" min="2" max="5" placeholder="2, 3, 4 o 5" class="input-sistema">
                     <button class="btn-generar" onclick="generarSistema()">Generar sistema</button> 
                 </div>
-                
                 <div id="sistemaContenedor"></div>
+                <!-- Fila de botones -->
                 <div class="fila-metodo-boton">
                     <div class="campo">
                         <label for="metodo">Seleccionar método</label>
@@ -48,10 +48,14 @@
                             <option value="seidel">Gauss-Seidel</option>
                         </select>
                     </div>
-                    <div id="Mensaje_calcular"></div>
                     <button class="btn-raices">Calcular Raíces</button>
                 </div>
             </div>
+            <!-- Bloque derecho: mensajes -->
+            <div class="bloque-mensajes">
+                <div class="aviso" id="Mensaje_calcular"></div>
+            </div>
+        </div>
     </main>
     <footer>
         <div class="footer-content">
