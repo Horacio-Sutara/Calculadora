@@ -181,6 +181,6 @@ if __name__ == "__main__":
     print(type(ecuacion.resultado(0)))
 
     print("septima ecuacion:")
-    ecuacion = Ecuacion_procesar("1/(x-1)")
+    ecuacion = Ecuacion_procesar("ln(x)")
     print(ecuacion.reconocer())
     print(ecuacion.resultado(1))
