@@ -119,28 +119,27 @@ header {
     width: 500px;/* Cambiado a 500px para que ocupe 50% del ancho de la pantalla */
     box-sizing: border-box;
 }
-
-.bloque-generador input[type="number"] {
-    background: #333;
-    color: #fff;
-    padding: 0.5rem;
-    border: 1px solid #c78eff;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 100%;
-}
 .input-sistema {
     padding: 0.6rem;
     border-radius: 8px;
+    background-color: #222;
     border: 1px solid #c78eff;
-    background-color: #2a2a2a;
     color: #fff;
     width: 60px;
     text-align: center;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.input-sistema:focus{
+    outline: none; 
+    border-color: #8a2be2; 
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.5); 
+    background-color: #111; 
+    transform: scale(1.02);
 }
 .input-sistema::placeholder {
-    color: #aaa;
+    color: #c78eff; 
+    opacity: 0.7; 
 }
 .fila-sistema {
     justify-content: center;
@@ -198,10 +197,16 @@ input[type=number]::-webkit-outer-spin-button {
     gap: 1rem;
     width: 100%;
     margin: 1rem auto 0;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
 }
 .campo {
     display: flex;
     flex-direction: column;
+    color: #c78eff;
+    text-shadow: 0 1px 2px #000;
 }
 .campo label {
     flex: 1;
@@ -209,7 +214,8 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    color: #fff; /* O blanco si usás fondo oscuro */
+    color: #fff;
+    
 }
 select#metodo {
     flex:1;
@@ -217,28 +223,28 @@ select#metodo {
     padding: 0.8rem;
     height: 25px;
     border-radius: 12px;
-    border: 2px solid #8a2be2; /* Violeta crack */
-    background-color: #f9f9f9;
+    border: 2px solid #c78eff;
+    background-color: #2a2a2a;
     outline: none;
     transition: all 0.3s ease;
     font-size: 1rem;
-    color: #333;
+    color: #fff;
     font-weight: bold;
     outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 select#metodo:focus {
-    border-color: #6a0dad;
+    border-color: #8a2be2;
     box-shadow: 0 0 0px rgba(138, 43, 226, 0.5);
 }
 select#metodo option {
-    background-color: white;
-    color: #333;
+    background-color: #1c1c1c;
+    color: #fff;
 }
-
 #Mensaje_calcular{
     background-color: #1c1c1c;
     margin-bottom: 5px;
-    height:0px; /* Espacio inicial aunque no haya contenido */
+    height:0px; 
     color: white;
     display: flex;
     flex-direction: column;
