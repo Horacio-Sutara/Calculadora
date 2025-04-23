@@ -2,6 +2,8 @@ from sympy import symbols, Eq, sympify, solve,diff, sin, cos, tan,exp, asin, aco
 from sympy import floor, S
 from sympy.core.sympify import SympifyError
 from sympy.parsing.sympy_parser import parse_expr
+from sympy import Interval
+from sympy.calculus.util import continuous_domain
 
 class Ecuacion_procesar:
     def __init__(self,nombre_archivo):
@@ -85,16 +87,19 @@ class Ecuacion_procesar:
             if self.reconocer():
                 res=self.procesar_ecuacion(valor_x=valor)
                 try:
+                    res=self.truncar_sympy(float(res),10)
+                    #print("hola ")
                     return self.truncar_sympy(float(res),10)
                 except:
-                    return res
+                    return False
         else:
             if self.reconocer():
                 res=self.procesar_ecuacion(valor_x=valor)
                 try:
+                    #print("chao")
                     return self.truncar_sympy(float(res),10)
                 except:
-                    return res
+                    return False
         return False
 
     def derivar(self,ecuacion=None):
@@ -145,6 +150,22 @@ class Ecuacion_procesar:
     def reescribir(self,ecuacion):
         self.ecuacion=ecuacion
 
+    def verificar_dominio_y_subintervalo(self, a, b,expr_str=None):
+        if expr_str is None:
+            expr_str = self.ecuacion
+        x = symbols('x')
+        expr = parse_expr(expr_str)
+        dominio = continuous_domain(expr, x, S.Reals)
+        sub_intervalo_abierto = Interval.open(a, b)
+        sub_intervalo_cerrado= Interval(a, b)
+        if sub_intervalo_abierto.is_subset(dominio) and (not sub_intervalo_cerrado.is_subset(dominio)):
+            return (a+(a+b)*1e-7,b),True
+        if sub_intervalo_cerrado.is_subset(dominio):
+            return (a,b),True
+        return dominio, False
+
+
+
 if __name__ == "__main__":
     print("primera ecuacion:")
     ecuacion = Ecuacion_procesar("x**2-24=76")
@@ -183,5 +204,15 @@ if __name__ == "__main__":
     print("septima ecuacion:")
     ecuacion = Ecuacion_procesar("ln(x)")
     print(ecuacion.reconocer())
-    print(ecuacion.resultado(1))
-    print(ecuacion.resultado(10))
+    print(ecuacion.resultado(0))
+    print(ecuacion.verificar_dominio_y_subintervalo(-10,10))
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(0,10)
+    print(dominio,sub_intervalo)
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(1,10)
+    print(dominio,sub_intervalo)
+
+    print("octava ecuacion:")
+    ecuacion = Ecuacion_procesar("sqrt(x)-sqrt(-1)")
+    print(ecuacion.reconocer())
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
+    print(dominio,sub_intervalo)
