@@ -17,7 +17,7 @@
     
             <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="{{ url_for('static', filename='Image/calculadora-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
                 <h1 class="page-title">Busqueda de Raices</h1>
             </div>
     
@@ -33,11 +33,11 @@
         <div class="bloque-inputs">
             <div class="campo">
                 <label>Ingrese la función:</label>
-                <input type="text" id="displayFuncion" placeholder="Ej. x^2 + 2x">
+                <input type="text" id="displayFuncion" class="display-funcion" placeholder="Ej. x^2 + 2x">
             </div>
             <div class="campo">
                 <label>Ingrese el intervalo (opcional):</label>
-                <input type="text" id="displayIntervalo" placeholder="Ej. -10, 10">
+                <input type="text" id="displayIntervalo" class="display-intervalo" placeholder="Ej. -10, 10">
             </div>
             <button class="btn-calcular" id="btnCalcularRaices">CALCULAR RAÍCES</button>
         </div>
