@@ -1,4 +1,4 @@
-from ecuaciones import Gauss,jacobi,Seidel
+from ecuaciones import Gauss,jacobi,Seidel,Gauss_jordan
 from utils import utils
 import numpy as np
 def Metodos_ecuaciones(matriz,metodo,iteraciones=100,error=1e-7):
@@ -6,7 +6,8 @@ def Metodos_ecuaciones(matriz,metodo,iteraciones=100,error=1e-7):
     metodos={
         "Gauss": Gauss.Gauss,
         "Jacobi":jacobi.jacobi,
-        "Seidel":Seidel.gauss_seidel
+        "Seidel":Seidel.gauss_seidel,
+        "Gauss-jordan":Gauss_jordan.GaussJordan
     }
     array=utils.ordenar(array)
     array,res=utils.separar_resultado(array)
@@ -30,8 +31,8 @@ if __name__ == '__main__':
             [-4,-1,-5,3,-4,-49]
             ]"""
     
-    matriz=[[2,1,1],
-            [-1,2,7]]
+    matriz=[[2,1,4],
+            [-1,2,3]]
     """matriz=[
         [1,1,1,1],
         [2,2,2,44],
@@ -40,7 +41,7 @@ if __name__ == '__main__':
 
     #print(matriz)
     
-    elegir_metodo="sasas"# Gauss,Seidel,Jacobi
+    elegir_metodo="Gauss-jordan"# Gauss,Seidel,Jacobi
     res,iteraciones,historial,funciono=Metodos_ecuaciones(matriz,elegir_metodo)
 
 

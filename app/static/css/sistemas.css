@@ -10,9 +10,9 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column; /* Apila header, contenido y footer verticalmente */
+    justify-content: flex-start;
     align-items: center; /* Centra horizontalmente */
     background-color: #fff;
-    position: relative;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -87,19 +87,38 @@ header {
 }
 /* === MAIN === */
 .zona-sistemas {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-    padding: 1rem 1rem;
+    gap: 10rem;
+    padding: 1.7rem;
     max-width: 1200px;
+    animation: fadeIn 0.8s ease;
 }
+
+/* === BLOQUE DE MENSAJES === */
+.bloque-mensajes {
+    width: 300px;
+    min-height: 100px;
+    padding: 1.2rem;
+    background-color: #1c1c1c;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #c70039; /* Rojo chillón para errores */
+}
+
 #sistemaContenedor {
     background-color: #1c1c1c;
     border-radius: 12px;
-    padding: 1rem;
-    height:240px; /* Espacio inicial aunque no haya contenido */
+    height:260px; /* Espacio inicial aunque no haya contenido */
     color: white;
     display: flex;
     flex-direction: column;
@@ -109,37 +128,36 @@ header {
 .bloque-generador {
     background-color: #1c1c1c;
     color: #fff;
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 350px;
+    width: 450px;
     box-sizing: border-box;
-}
-
-.bloque-generador input[type="number"] {
-    background: #333;
-    color: #fff;
-    padding: 0.5rem;
-    border: 1px solid #c78eff;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 100%;
 }
 .input-sistema {
     padding: 0.6rem;
     border-radius: 8px;
+    background-color: #222;
     border: 1px solid #c78eff;
-    background-color: #2a2a2a;
     color: #fff;
     width: 60px;
     text-align: center;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.input-sistema:focus{
+    outline: none; 
+    border-color: #8a2be2; 
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.5); 
+    background-color: #111; 
+    transform: scale(1.02);
 }
 .input-sistema::placeholder {
-    color: #aaa;
+    color: #c78eff; 
+    opacity: 0.7; 
 }
 .fila-sistema {
     justify-content: center;
@@ -160,6 +178,7 @@ header {
     border-radius: 8px;
     background-color: #2a2a2a;
     color: white;
+    
 }
 
 .fila-input-generador input::placeholder {
@@ -188,117 +207,70 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #c78eff;
     color: #000;
 }
-/* === Selector === */
+/* === Selector y Boton === */
+.fila-metodo-boton {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem auto 0;
+    padding: 0.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
 .campo {
-
     display: flex;
     flex-direction: column;
+    color: #c78eff;
+    text-shadow: 0 1px 2px #000;
 }
-
 .campo label {
+    flex: 1;
     font-weight: 600;
-    margin-bottom: 10px;
-    color: #333; /* O blanco si usás fondo oscuro */
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #fff;
+    
 }
-select#metodo {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 2px solid #8a2be2; /* Violeta crack */
-    background-color: #f9f9f9;
-    font-size: 14px;
+#metodo {
+    flex:1;
+    text-align: center;
+    padding: 0.6rem;
+    border-radius: 12px;
+    border: 2px solid #c78eff;
+    background-color: #2a2a2a;
     outline: none;
     transition: all 0.3s ease;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 select#metodo:focus {
-    border-color: #6a0dad;
-    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+    border-color: #8a2be2;
+    box-shadow: 0 0 0px rgba(138, 43, 226, 0.5);
 }
 select#metodo option {
-    background-color: white;
-    color: #333;
+    background-color: #1c1c1c;
+    color: #fff;
 }
-/* === CALCULADORA === */
-
-.calculadora {
-    margin: 2rem 0;
-    background-color: #222;
-    border-radius: 20px;
-    width: 275px; /* achicada */
-    padding: 1.5rem 1rem;
+#Mensaje_calcular{
+    background-color: #1c1c1c;
+    margin-bottom: 5px;
+    height:0px; 
+    color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
-    position: relative;
-    flex-shrink: 0;
+    width:100%;
+    text-align: center;
 }
-
-.calculadora .titulo {
-    position: absolute;
-    top: 4px;
-    right: 17px;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.pantalla {
-    background-color: #fff;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 0.3rem;
-    border-radius: 10px;
-    text-align: right;
-    font-size: 1.2rem;
-    padding: 1rem;
-    color: #000;
-    overflow-x: auto;
-}
-
-.row-math {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* === Botones comunes === */
-
-.btn-math, .btn-especial {
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    height: 45px;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-}
-.btn-math:hover {
-    background-color: #444;
-    transform: scale(1.05);
-}
-/* Botones especiales (Del, C) */
-.btn-especial {
-    width: 100%;
-    background-color: #c78eff;
-    color: white;
-    font-weight: bold;
-}
-
-.btn-especial:hover {
-    background-color: #a259e4;
-    transform: scale(1.08);
-}
-
 /* Botón Calcular Raíces */
 .btn-raices {
+    flex-shrink: 0;
     margin-top: 1rem;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
@@ -309,7 +281,7 @@ select#metodo option {
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 90%;
+    width: auto;
     text-align: center;
 }
 
@@ -317,6 +289,38 @@ select#metodo option {
     background-color: #a259e4;
     transform: scale(1.05);
 }
+#flechita {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 5rem);
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color:#B700FF;
+    display: none;
+    pointer-events: none;
+    z-index: 100;
+    animation: rebote 0.8s ease infinite;
+
+}
+.barra-carga {
+    width: 100%;
+    height: 12px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.barra-carga-interna {
+    width: 0%;
+    height: 100%;
+    background-color: #7bffab;
+    animation: progresoAnimado 1.3s ease-out forwards;
+    border-radius: 10px;
+}
+
+
 /* === FOOTER === */
 footer {
     width: 100%;
@@ -325,6 +329,7 @@ footer {
     color: #fff;
     padding: 1rem 0;
     text-align: center;
+    margin-top: auto;
 }
 .footer-content {
     display: flex;
@@ -370,4 +375,19 @@ footer {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+@keyframes rebote {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -52%) scale(1.1);
+    }
+}
+
+@keyframes progresoAnimado {
+    0% { width: 0%; }
+    50% { width: 60%; }
+    100% { width: 100%; }
 }

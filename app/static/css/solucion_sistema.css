@@ -63,7 +63,164 @@ header {
 .nav-link:hover {
     color: #c78eff;
 }
+/* === Section del body === */
 
+.contenido {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 20px;
+}
+.matrices-titulo{
+    margin-bottom: 15px;
+    text-align: center;
+}
+.cuadro-matrices {
+    flex: 3;
+    background-color: #e1dcdcab;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+#intro-paso {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: green;
+    text-align: center;
+}
+
+.matrices-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+.bloque-matriz {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+
+    
+}
+.matriz-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.matriz-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fila {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.celda {
+    min-width: 45px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+} 
+.flecha {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    color: #555;
+    justify-content: center;
+}
+/* ===Iteraciones === */
+
+.tabla-iteraciones {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: monospace;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-iteraciones th,
+.tabla-iteraciones td {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    min-width: 80px;
+}
+
+.tabla-iteraciones thead {
+    background-color: #B700FF;
+    color: white;
+    font-weight: bold;
+}
+
+.tabla-iteraciones tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+/* ===Soluciones === */
+.cuadro-soluciones {
+    flex: 0 0 220px;
+    background-color:#e1dcdcab;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: aparecer 0.4s ease-out forwards;
+}
+
+.cuadro-soluciones h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center ;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: white;
+    padding: 7px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.paso {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.paso.mostrar {
+    animation: aparecer 0.6s ease forwards; 
+    pointer-events: auto;
+}
 /* === FOOTER === */
 footer {
     width: 100%;
@@ -82,18 +239,6 @@ footer {
 }
 
 
-/* === ANIMACIÓN SUAVE === */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* === MEDIA QUERIES === */
 @media screen and (max-width: 768px) {
     .menu {
@@ -108,13 +253,29 @@ footer {
         margin-bottom: 1rem;
     }
 }
+/* === ANIMACIÓN SUAVE === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* === Animacion de matrices === */
 @keyframes aparecer {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.8);
     }
     to {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.aparecer {
+    animation: aparecer 0.4s ease-out forwards;
 }

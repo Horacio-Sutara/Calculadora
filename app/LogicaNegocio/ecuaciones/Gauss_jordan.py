@@ -1,15 +1,19 @@
 import numpy as np
 
-def GaussJordan(matriz):
+def GaussJordan(matriz,constante,tol=None,max_iter=None):
     longitud = len(matriz)  # Cantidad de filas
-    columnas = len(matriz[0])  # Cantidad total de columnas
+    iteraciones=0
     resultados = []
     exito = False
-
+    historial=[]
+    matriz=matriz.copy()
+    const=constante.copy()
+    matriz = np.array(matriz, dtype=float)
+    
     for i in range(longitud):
         # Elemento de la diagonal principal
         pivote = matriz[i][i]
-        print(f"Pivote inicial en ({i},{i}): {pivote}")
+        #print(f"Pivote inicial en ({i},{i}): {pivote}")
         band = True
 
         # Si el pivote es cero, buscar una fila más abajo para intercambiar
@@ -18,51 +22,64 @@ def GaussJordan(matriz):
             for j in range(i+1, longitud):
                 if matriz[j][i] != 0:
                     matriz[[i, j]] = matriz[[j, i]]  # Intercambio de filas
+                    const[i,j]=const[j,i]
                     pivote = matriz[i][i]
                     band = True
+                    iteraciones+=1
+                    historial.append(matriz.tolist())
                     break
         if not band:
-            print("No se puede resolver. El sistema tiene una fila sin pivote.")
-            return resultados, exito
+            #print("No se puede resolver. El sistema tiene una fila sin pivote.")
+            exito = False
+            return resultados,iteraciones,historial, exito
 
         # Normalizar la fila actual (hacer que el pivote valga 1)
         matriz[i] = matriz[i] / pivote
-        print(f"Fila {i} normalizada: {matriz[i]}")
+        const[i]=const[i]/pivote
+        historial.append(matriz.tolist())
+        #print(f"Fila {i} normalizada: {matriz[i]}")
 
         # Hacer cero todos los elementos por encima y por debajo del pivote
         for j in range(longitud):
             if j != i:
                 factor = matriz[j][i]
-                print(f"factor {factor}")
+                #print(f"factor {factor}")
+                #print(matriz,[float(const[k]) for k in range(longitud)]," antes")
                 matriz[j] = matriz[j] - factor * matriz[i]
-                print(f"Fila {j} actualizada con respecto a la fila {i}: {matriz[j]}")
+                const[j]=const[j]-factor*const[i]
+                #print(matriz,[float(const[k]) for k in range(longitud)])
+                historial.append(matriz.tolist())
+                #print(f"Fila {j} actualizada con respecto a la fila {i}: {matriz[j]}")
 
     # Extraer los resultados que están en la última columna
     for i in range(longitud):
-        resultados.append(round(matriz[i][-1], 7))
+        const[i]=float(const[i])
 
     exito = True
-    print("Resultado final:", resultados)
-    return resultados, exito
+    return const,iteraciones,historial, exito
 
-
-matriz = [
-        [2, 1, -1, 8],
-        [-3, -1, 2, -11],
-        [-2, 1, 2, -3]
+if __name__=='__main__':
+        
+    """matriz = [
+            [2, 1, -1, 8],
+            [-3, -1, 2, -11],
+            [-2, 1, 2, -3]
+    ]"""
+    matriz=[
+        [1,2,5],
+        [2,1,4]
     ]
-matriz = np.array(matriz, dtype=float)
+    res=[5,4]
+    result,iteraciones,historial,exito = GaussJordan(matriz,res)
 
-result = GaussJordan(matriz)
+    print(result)
 
-print(result)
-
-# if __name__ == '__main__':
-#     # Ejemplo de prueba
-#     matriz = [
-#         [2, 1, -1, 8],
-#         [-3, -1, 2, -11],
-#         [-2, 1, 2, -3]
-#     ]
-#     matriz = np.array(matriz, dtype=float)
-#     GaussJordan(matriz)
+    # if __name__ == '__main__':
+    #     # Ejemplo de prueba
+    #     matriz = [
+    #         [2, 1, -1, 8],
+    #         [-3, -1, 2, -11],
+    #         [-2, 1, 2, -3]
+    #     ]
+    #     matriz = np.array(matriz, dtype=float)
+    #     GaussJordan(matriz)

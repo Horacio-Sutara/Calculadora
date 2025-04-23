@@ -9,8 +9,8 @@ body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Apila header, contenido y footer verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
     background-color: #fff;
     position: relative;
 }
@@ -38,7 +38,7 @@ header {
     gap: 0.5rem;
 }
 .logo-icon {
-    width: 30px; /* Ajusta el tamaño del icono */
+    width: 30px; 
     height: 30px;
 }
 
@@ -75,6 +75,7 @@ header {
     padding: 1.5rem;
     width: 100%;
     max-width: 1200px;
+    animation: fadeIn 0.8s ease;
 }
 /*Input*/
 .bloque-inputs {
@@ -87,7 +88,7 @@ header {
     background-color: #222;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    animation: fadeIn 0.8s ease;
+    
 }
 
 .campo label {
@@ -97,17 +98,6 @@ header {
     display: block;
     font-size: 0.95rem;
 }
-
-.display-funcion,.display-intervalo {
-    background-color: #111;
-    border: 1px solid #666;
-    border-radius: 8px;
-    padding: 1.3rem 0.8rem;
-    font-size: 0.95rem;
-    width: 100%;
-    color: #222;
-}
-
 .btn-calcular {
     background-color: #c78eff;
     color: #fff;
@@ -120,10 +110,32 @@ header {
     align-self: flex-end;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
+.display-funcion,.display-intervalo {
+    background-color: #222;
+    border: 1px solid #c78eff;
+    border-radius: 8px;
+    padding: 1.3rem 0.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.display-funcion:focus, .display-intervalo:focus {
+    outline: none; 
+    border-color: #8a2be2; 
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.5); 
+    transform: scale(1.02);
+    background-color: #111; 
+    padding: 1.3rem 0.8rem; 
+}
+.display-funcion::placeholder, .display-intervalo::placeholder {
+    color: #c78eff; 
+    opacity: 0.7; 
+}
 .btn-calcular:hover {
     background-color: #a259e4;
     transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 /* === CALCULADORA === */
 .calculadora {
@@ -182,8 +194,8 @@ header {
 
 /* === BOTONES=== */
 .btn-header,.btn-math,  .btn-especial, .btn-especial.igual {
-    flex: 1;                       /* Cada botón ocupa el mismo ancho */
-    min-width: 0;                  /* Permite que se achiquen si no hay espacio */
+    flex: 1;                       
+    min-width: 0;                
     font-size: 1rem;
     padding: 0.2rem;
     border: none;
@@ -194,7 +206,7 @@ header {
     transition: background-color 0.2s ease, transform 0.2s ease;
     text-align: center;
 }
-.btn-math,.btn-especial.igual { /* Que todos crezcan proporcionalmente */
+.btn-math,.btn-especial.igual { 
     margin-bottom:10px;
     width: 45px;
     height: 45px;
@@ -223,7 +235,7 @@ header {
 /* === FOOTER === */
 footer {
     width: 100%;
-    margin-top: auto; /* Lo empuja hacia abajo */
+    margin-top: auto; 
     background-color: #222;
     color: #fff;
     padding: 1rem 0;
@@ -234,7 +246,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+    flex-wrap: wrap; 
 }
 
   /* Animación */

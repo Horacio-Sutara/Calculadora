@@ -77,6 +77,7 @@ header {
     align-items: center;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
     position: relative;
+    animation: subirDesdeAbajo 0.8s ease-out forwards;
 }
 
 /* "BetaSolve" en la esquina superior derecha */
@@ -102,10 +103,10 @@ header {
     overflow-x: auto;
     border: 1px solid #444; /* Borde sutil */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra interna */
-  }
-  
+}
+
   /* Estilo para el input dentro de la pantalla */
-  .pantalla input {
+.pantalla input {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -115,24 +116,10 @@ header {
     font-size: 1.8rem; /* Tamaño de fuente aumentado */
     font-weight: 500; /* Un poco más grueso */
     text-align: right;
-  }
-  
-  /* Animación para la pantalla cuando cambia el valor */
-  @keyframes pulseGlow {
-    0% {
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    50% {
-      box-shadow: inset 0 0 15px rgba(199, 142, 255, 0.3);
-    }
-    100% {
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-  }
-  
-  .pantalla-actualizada {
+}
+.pantalla-actualizada {
     animation: pulseGlow 0.5s ease;
-  }
+}
 /* Contenedor de botones */
 /* === HEADER - FILAS DE BOTONES DE FUNCIONES === */
 
@@ -215,7 +202,28 @@ footer {
         transform: translateY(0);
     }
 }
-
+@keyframes subirDesdeAbajo {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+  /* Animación para la pantalla cuando cambia el valor */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        box-shadow: inset 0 0 15px rgba(199, 142, 255, 0.3);
+    }
+    100% {
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+}
 /* === MEDIA QUERIES === */
 @media screen and (max-width: 768px) {
     .menu {

@@ -1,8 +1,8 @@
-from flask import Flask,render_template
-from controllers import racies,calculadora_basica
+from flask import Flask,render_template,session
+from controllers import racies,calculadora_basica,ecuaciones
 #from controllers.calculadora import calcular
 app = Flask(__name__)
-
+app.secret_key = 'clave-secreta'
 #Ruta de prueba
 @app.route('/')
 def index():
@@ -28,6 +28,7 @@ def resolver():
 def raices():
     return render_template('raices.html')
 
+
 # Ruta para la calculadora de raíces
 @app.route('/calcular_raices', methods=['POST'])
 def calcular_raices():
@@ -38,6 +39,14 @@ def calcular_raices():
 @app.route('/sistemas_ecuaciones')
 def sistemas_ecuaciones():
     return render_template('sistemas.html')
+
+@app.route('/resolver_sistema', methods=['POST'])
+def resolver_sistema():
+    return ecuaciones.calcular()
+
+@app.route('/solucion')
+def solucion_sistema():
+    return render_template('solucion_sistema.html')
 
 
 if __name__ == '__main__':
