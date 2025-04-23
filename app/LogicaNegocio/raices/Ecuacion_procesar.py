@@ -1,15 +1,12 @@
-from sympy import symbols, Eq, sympify, solve,diff, sin, cos, tan,exp, asin, acos, atan,log
+from sympy import symbols, Eq, sympify, solve,diff, sin, cos, tan,exp, asin, acos, atan,log,Function,nsolve
 from sympy import floor, S
+from sympy.core.sympify import SympifyError
+from sympy.parsing.sympy_parser import parse_expr
 
 class Ecuacion_procesar:
-    def __init__(self,nombre_archivo="ecuacion.txt"):
-        if nombre_archivo=="ecuacion.txt":
-            self.nombre_archivo=nombre_archivo
-            with open(self.nombre_archivo, "r") as archivo:
-                contenido = archivo.read().strip()
-            self.ecuacion=contenido
-        else:
-            self.ecuacion=nombre_archivo.replace("X","x")
+    def __init__(self,nombre_archivo):
+        self.ecuacion=nombre_archivo.replace("X","x")
+    
     def remplazar(self,x='x',y='y',excluir_anterior='e'):
         ecuaciones=[]
         cont=0
@@ -41,61 +38,63 @@ class Ecuacion_procesar:
 
         return solucion_y
 
-    def procesar_ecuacion(self, ecuacion_txt=None,valor_x=None):
+    def procesar_ecuacion(self, ecuacion_txt=None, valor_x=None):
         x = symbols('x')
-        if ecuacion_txt is None:
-            try:
-                ecuacion = sympify(self.ecuacion, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'ln':log})  # Permite funciones trigonométricas
-            except Exception as e:
-                #print(f"Error al interpretar la ecuación: {e}")
-                return False
-        else:
-            try:
-                ecuacion = sympify(ecuacion_txt, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp,'asin': asin, 'acos': acos, 'atan': atan,'ln':log})  # Permite funciones trigonométricas
-            except Exception as e:
-                #print(f"Error al interpretar la ecuación: {e}")
-                return False
+        funciones = {
+            'sin': sin, 'cos': cos, 'tan': tan, 'exp': exp,
+            'asin': asin, 'acos': acos, 'atan': atan, 'ln': log
+        }
 
-        if "=" in self.ecuacion:  # Si hay un "=", tratamos la ecuación como una igualdad
-            izquierda, derecha = self.ecuacion.split("=")
-            ecuacion = Eq(sympify(izquierda, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp}), 
-                        sympify(derecha, locals={'sin': sin, 'cos': cos, 'tan': tan,'exp': exp}))
-            solucion = solve(ecuacion, x)
-            #print(f"Ecuación: {ecuacion}")
-            #print(f"Solución para x: {solucion}")
-            return "A"
+        texto = ecuacion_txt if ecuacion_txt is not None else self.ecuacion
+
+        try:
+            if '=' in texto:
+                izquierda, derecha = texto.split('=')
+                izquierda = parse_expr(izquierda.strip(), local_dict=funciones)
+                derecha = parse_expr(derecha.strip(), local_dict=funciones)
+                ecuacion = Eq(izquierda, derecha)
+
+                if valor_x is not None:
+                    return Eq(izquierda.subs(x, valor_x).evalf(), derecha.subs(x, valor_x).evalf())
+                else:
+                    try:
+                        soluciones = solve(ecuacion, x)
+                        return soluciones
+                    except Exception:
+                        # Resolución numérica con nsolve
+                        from sympy import S
+                        aproximada = nsolve(izquierda - derecha, x, 1)  # 1 es el punto inicial
+                        return f"Solución numérica aproximada: {aproximada}"
+
+            else:
+                expr = parse_expr(texto.strip(), local_dict=funciones)
+                if valor_x is not None:
+                    return expr.subs(x, valor_x).evalf()
+                else:
+                    return expr
+
+        except (SympifyError, Exception) as e:
+            return f"Error al interpretar la ecuación: {e}"
         
-        else:  # Si no hay "=", la tratamos como una función matemática
-            if valor_x is not None:
-                resultado = ecuacion.subs(x, valor_x).evalf()  # evalf() evalúa numéricamente
-                #print(f"Ecuación reconocida: {ecuacion}\nEvaluada en x={valor_x}: {resultado}")
-                return resultado
-            return "B"
     def truncar_sympy(self,numero, decimales):
         factor = 10 ** decimales
         return (int(floor(numero * factor)) / factor)
     
     def resultado(self,valor,ecuacion=None):
         if ecuacion is None:
-            tipo=self.procesar_ecuacion()
-            if tipo=="B":
-                #print("La ecuación es una función matemática")
+            if self.reconocer():
                 res=self.procesar_ecuacion(valor_x=valor)
-                if res!="B":
-                    try:
-                        return self.truncar_sympy(float(res),10)
-                    except:
-                        False
+                try:
+                    return self.truncar_sympy(float(res),10)
+                except:
+                    return res
         else:
-            tipo=self.procesar_ecuacion(ecuacion)
-            if tipo=="B":
-                #print("La ecuación es una función matemática")
-                res=self.procesar_ecuacion(ecuacion,valor)
-                if res!="B":
-                    try:
-                        return self.truncar_sympy(float(res),10)
-                    except:
-                        False
+            if self.reconocer():
+                res=self.procesar_ecuacion(valor_x=valor)
+                try:
+                    return self.truncar_sympy(float(res),10)
+                except:
+                    return res
         return False
 
     def derivar(self,ecuacion=None):
@@ -109,35 +108,79 @@ class Ecuacion_procesar:
             return derivada
         return None
 
-    def __intervalo_correcto__(self,a,b):
-        f_a=self.resultado(a)
-        f_b=self.resultado(b)
-
-        if f_a*f_b>0:
-            return True
-        else:
-            return False
-        
-    def encontrar_intervalo(self,a,b):
-        while self.__intervalo_correcto__(a,b):
-            a-=0.5
-            b+=0.5
-        #print(f"intervalo inicial encontrado ({a},{b})")
-        return a,b
     def reconocer(self):
-        res=self.resultado(1,self.ecuacion)
-        return True if type(res)==float else False
-       
+        funciones_permitidas = {'sin', 'cos', 'tan','exp','asin', 'acos', 'atan','ln'}
+        variables_permitidas = {'x'}
+        funciones = {
+            'sin': sin, 'cos': cos, 'tan': tan, 'exp': exp,
+            'asin': asin, 'acos': acos, 'atan': atan, 'ln': log
+        }
+
+        try:
+            texto = self.ecuacion.strip()
+
+            if '=' in texto:
+                izquierda, derecha = texto.split('=')
+                izquierda = parse_expr(izquierda.strip(), local_dict=funciones)
+                derecha = parse_expr(derecha.strip(), local_dict=funciones)
+                exprs = [izquierda, derecha]
+            else:
+                exprs = [parse_expr(texto, local_dict=funciones)]
+
+            for expr in exprs:
+                # Validar variables
+                if not {str(s) for s in expr.free_symbols}.issubset(variables_permitidas):
+                    return False
+
+                # Validar funciones
+                funciones_encontradas = {str(f.func) for f in expr.atoms(Function)}
+                if not funciones_encontradas.issubset(funciones_permitidas):
+                    return False
+
+            return True
+
+        except Exception as e:
+            return False
+
     def reescribir(self,ecuacion):
         self.ecuacion=ecuacion
 
 if __name__ == "__main__":
-    ecuacion = Ecuacion_procesar("x**2+x-5+exp(x)")
-    #print(ecuacion.resultado(1))  # Puedes cambiar el valor de x según tus necesidades
-    ecua=ecuacion.remplazar()
-    print("Ecuaciones a despejar: ",ecua)
-    for i in ecua:
-        soluciones=ecuacion.despejar_y(i)
-        for j in soluciones:
-            print("Despeje: ",j)
-            print("Para x= 1  : ",ecuacion.resultado(1,j),"\nPara x=10  : ",ecuacion.resultado(10,j),"\n")
+    print("primera ecuacion:")
+    ecuacion = Ecuacion_procesar("x**2-24=76")
+    print(ecuacion.reconocer())
+    print(ecuacion.procesar_ecuacion())
+    print(ecuacion.resultado(10))
+    print(ecuacion.resultado(5))
+    
+    print("segunda ecuacion:")
+
+    ecuacion = Ecuacion_procesar("x**x")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(5))
+
+    print("tercera ecuacion:")
+    ecuacion = Ecuacion_procesar("x**xx")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(5))
+
+    print("cuarta ecuacion:")
+    ecuacion = Ecuacion_procesar("exp(exp(x))")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(5))
+
+    print("quinta ecuacion:")
+    ecuacion = Ecuacion_procesar("sqrt(x)")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(10))
+
+    print("sexta ecuacion:")
+    ecuacion = Ecuacion_procesar("1/x")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(0))
+    print(type(ecuacion.resultado(0)))
+
+    print("septima ecuacion:")
+    ecuacion = Ecuacion_procesar("1/(x-1)")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(1))
