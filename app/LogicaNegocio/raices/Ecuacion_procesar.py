@@ -151,32 +151,58 @@ class Ecuacion_procesar:
     def reescribir(self,ecuacion):
         self.ecuacion=ecuacion
 
-    def verificar_dominio_y_subintervalo(self, a, b,expr_str=None):
+    def verificar_dominio_y_subintervalo(self, a, b, expr_str=None):
         x = symbols('x')
         if expr_str is None:
             expr_str = self.ecuacion
-        expr = parse_expr(expr_str)
 
+        expr = parse_expr(expr_str)
         dominio = continuous_domain(expr, x, S.Reals)
-        intervalo = Interval.open(a, b)
+        intervalo_original = Interval.open(a, b)
         intervalo_cerrado = Interval(a, b)
-        if not intervalo.is_subset(dominio):
-            return dominio, False
 
         f = lambdify(x, expr, modules="sympy")
 
-        try:
-            for val in [a + (b - a) * i / 10 for i in range(1, 10)]:
-                resultado = f(val).evalf()
-                if not resultado.is_real:
-                    return dominio, False
-        except Exception:
+        # 1. Verificación si el intervalo está contenido completamente en el dominio
+        if intervalo_original.is_subset(dominio):
+            try:
+                for val in [a + (b - a) * i / 10 for i in range(1, 10)]:
+                    resultado = f(val).evalf()
+                    if not resultado.is_real:
+                        return dominio, False
+            except Exception:
+                return dominio, False
+
+            if not intervalo_cerrado.is_subset(dominio):
+                return (a + 1e-8, b - 1e-8), True
+
+            return (a, b), True
+
+        # 2. Si no está contenido, intentamos encontrar el mayor subintervalo válido
+        interseccion = intervalo_original.intersect(dominio)
+
+        if isinstance(interseccion, Interval):
+            a = float(interseccion.start) if interseccion.start.is_finite else float('-inf')
+            b = float(interseccion.end) if interseccion.end.is_finite else float('inf')
+            return (a, b), True
+        elif interseccion is S.EmptySet:
             return dominio, False
+        else:
+            # Si hay múltiples intervalos (como en dominio de 1/x), buscamos el más grande dentro de (a,b)
+            max_intervalo = None
+            max_largo = 0
+            for sub in interseccion.args:
+                if isinstance(sub, Interval):
+                    largo = sub.measure
+                    if largo >= max_largo and sub.is_subset(intervalo_original):
+                        max_largo = largo
+                        max_intervalo = sub
+            if max_intervalo:
+                a = float(max_intervalo.start) if max_intervalo.start.is_finite else float('-inf')
+                b = float(max_intervalo.end) if max_intervalo.end.is_finite else float('inf')
+                return (a, b), True
 
-        if not intervalo_cerrado.is_subset(dominio):
-            return (a+(a+b)*1e-8, b-(a+b)*1e-8), True
-
-        return (a,b), True
+        return dominio, False
 
 
 
@@ -215,13 +241,15 @@ if __name__ == "__main__":
     print(ecuacion.reconocer())
     print(ecuacion.resultado(0))
     print(type(ecuacion.resultado(0)))
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
+    print(dominio,sub_intervalo)
 
     print("septima ecuacion:")
     ecuacion = Ecuacion_procesar("ln(x)")
     print(ecuacion.reconocer())
     print(ecuacion.resultado(0))
     print(ecuacion.verificar_dominio_y_subintervalo(-10,10))
-    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(0,10)
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-1,10)
     print(dominio,sub_intervalo)
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(1,10)
     print(dominio,sub_intervalo)
