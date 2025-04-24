@@ -36,7 +36,7 @@ def calcular_raices():
         a,b = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
         intervalo,validar=ecuacion.verificar_dominio_y_subintervalo(a,b)
         if not validar:
-            return render_template('error_raices.html', titulo="El intervalo no es válido. Debe ser un intervalo cerrado de números reales.")
+            return render_template('error_raices.html', titulo="No tiene domiinio valido")
         if not validar_expresion_real(funcion):
             return render_template('error_raices.html', titulo="La función contiene valores imaginarios, infinitos o no definidos. Solo se permiten funciones reales.")
 
