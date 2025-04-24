@@ -157,21 +157,24 @@ class Ecuacion_procesar:
             expr_str = self.ecuacion
         expr = parse_expr(expr_str)
 
-        # Verifica que la expresión tenga dominio en los reales
         dominio = continuous_domain(expr, x, S.Reals)
         intervalo = Interval.open(a, b)
-
+        intervalo_cerrado = Interval(a, b)
         if not intervalo.is_subset(dominio):
             return dominio, False
 
-        # Ahora verificar si el resultado es real en ese intervalo
         f = lambdify(x, expr, modules="sympy")
+
         try:
-            for val in [a + (b - a) * i / 10 for i in range(1, 10)]:  # puntos dentro del intervalo
-                if f(val).has(I):
+            for val in [a + (b - a) * i / 10 for i in range(1, 10)]:
+                resultado = f(val).evalf()
+                if not resultado.is_real:
                     return dominio, False
         except Exception:
             return dominio, False
+
+        if not intervalo_cerrado.is_subset(dominio):
+            return (a+(a+b)*1e-8, b-(a+b)*1e-8), True
 
         return (a,b), True
 
