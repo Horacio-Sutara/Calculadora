@@ -184,6 +184,7 @@ class Ecuacion_procesar:
         if isinstance(interseccion, Interval):
             a = float(interseccion.start) if interseccion.start.is_finite else float('-inf')
             b = float(interseccion.end) if interseccion.end.is_finite else float('inf')
+            print("nuevo intervalo")
             return (a, b), True
         elif interseccion is S.EmptySet:
             return dominio, False

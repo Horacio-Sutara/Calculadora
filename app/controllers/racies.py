@@ -30,6 +30,7 @@ def calcular_raices():
         ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
         
         if not ecuacion.reconocer():
+            print("Error en la función")
             return render_template('error_raices.html',titulo='No se pudo reconocer la Función')
         intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
         print(intervalo_str, "intervalo pasado", type(intervalo_str))
