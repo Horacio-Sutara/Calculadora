@@ -13,6 +13,7 @@ body {
     justify-content: flex-start;
     align-items: center; /* Centra horizontalmente */
     background-color: #fff;
+    overflow-x: hidden;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -89,6 +90,7 @@ header {
 .zona-sistemas {
     position: relative;
     display: flex;
+    min-height: calc(100vh - 160px);
     justify-content: center;
     align-items: center;
     gap: 10rem;
@@ -379,19 +381,51 @@ footer {
     50% { width: 60%; }
     100% { width: 100%; }
 }
+.fade-out {
+    animation: fadeOutMain 0.5s ease forwards;
+}
 
+@keyframes fadeOutMain {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
 /* === MEDIA QUERIES === */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 987px) {
+
+    header {
+        padding: 0.5rem 0;
+    }
+    .nav {
+        padding: 0 1rem;
+    }
+    .nav-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    .logo-icon {
+        width: 25px; /* Ajusta el tamaño del icono */
+        height: 25px;
+    }
     .menu {
         flex-direction: column;
         gap: 0.8rem;
     }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
     .logo {
         margin-bottom: 1rem;
+    }
+    .brand-name {
+        font-size: 1rem;
+    }
+    .nav-logo{
+        display: none;
+    }
+    .page-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem;
     }
     .zona-sistemas {
         flex-direction: column;
@@ -400,7 +434,7 @@ footer {
     }
     .bloque-generador {
         width: 100%;
-        max-width: 95%;
+        max-width: 95vw;
         margin: 0 auto;
         padding: 1rem;
     }
@@ -413,5 +447,32 @@ footer {
         align-items: stretch;
         gap: 1rem;
     }
+    .input-sistema {
+        width: 42px !important;         /* antes 58px */
+        font-size: 0.8rem !important;   /* para achicar el texto */
+        padding: 0.4rem !important;     /* menos padding */
+    }
     
+    .fila-input-generador input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    #metodo {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    .btn-generar,
+    .btn-raices {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+    footer{
+        width: 100%;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

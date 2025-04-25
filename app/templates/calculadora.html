@@ -10,10 +10,11 @@
 <body>
     <!-- HEADER -->
     <header>
+    
         <nav class="nav">
             <!-- Logo principal -->
             <div class="nav-section nav-logo">
-                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon betasolve">
                 <span class="brand-name">BetaSolve</span>
             </div>
     
@@ -26,79 +27,81 @@
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="/" class="nav-link">Volver al Inicio</a>
+                <a href="/" class="nav-link volver-btn">Volver al Inicio</a>
             </div>
         </nav>
     </header>
     <!-- CALCULADORA -->
-    <div class="calculadora">
-        <!-- Título BetaSolve en la esquina superior derecha -->
-        <div class="titulo">BetaSolve</div> 
-
-        <!-- Pantalla donde se muestra la operación -->
-        <div class="pantalla">
-            <input type="text" id="pantalla" readonly>
-            <!-- Aquí va la operación que se está realizando -->
-        </div>
-
-        <!-- FILAS DE BOTONES -->
-        <div class="buttons-header">
-            <div class="row-header">
-                <button class="btn-header">sen</button>
-                <button class="btn-header">cos</button>
-                <button class="btn-header">tan</button>
-                <button class="btn-header">exp</button>
-                <button class="btn-header">In</button>
-                <button class="btn-header">^</button>
+    <main class="main-content">
+        <div class="calculadora">
+            <!-- Título BetaSolve en la esquina superior derecha -->
+            <div class="titulo">BetaSolve</div> 
+    
+            <!-- Pantalla donde se muestra la operación -->
+            <div class="pantalla">
+                <input type="text" id="pantalla" readonly>
+                <!-- Aquí va la operación que se está realizando -->
             </div>
-            <div class="row-header">
-                <button class="btn-header">asen</button>
-                <button class="btn-header">acos</button>
-                <button class="btn-header">atan</button>
-                <button class="btn-header">(</button>
-                <button class="btn-header">)</button>
-                <button class="btn-header">√</button>
+    
+            <!-- FILAS DE BOTONES -->
+            <div class="buttons-header">
+                <div class="row-header">
+                    <button class="btn-header">sen</button>
+                    <button class="btn-header">cos</button>
+                    <button class="btn-header">tan</button>
+                    <button class="btn-header">exp</button>
+                    <button class="btn-header">In</button>
+                    <button class="btn-header">^</button>
+                </div>
+                <div class="row-header">
+                    <button class="btn-header">asen</button>
+                    <button class="btn-header">acos</button>
+                    <button class="btn-header">atan</button>
+                    <button class="btn-header">(</button>
+                    <button class="btn-header">)</button>
+                    <button class="btn-header">√</button>
+                </div>
+                <div class="row-header row-expandida">
+                    <button class="btn-header">X</button>
+                    <button class="btn-header">;</button>
+                    <button class="btn-especial">Del</button>
+                    <button class="btn-especial">C</button>
+                </div>
             </div>
-            <div class="row-header row-expandida">
-                <button class="btn-header">X</button>
-                <button class="btn-header">;</button>
-                <button class="btn-especial">Del</button>
-                <button class="btn-especial">C</button>
+    
+            <div class="buttons-math">
+                <div class="row-math">
+                    <button class="btn-math">7</button>
+                    <button class="btn-math">8</button>
+                    <button class="btn-math">9</button>
+                    <button class="btn-math">*</button>
+                </div>
+                <div class="row-math">
+                    <button class="btn-math">4</button>
+                    <button class="btn-math">5</button>
+                    <button class="btn-math">6</button>
+                    <button class="btn-math">/</button>
+                </div>
+                <div class="row-math">
+                    <button class="btn-math">1</button>
+                    <button class="btn-math">2</button>
+                    <button class="btn-math">3</button>
+                    <button class="btn-math">+</button>
+                </div>
+                <div class="row-math">
+                    <button class="btn-math">.</button>
+                    <button class="btn-math">0</button>
+                    <button class="btn-especial-igual">=</button>
+                    <button class="btn-math">-</button>
+                </div>
             </div>
-        </div>
-
-        <div class="buttons-math">
-            <div class="row-math">
-                <button class="btn-math">7</button>
-                <button class="btn-math">8</button>
-                <button class="btn-math">9</button>
-                <button class="btn-math">*</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">4</button>
-                <button class="btn-math">5</button>
-                <button class="btn-math">6</button>
-                <button class="btn-math">/</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">1</button>
-                <button class="btn-math">2</button>
-                <button class="btn-math">3</button>
-                <button class="btn-math">+</button>
-            </div>
-            <div class="row-math">
-                <button class="btn-math">.</button>
-                <button class="btn-math">0</button>
-                <button class="btn-especial-igual">=</button>
-                <button class="btn-math">-</button>
-            </div>
-        </div>
-    </div>
-
+        </div>  
+    </main>
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p>Horacio Sutara ·Aquiles Cancinos .</p>
+            <p>Tomás Mollinedo ·María Del Mar Pellicer·</p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>

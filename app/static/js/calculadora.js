@@ -70,3 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
         vector=[""];
     });
 });
+
+//Animaciones
+document.querySelectorAll('.volver-btn').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // Evita la navegación inmediata
+
+        const main = document.querySelector('.main-content');
+        main.classList.add('fade-out');
+
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 500); // Tiempo para que la animación termine
+    });
+});

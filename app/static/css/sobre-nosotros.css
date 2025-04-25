@@ -64,6 +64,9 @@ header {
     color: #c78eff;
 }
 /* Sobre nosotros*/
+main{
+    animation: fadeIn 1s ease-in-out;
+}
 /* Títulos principales */
 .titles h1 {
     font-size: 3rem;
@@ -200,22 +203,54 @@ footer {
 
 /* MEDIAS QUERIS */
 @media screen and (max-width: 768px) {
+    header {
+        padding: 0.5rem 0;
+    }
+    .nav {
+        padding: 0 1rem;
+    }
+    .nav-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    .logo-icon {
+        width: 25px; /* Ajusta el tamaño del icono */
+        height: 25px;
+    }
     .menu {
         flex-direction: column;
         gap: 0.8rem;
     }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
     .logo {
         margin-bottom: 1rem;
     }
-}
-@media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
+    .brand-name {
+        font-size: 1rem;
     }
+
+    .page-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    .card__container {
+        margin-top: 3rem;
+        grid-template-columns: 1fr; /* 1 tarjeta por fila en mobile */
+        padding: 0 1rem;
+    }
+    .about-section {
+        margin: 2rem 1rem 2.5rem;
+        padding: 1.5rem 1rem;
+    }
+    footer{
+        width: 100%;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
 }
 @keyframes fadeIn {
     from {
@@ -225,5 +260,19 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+.fade-out {
+    animation: fadeOutMain 0.6s ease forwards;
+}
+
+@keyframes fadeOutMain {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96);
     }
 }
