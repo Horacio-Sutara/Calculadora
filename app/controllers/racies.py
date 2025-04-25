@@ -28,24 +28,22 @@ def calcular_raices():
             
         print(funcion)
         ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
+        
         if not ecuacion.reconocer():
             return render_template('error_raices.html',titulo='No se pudo reconocer la Función')
-        
+        intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
+        print(intervalo_str, "intervalo pasado", type(intervalo_str))
+        a,b = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
+        intervalo,validar=ecuacion.verificar_dominio_y_subintervalo(a,b)
+        print(intervalo, "intervalo", type(intervalo))
+        print(validar, "validar")
+        if not validar:
+            return render_template('error_raices.html', titulo="No tiene domiinio valido")
         if not validar_expresion_real(funcion):
             return render_template('error_raices.html', titulo="La función contiene valores imaginarios, infinitos o no definidos. Solo se permiten funciones reales.")
 
         print(funcion)
 
-
-        #Procesamiento del intervalo
-        intervalo_str = data.get('intervalo', (-10, 10))  # Si no se pasa intervalo, usar (-10, 10)
-        print(intervalo_str)
-        intervalo = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
-        val_intervalo = validar_intervalo(funcion,intervalo)
-        print(val_intervalo)
-        if val_intervalo[0]==False:
-            return render_template('error_raices.html', titulo=val_intervalo[1])
-        intervalo=(float(val_intervalo[1].start), float(val_intervalo[1].end))
 
         # Crear la instancia de la clase Metodos_raices
         metodos_raices = Metodos_raices(funcion,intervalo=intervalo)
