@@ -85,7 +85,20 @@ window.onload = function () {
             }
         }
 
-        mostrarPaso(); // inicia animación
+        // inicia animación
+        mostrarPaso();
+        setTimeout(() => {
+            const todasLasCeldas = document.querySelectorAll('.celda');
+            let maxWidth = 0;
+            todasLasCeldas.forEach(celda => {
+                const ancho = celda.offsetWidth;
+                if (ancho > maxWidth) maxWidth = ancho;
+            });
+            todasLasCeldas.forEach(celda => {
+                celda.style.width = `${maxWidth}px`;
+            });
+        }, 0); // Esperamos un toque para que las celdas ya estén visibles
+    //Los otros algoritmos
     } else {
         console.log(historial)
         const cantidadVariables = resultado.length; 

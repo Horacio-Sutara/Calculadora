@@ -143,7 +143,7 @@ header {
     background-color: #222;
     border: 1px solid #c78eff;
     color: #fff;
-    width: 60px;
+    width: 58px;
     text-align: center;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -257,6 +257,9 @@ select#metodo:focus {
 select#metodo option {
     background-color: #1c1c1c;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #Mensaje_calcular{
     background-color: #1c1c1c;
@@ -339,7 +342,6 @@ footer {
     flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
 }
 
-
 /* === ANIMACIÓN SUAVE === */
 @keyframes fadeIn {
     from {
@@ -352,20 +354,6 @@ footer {
     }
 }
 
-/* === MEDIA QUERIES === */
-@media screen and (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    .logo {
-        margin-bottom: 1rem;
-    }
-}
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -390,4 +378,40 @@ footer {
     0% { width: 0%; }
     50% { width: 60%; }
     100% { width: 100%; }
+}
+
+/* === MEDIA QUERIES === */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+    .zona-sistemas {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem; /* menos espacio entre bloques */
+    }
+    .bloque-generador {
+        width: 100%;
+        max-width: 95%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    #flechita {
+        display: none !important; /* Oculta la flecha en pantallas pequeñas */
+    }
+    .fila-metodo-boton {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
 }

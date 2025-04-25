@@ -103,15 +103,15 @@ header {
 /* Tarjetas */
 .card__container{
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas fijas */
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 
 }
 .card{
     max-width: clamp(160px,50%,320px);
     background-color: var(--card-bg-color);
-    margin: 50px auto;
+    margin: 30px auto;
     position: relative;
     border-radius: 20px;
     flex: 1 1 calc(50% - 40px); /* Dos tarjetas por fila */
