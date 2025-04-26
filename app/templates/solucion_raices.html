@@ -5,34 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
     <title>Solucion</title>
+    <!-- Cargar Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <header>
         <nav class="nav">
-            <!-- Logo principal -->
             <div class="nav-section nav-logo">
                 <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
-    
-            <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
                 <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
                 <h1 class="page-title">Solución de raíces</h1>
             </div>
-    
-            <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
                 <a href="/" class="nav-link">Volver al Inicio</a>
             </div>
         </nav>
     </header>
-    
+
     <h1>Gráfica de la Función y Raíces Encontradas</h1>
 
-    <!-- Mostrar la gráfica -->
-    <img src="data:image/png;base64,{{ img_data }}" alt="Gráfica de la Función">
+    <!-- Contenedor para Plotly -->
+    <div id="plotly-graph" style="width:100%;height:500px;"></div>
+
+    <script>
+        const plotData = {{ plot_data | tojson }};
+
+        const trace1 = {
+            x: plotData.x,
+            y: plotData.y,
+            type: 'scatter',
+            name: `f(x) = ${plotData.funcion}`,
+            line: {color: 'blue'}
+        };
+
+        const trace2 = {
+            x: plotData.raices_x,
+            y: plotData.raices_y,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Raíces',
+            marker: {color: 'red', size: 8}
+        };
+
+        const layout = {
+            title: `Gráfica de la función ${plotData.funcion}`,
+            xaxis: { title: 'x' },
+            yaxis: { title: 'f(x)' },
+            showlegend: true
+        };
+
+        Plotly.newPlot('plotly-graph', [trace1, trace2], layout);
+    </script>
 
     <h2>Raíces Encontradas</h2>
     <table>
@@ -53,11 +80,12 @@
             {% endfor %}
         </tbody>
     </table>
+
     <footer>
         <div class="footer-content">
             <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
-        </footer>
+    </footer>
 </body>
 </html>
