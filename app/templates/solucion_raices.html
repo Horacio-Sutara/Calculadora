@@ -30,36 +30,11 @@
 
     <!-- Contenedor para Plotly -->
     <div id="plotly-graph" style="width:100%;height:500px;"></div>
-
-    <script>
-        const plotData = {{ plot_data | tojson }};
-
-        const trace1 = {
-            x: plotData.x,
-            y: plotData.y,
-            type: 'scatter',
-            name: `f(x) = ${plotData.funcion}`,
-            line: {color: 'blue'}
-        };
-
-        const trace2 = {
-            x: plotData.raices_x,
-            y: plotData.raices_y,
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Raíces',
-            marker: {color: 'red', size: 8}
-        };
-
-        const layout = {
-            title: `Gráfica de la función ${plotData.funcion}`,
-            xaxis: { title: 'x' },
-            yaxis: { title: 'f(x)' },
-            showlegend: true
-        };
-
-        Plotly.newPlot('plotly-graph', [trace1, trace2], layout);
+    <script src="{{ url_for('static', filename='js/solucion_raices.js') }}"></script>
+    <script id="datos" type="application/json">
+        {{ plot_data | tojson }}
     </script>
+    
 
     <h2>Raíces Encontradas</h2>
     <table>
