@@ -164,7 +164,7 @@ class Ecuacion_procesar:
         interseccion = intervalo_original.intersect(dominio)
 
         # 🔁 Mover esto arriba antes de is_subset
-        print("evaliacuin",dominio.contains(intervalo_original))
+        print("evaliacuin",intervalo_original.is_subset(dominio))
 
 
         # 1. Verificación si el intervalo está contenido completamente en el dominio
@@ -204,7 +204,14 @@ class Ecuacion_procesar:
             if max_intervalo:
                 a = float(max_intervalo.start) if max_intervalo.start.is_finite else float('-inf')
                 b = float(max_intervalo.end) if max_intervalo.end.is_finite else float('inf')
-                return (a, b), True
+                if self.resultado(a) == False and self.resultado(b) == False:
+                    return (a + 1e-8, b - 1e-8), True
+                elif self.resultado(a) == False:
+                    return (a + 1e-8, b), True
+                elif self.resultado(b) == False:
+                    return (a, b - 1e-8), True
+                else:
+                    return (a, b), True
 
         return dominio, False
 
@@ -259,7 +266,7 @@ if __name__ == "__main__":
     print(dominio,sub_intervalo)
 
     print("octava ecuacion:")
-    ecuacion = Ecuacion_procesar("x-sqrt(-1)")
+    ecuacion = Ecuacion_procesar("x-sqrt(x)")
     print(ecuacion.reconocer())
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
     print(dominio,sub_intervalo)

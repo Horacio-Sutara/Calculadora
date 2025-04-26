@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Leer el JSON del script con id "datos"
     const rawData = document.getElementById('datos').textContent;
     const plotData = JSON.parse(rawData);
-
+    //f(x)=x^2 evaluando en x=2
     const trace1 = {
         x: plotData.x,
         y: plotData.y,
@@ -20,10 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
         marker: { color: 'red', size: 8 }
     };
 
+    // Obtener los límites del eje X
+    const xMin = Math.min(...plotData.x);
+    const xMax = Math.max(...plotData.x);
+
     const layout = {
         title: `Gráfica de la función ${plotData.funcion}`,
-        xaxis: { title: 'x' },
-        yaxis: { title: 'f(x)' },
+        xaxis: { title: 'x' , 
+        },
+        yaxis: {
+            title: 'f(x)',
+            range: [xMin, xMax],  // Forzar a que Y tenga el mismo rango que X
+        },
         showlegend: true
     };
 
