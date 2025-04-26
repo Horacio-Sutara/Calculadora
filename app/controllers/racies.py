@@ -3,12 +3,6 @@ import matplotlib
 matplotlib.use('Agg')
 
 import numpy as np
-import sympy as sp
-from io import BytesIO
-import base64
-import plotly
-import plotly.graph_objs as go
-import json
 
 from LogicaNegocio.Metodos_raices import Metodos_raices
 from LogicaNegocio.raices import Ecuacion_procesar
@@ -44,25 +38,9 @@ def calcular_raices():
         raices = metodos_raices.encontrar_raices()
 
         # Crear datos para Plotly
-        x_vals = np.linspace(intervalo[0], intervalo[1], 800)
+        x_vals = np.linspace(intervalo[0], intervalo[1], int((abs(intervalo[0])+(intervalo[1]))/0.025))
         y_vals = [float(metodos_raices.func(x)) for x in x_vals]
 
-        trace_func = go.Scatter(x=x_vals.tolist(), y=y_vals, mode='lines', name='f(x)')
-        trace_eje_x = go.Scatter(x=[intervalo[0], intervalo[1]], y=[0, 0], mode='lines', line=dict(color='black'), name='Eje X')
-
-        trace_raices = [
-            go.Scatter(x=[raiz], y=[0], mode='markers', marker=dict(color='red', size=8), name=f'Raíz ({metodo})')
-            for raiz, metodo in raices
-        ]
-
-        layout = go.Layout(
-            title=f'Gráfica de f(x) = {funcion}',
-            xaxis=dict(title='x'),
-            yaxis=dict(title='f(x)'),
-            hovermode='closest'
-        )
-
-        fig = go.Figure(data=[trace_func, trace_eje_x] + trace_raices, layout=layout)
         plot_data = {
     'x': x_vals.tolist(),
     'y': y_vals,
