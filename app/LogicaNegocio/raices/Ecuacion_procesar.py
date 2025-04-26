@@ -161,16 +161,20 @@ class Ecuacion_procesar:
         intervalo_original = Interval.open(a, b)
         intervalo_cerrado = Interval(a, b)
 
-        f = lambdify(x, expr, modules="sympy")
+        interseccion = intervalo_original.intersect(dominio)
+
+        # 🔁 Mover esto arriba antes de is_subset
+        print("evaliacuin",dominio.contains(intervalo_original))
+
 
         # 1. Verificación si el intervalo está contenido completamente en el dominio
         if intervalo_original.is_subset(dominio):
             try:
                 for val in [a + (b - a) * i / 10 for i in range(1, 10)]:
-                    resultado = f(val).evalf()
-                    if not resultado.is_real:
+                    resultado = self.resultado(val)
+                    if type(resultado) == bool:
                         return dominio, False
-            except Exception:
+            except Exception as e:
                 return dominio, False
 
             if not intervalo_cerrado.is_subset(dominio):
@@ -179,7 +183,6 @@ class Ecuacion_procesar:
             return (a, b), True
 
         # 2. Si no está contenido, intentamos encontrar el mayor subintervalo válido
-        interseccion = intervalo_original.intersect(dominio)
 
         if isinstance(interseccion, Interval):
             a = float(interseccion.start) if interseccion.start.is_finite else float('-inf')
@@ -258,5 +261,12 @@ if __name__ == "__main__":
     print("octava ecuacion:")
     ecuacion = Ecuacion_procesar("x-sqrt(-1)")
     print(ecuacion.reconocer())
+    dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
+    print(dominio,sub_intervalo)
+
+    print("novena ecuacion:") 
+    ecuacion = Ecuacion_procesar("x")
+    print(ecuacion.reconocer())
+    print(ecuacion.resultado(0))
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
     print(dominio,sub_intervalo)

@@ -12,7 +12,10 @@ from raices import Metodo_secante
 from raices import Metodo_punto_fijo
 
 class Metodos_raices:
-    def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=800, tol=1e-7):
+    def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=None, tol=1e-7):
+        if subintervalos is None:
+            rango=abs(intervalo[1]-intervalo[0])
+            subintervalos=int(rango/0.025)
         self.x = sp.symbols('x')
         self.expr = sp.sympify(expr_str, locals={'sin': sp.sin, 'cos': sp.cos, 'tan': sp.tan,
                                             'asin': sp.asin, 'acos': sp.acos, 'atan': sp.atan,
@@ -40,6 +43,8 @@ class Metodos_raices:
             try:
                 if np.sign(f(x0)) != np.sign(f(x1)):
                     candidatos.append((x0, x1))
+                if abs(f(x1))<0.001 and abs(f(x0))<0.001:
+                    candidatos.append((x0, x1))
             except:
                 continue  # Evita problemas como división por 0
         return candidatos
@@ -60,7 +65,7 @@ class Metodos_raices:
         return list(sorted(self.raices))
 
 if __name__ == "__main__":
-    raices =Metodos_raices("cos(x)",intervalo=(-10,10),subintervalos=800,tol=1e-8).encontrar_raices()
+    raices =Metodos_raices("x**2",intervalo=(-10,10),subintervalos=800,tol=1e-8).encontrar_raices()
     print("Raíces encontradas:")
     for r in raices:
         print(r[0], r[1])
