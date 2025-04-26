@@ -5,7 +5,7 @@ import numpy as np
 #print(ecuacion.procesar_ecuacion(2))
 
 class Metodo_biseccion():
-    def __init__(self,ecuacion,error_maximo=1,iteraciones=100):
+    def __init__(self,ecuacion,error_maximo=1e-7,iteraciones=100):
         self.ecuacion=Ecuacion_procesar(ecuacion)
         self.umbral_error=error_maximo
         self.iteraciones=iteraciones
@@ -17,7 +17,7 @@ class Metodo_biseccion():
         while cont<self.iteraciones:
             cont+=1
             f_xr=self.ecuacion.resultado(valor=xr)
-            if abs(f_xr)<self.umbral_error or abs((a-xr))/2<self.umbral_error:
+            if abs(f_xr)<self.umbral_error:
                 decimales = max(0, -int(round(np.log10(self.umbral_error))))
                 return self.ecuacion.truncar_sympy(xr,decimales),True
             f_a=self.ecuacion.resultado(valor=a)
@@ -32,6 +32,6 @@ class Metodo_biseccion():
         if cont==self.iteraciones:
             return 0,False
 if __name__=="__main__":
-    ecuacion=Metodo_biseccion("cos(x)*10+x**2",error_maximo=1e-7,iteraciones=100)
-    res=ecuacion.buscar_raiz(1.5,2)
+    ecuacion=Metodo_biseccion("x**3",error_maximo=1e-7,iteraciones=100)
+    res=ecuacion.buscar_raiz(-0.06242197253433268,-0.037453183520600675)
     print(res)
