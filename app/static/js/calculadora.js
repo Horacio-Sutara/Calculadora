@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 default: pantalla.value += valor;
             }
             vector.push(pantalla.value);
+        
         });
     });
 

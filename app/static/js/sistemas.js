@@ -20,13 +20,18 @@ function ocultarError() {
 
 function generarSistema() {
     const letras = ['x', 'y', 'z', 'w','v']; 
-    const cantidad = parseInt(document.getElementById('cantidadEcuaciones').value);
+    const cantidad = document.getElementById('cantidadEcuaciones').value;
     const contenedor = document.getElementById('sistemaContenedor');
+    
     // Limpiar el mensaje de error anterior
     contenedor.innerHTML = '';
     ocultarError();
-
     numEcuaciones = cantidad; // Guardar el número de ecuaciones
+    if (!/^[0-9]+$/.test(cantidad)) {
+      mostrarError('Debes ingresar un número natural');
+      return;
+  }
+    
     if (isNaN(cantidad) || cantidad < 2 || cantidad > 5) {
         mostrarError('Ingresa un numero valido entre 2 y 5');
         return;
@@ -142,7 +147,7 @@ function calcularRaices() {
           }, 800);
       }, 1300);
       } else {
-        mostrarError('El sistema no se pudo resolver. Revisá los datos.');
+        mostrarError('El sistema no se pudo resolver. Intenta con otro medodo o revisa los datos ingresados.');
       }
       
     })

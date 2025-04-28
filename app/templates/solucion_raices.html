@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
     <title>Solucion Betasolve</title>
+    <!-- Cargar Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <header>
@@ -18,22 +20,26 @@
     
             <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <img src="{{ url_for('static', filename='Image/matriz-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
                 <h1 class="page-title">Solución</h1>
             </div>
     
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="{{ url_for('raices') }}" class="nav-link">Volver atras</a>
+                <a href="{{ url_for('sistemas_ecuaciones') }}" class="nav-link volver-btn">Volver atras</a>
             </div>
         </nav>
     </header>
-    
+
     <h1>Gráfica de la Función y Raíces Encontradas</h1>
 
-    <!-- Mostrar la gráfica -->
-    <img src="data:image/png;base64,{{ img_data }}" alt="Gráfica de la Función">
+    <!-- Contenedor para Plotly -->
+    <div id="plotly-graph" style="width:100%;height:500px;"></div>
+    <script src="{{ url_for('static', filename='js/solucion_raices.js') }}"></script>
+    <script id="datos" type="application/json">
+        {{ plot_data | tojson }}
+    </script>
 
     <h2>Raíces Encontradas</h2>
     <table>
@@ -54,12 +60,13 @@
             {% endfor %}
         </tbody>
     </table>
+
     <footer>
         <div class="footer-content">
             <p>Horacio Sutara ·Aquiles Cancinos .</p>
             <p>Tomás Mollinedo ·María Del Mar Pellicer·</p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
-        </footer>
+    </footer>
 </body>
 </html>

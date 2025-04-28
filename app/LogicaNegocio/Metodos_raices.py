@@ -12,7 +12,10 @@ from raices import Metodo_secante
 from raices import Metodo_punto_fijo
 
 class Metodos_raices:
-    def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=800, tol=1e-7):
+    def __init__(self,expr_str, intervalo=(-10, 10), subintervalos=None, tol=1e-7):
+        if subintervalos is None:
+            rango=abs(intervalo[1]-intervalo[0])
+            subintervalos=int(rango/0.025)
         self.x = sp.symbols('x')
         self.expr = sp.sympify(expr_str, locals={'sin': sp.sin, 'cos': sp.cos, 'tan': sp.tan,
                                             'asin': sp.asin, 'acos': sp.acos, 'atan': sp.atan,
@@ -20,11 +23,11 @@ class Metodos_raices:
         self.func = sp.lambdify(self.x, self.expr, modules=['numpy'])
         self.a, self.b = intervalo
         self.puntos = self.detectar_cambios_signo(self.func,self.a, self.b, subintervalos + 1)
-        self.Metodos={ "Newton Raphson" : Metodo_newton_raphson.Metodo_Newton_Raphson(expr_str, error=tol,iteracciones=30).buscar_raiz
-                ,"Secante": Metodo_secante.MetodoSecante(expr_str, error=tol,iteracciones=40).buscar_raiz
-                ,"Regula Falsi" : Metodo_regula_falsi.Metodo_regula_falsi(expr_str, error=tol,iteraciones=50).buscar_raiz
-                ,"Punto Fijo" : Metodo_punto_fijo.Metodo_punto_fijo(expr_str, error=tol,iteracion=50).buscar_raiz, 
-                "Biseccion": Metodo_biseccion.Metodo_biseccion(expr_str, error_maximo=tol,iteraciones=50).buscar_raiz}
+        self.Metodos={ "Newton Raphson" : Metodo_newton_raphson.Metodo_Newton_Raphson(expr_str, error=1e-9,iteracciones=30).buscar_raiz
+                ,"Secante": Metodo_secante.MetodoSecante(expr_str, error=tol*0.001,iteracciones=40).buscar_raiz
+                ,"Regula Falsi" : Metodo_regula_falsi.Metodo_regula_falsi(expr_str, error=tol*0.001,iteraciones=50).buscar_raiz
+                ,"Punto Fijo" : Metodo_punto_fijo.Metodo_punto_fijo(expr_str, error=tol*0.001,iteracion=50).buscar_raiz, 
+                "Biseccion": Metodo_biseccion.Metodo_biseccion(expr_str, error_maximo=tol*0.001,iteraciones=50).buscar_raiz}
         self.raices = []
         
     def detectar_cambios_signo(self,f, a, b, num_subintervalos):
@@ -40,6 +43,8 @@ class Metodos_raices:
             try:
                 if np.sign(f(x0)) != np.sign(f(x1)):
                     candidatos.append((x0, x1))
+                elif abs(f(x1))<0.0005 and abs(f(x0))<0.0005:
+                    candidatos.append((x0, x1))
             except:
                 continue  # Evita problemas como división por 0
         return candidatos
@@ -53,14 +58,21 @@ class Metodos_raices:
                 if encontrada:
                     # Verificar si ya está muy cerca de una raíz encontrada
                     #print("hola")
-                    if xi<=raiz<=xi1:
-                        self.raices.append([raiz,i])
-                        break
+                    if float(xi)<=raiz<=float(xi1):
+                        raiz=round(raiz,7)
+                        if self.raices==[]:
+                            print("Raiz encontrada:", raiz, "en el intervalo:", (xi, xi1), "con el metodo:", i)
+                            self.raices.append([raiz,i])
+                            break
+                        elif raiz not in [r[0] for r in self.raices]:
+                            print("Raiz encontradasa:", raiz, "en el intervalo:", (xi, xi1), "con el metodo:", i)
+                            self.raices.append([raiz,i])
+                            break
 
         return list(sorted(self.raices))
 
 if __name__ == "__main__":
-    raices =Metodos_raices("cos(x)",intervalo=(-10,10),subintervalos=800,tol=1e-8).encontrar_raices()
+    raices =Metodos_raices("x**2",intervalo=(-10,10),subintervalos=800,tol=1e-8).encontrar_raices()
     print("Raíces encontradas:")
     for r in raices:
         print(r[0], r[1])
