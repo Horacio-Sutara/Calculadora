@@ -23,14 +23,14 @@ def calcular_raices():
 
         ecuacion = Ecuacion_procesar.Ecuacion_procesar(funcion)
         if not ecuacion.reconocer():
-            return render_template('error_raices.html', titulo='No se pudo reconocer la Función')
+            return render_template('error_raices.html', titulo='No se pudo reconocer la función.')
 
         intervalo_str = data.get('intervalo', (-10, 10))
         a, b = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
         intervalo, validar = ecuacion.verificar_dominio_y_subintervalo(a, b)
 
         if not validar:
-            return render_template('error_raices.html', titulo="No tiene dominio válido")
+            return render_template('error_raices.html', titulo="No tiene dominio válido.")
         if not validar_expresion_real(funcion):
             return render_template('error_raices.html', titulo="La función contiene valores no reales.")
 

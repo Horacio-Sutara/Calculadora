@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const xMax = Math.max(...plotData.x);
 
     const layout = {
-        title: `Gráfica de la función ${plotData.funcion}`,
+        title: `Gráfica de ${plotData.funcion}`,
         xaxis: { title: 'x' , 
         },
         yaxis: {
