@@ -1,21 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".card");
+document.querySelectorAll('.card a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
 
-    cards.forEach(card => {
-        card.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevenimos la navegación inmediata
+        const main = document.querySelector('main');
+        const sections = document.querySelectorAll('main section');
+        const cardsContainer = document.querySelector('.card__container');
 
-            const href = card.getAttribute("href");
-            const main = document.querySelector("main");
+        if (main) main.classList.add('fade-out');
+        sections.forEach(sec => sec.classList.add('fade-out'));
+        if (cardsContainer) cardsContainer.classList.add('fade-out');
 
-            if (main) {
-                main.classList.add("fade-out");
-            }
-
-            setTimeout(() => {
-                window.location.href = href;
-            }, 600); // Igual duración que la animación
-        });
+        const href = this.getAttribute('href');
+        setTimeout(() => {
+            window.open(href, '_blank'); // Usa `open` para Gmail, LinkedIn, etc.
+        }, 600);
     });
 });
 document.querySelectorAll('.volver-btn').forEach(link => {

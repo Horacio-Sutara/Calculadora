@@ -23,7 +23,7 @@ def gauss_seidel(A, b, x0=None, tol=1e-10, max_iter=1000):
             return [], 0, [], False
 
     resultado = x0 or [0.0 for _ in range(n)]
-    historial = [[0, resultado.copy()]]
+    historial = []  # Ahora es una lista vacía, como en Jacobi
 
     for iteraciones in range(1, max_iter + 1):
         x_new = resultado.copy()
@@ -32,8 +32,7 @@ def gauss_seidel(A, b, x0=None, tol=1e-10, max_iter=1000):
             sum2 = sum(A[i][j] * resultado[j] for j in range(i + 1, n))
             x_new[i] = (b[i] - sum1 - sum2) / A[i][i]
 
-        # Convertimos todos los valores a floats estándar y agregamos al historial
-        historial.append([iteraciones, [float(v) for v in x_new]])
+            historial.append(float(x_new[i]))  # Agregamos cada valor suelto al historial
 
         error = max(abs(x_new[i] - resultado[i]) for i in range(n))
         if error < tol:
@@ -42,21 +41,3 @@ def gauss_seidel(A, b, x0=None, tol=1e-10, max_iter=1000):
         resultado = x_new
 
     return [float(val) for val in resultado], max_iter, historial, False
-
-
-# Ejemplo
-if __name__ == "__main__":
-    A = [
-        [2, 1],
-        [1, 1]
-    ]
-    b = [3, 2]
-
-    res, iteraciones, historial, convergio = gauss_seidel(A, b)
-    print("Resultado:", res)
-    print("Iteraciones:", iteraciones)
-    print("Historial:")
-    for paso in historial:
-        print(paso)
-    print("¿Convergió correctamente?:", convergio)
-
