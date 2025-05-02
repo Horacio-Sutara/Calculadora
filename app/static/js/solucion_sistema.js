@@ -100,7 +100,6 @@ window.onload = function () {
         }, 0); // Esperamos un toque para que las celdas ya estén visibles
     //Los otros algoritmos
     } else {
-        console.log(historial)
         const cantidadVariables = resultado.length; 
         // Historial viene como array plano
         const historialPlano = historial;

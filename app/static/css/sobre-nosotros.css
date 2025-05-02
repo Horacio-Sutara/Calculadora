@@ -166,12 +166,15 @@ main{
     color:black; /* color azul linkedin */
 }
 .card__worker{
-    max-height: 200px;
+    max-height: 220px;
     overflow: hidden;
     display: block;
+    
 }
 .card__worker img{
     max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 .card__data{
     padding: 12px;
