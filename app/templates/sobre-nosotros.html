@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca de - BetaSolve</title>
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>Acerca de</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre-nosotros.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -20,7 +21,7 @@
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="/" class="nav-link">Volver al Inicio</a>
+                <a href="/" class="nav-link volver-btn">Volver al Inicio</a>
             </div>
         </nav>
     </header>
@@ -83,7 +84,7 @@
         <div class="card">
             <div class="card__front">
                 <div class="card__worker">
-                    <img src="{{ url_for('static', filename='Image/') }}">
+                    <img src="{{ url_for('static', filename='Image/aquiles.jpg') }}">
                 </div>
                 <div class="card__data">
                     <span>Maria Del Mar Pellicer</span>
@@ -106,12 +107,11 @@
                     </p>
                 </div>
             </div>
-            </div>
         </div>
         <div class="card">
             <div class="card__front">
                 <div class="card__worker">
-                    <img src="{{ url_for('static', filename='Image/') }}">
+                    <img src="{{ url_for('static', filename='Image/aquiles.jpg') }}">
                 </div>
                 <div class="card__data">
                     <span>Tomas Mollinedo</span>
@@ -134,12 +134,11 @@
                     </p>
                 </div>
             </div>
-            </div>
         </div>
         <div class="card">
             <div class="card__front">
                 <div class="card__worker">
-                    <img src="{{ url_for('static', filename='Image') }}">
+                    <img src="{{ url_for('static', filename='Image/aquiles.jpg') }}">
                 </div>
                 <div class="card__data">
                     <span>Horacio Sutara</span>
@@ -162,7 +161,6 @@
                     </p>
                 </div>
             </div>
-            </div>
         </div>
     </div>
     <!-- Footer -->
@@ -172,5 +170,6 @@
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

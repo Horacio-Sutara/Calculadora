@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
-    <title>Solucion</title>
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>Error</title>
 </head>
 <body>
     <header>
@@ -24,13 +25,18 @@
             <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="/" class="nav-link">Volver al Inicio</a>
+                <a href="{{ url_for('raices') }}" class="nav-link">Volver atras</a>
             </div>
         </nav>
     </header>
     
-    <h1>{{ titulo }}</h1>
+    <h1 class="titulo-error">{{ titulo }}</h1>
     
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p><strong>BetaSolve · 2025</strong> </p>
+        </div>
     </footer>
 </body>
 </html>

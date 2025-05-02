@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soluciones_raices.css') }}">
-    <title>Solucion</title>
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>Solucion Betasolve</title>
     <!-- Cargar Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <header>
         <nav class="nav">
+            <!-- Logo principal -->
             <div class="nav-section nav-logo">
                 <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
+    
+            <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
-                <h1 class="page-title">Solución de raíces</h1>
+                <img src="{{ url_for('static', filename='Image/matriz-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <h1 class="page-title">Solución</h1>
             </div>
+    
+            <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="/" class="nav-link">Volver al Inicio</a>
+                <a href="{{ url_for('sistemas_ecuaciones') }}" class="nav-link volver-btn">Volver atras</a>
             </div>
         </nav>
     </header>
@@ -34,7 +40,6 @@
     <script id="datos" type="application/json">
         {{ plot_data | tojson }}
     </script>
-    
 
     <h2>Raíces encontradas</h2>
     <table>
@@ -58,7 +63,8 @@
 
     <footer>
         <div class="footer-content">
-            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p>Horacio Sutara ·Aquiles Cancinos .</p>
+            <p>Tomás Mollinedo ·María Del Mar Pellicer·</p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>

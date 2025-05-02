@@ -13,6 +13,7 @@ body {
     justify-content: flex-start;
     align-items: center; /* Centra horizontalmente */
     background-color: #fff;
+    overflow-x: hidden;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -89,6 +90,7 @@ header {
 .zona-sistemas {
     position: relative;
     display: flex;
+    min-height: calc(100vh - 160px);
     justify-content: center;
     align-items: center;
     gap: 10rem;
@@ -143,7 +145,7 @@ header {
     background-color: #222;
     border: 1px solid #c78eff;
     color: #fff;
-    width: 60px;
+    width: 58px;
     text-align: center;
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -257,6 +259,9 @@ select#metodo:focus {
 select#metodo option {
     background-color: #1c1c1c;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #Mensaje_calcular{
     background-color: #1c1c1c;
@@ -339,7 +344,6 @@ footer {
     flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
 }
 
-
 /* === ANIMACIÓN SUAVE === */
 @keyframes fadeIn {
     from {
@@ -352,20 +356,6 @@ footer {
     }
 }
 
-/* === MEDIA QUERIES === */
-@media screen and (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    .logo {
-        margin-bottom: 1rem;
-    }
-}
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -390,4 +380,99 @@ footer {
     0% { width: 0%; }
     50% { width: 60%; }
     100% { width: 100%; }
+}
+.fade-out {
+    animation: fadeOutMain 0.5s ease forwards;
+}
+
+@keyframes fadeOutMain {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+/* === MEDIA QUERIES === */
+@media screen and (max-width: 987px) {
+
+    header {
+        padding: 0.5rem 0;
+    }
+    .nav {
+        padding: 0 1rem;
+    }
+    .nav-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    .logo-icon {
+        width: 25px; /* Ajusta el tamaño del icono */
+        height: 25px;
+    }
+    .menu {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+    .brand-name {
+        font-size: 1rem;
+    }
+    .nav-logo{
+        display: none;
+    }
+    .page-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    .zona-sistemas {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem; /* menos espacio entre bloques */
+    }
+    .bloque-generador {
+        width: 100%;
+        max-width: 95vw;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    #flechita {
+        display: none !important; /* Oculta la flecha en pantallas pequeñas */
+    }
+    .fila-metodo-boton {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    .input-sistema {
+        width: 42px !important;         /* antes 58px */
+        font-size: 0.8rem !important;   /* para achicar el texto */
+        padding: 0.4rem !important;     /* menos padding */
+    }
+    
+    .fila-input-generador input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    #metodo {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    .btn-generar,
+    .btn-raices {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+    footer{
+        width: 100%;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
     <title>Betasolve</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
                 
                 <!-- modificar el enlace para que apunte a la ruta correcta -->
-                <a href="/sobre-nosotros" class="nav-link">Sobre nosotros</a>
+                <a href="/sobre-nosotros" class="nav-link volver-btn">Sobre nosotros</a>
             </div>
         </nav>
     </header>
@@ -62,9 +63,11 @@
     </main>
     <footer>
         <div class="footer-content">
-            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · </p>
+            <p>Horacio Sutara ·Aquiles Cancinos .</p>
+            <p>Tomás Mollinedo ·María Del Mar Pellicer·</p>
             <p><strong>BetaSolve · 2025</strong> </p>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

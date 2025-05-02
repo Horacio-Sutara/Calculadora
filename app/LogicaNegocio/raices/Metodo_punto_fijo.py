@@ -12,7 +12,8 @@ class Metodo_punto_fijo():
         ecuaciones_en_y = []
         for i in ecuaciones:
             soluciones = self.ecuacion.despejar_y(i)
-            ecuaciones_en_y.extend(soluciones)
+            if len(soluciones) != 0:
+                ecuaciones_en_y.extend(soluciones)
         return ecuaciones_en_y
 
     def buscar_raiz(self, a,b):

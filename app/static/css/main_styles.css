@@ -13,6 +13,7 @@ body {
     align-items: center; /* Centra horizontalmente */
     background-color: #fff;
     position: relative;
+    overflow-x: hidden;
 }
 header {
     background: rgba(0, 0, 0, 0.85);
@@ -68,11 +69,16 @@ header {
 
 */
 main {
+    min-height: calc(100vh - 160px) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    padding: 2rem 1rem;
+    align-items: center;
+    padding: 1.5rem 1rem;
     margin: 0 auto;
     max-width: 1200px;
-    margin-top: 0;
+    margin-top: 0 auto;
     animation: subirDesdeAbajo 0.8s ease-out forwards;
 }
 .titles {
@@ -115,6 +121,7 @@ main {
     transition: transform 0.2s ease-in-out;
     max-width: 300px;
     height: 300px;
+    animation: border-glow 2.5s ease-in-out infinite;
 }
 
 .card:hover {
@@ -187,56 +194,101 @@ footer {
     gap: 0.5rem;
     flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
 }
-/* Sobre nosotros*/
-.about-section {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #f3e8ff; /* violeta muy claro */
-    border-left: 6px solid #c78eff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    animation: fadeIn 1s ease-in-out;
-    text-align: left;
-}
-
-.about-section h2 {
-    color: #7e22ce;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-}
-
-.about-section p {
-    font-size: 1.05rem;
-    color: #444;
-    line-height: 1.6;
-}
-
-/* Títulos principales */
-.titles h1 {
-    font-size: 3rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.titles p {
-    font-size: 1.2rem;
-    color: #777;
-}
 
 /* MEDIAS QUERIS */
 @media screen and (max-width: 768px) {
+
+
+    header {
+        padding: 0.5rem 0;
+    }
+    .nav {
+        padding: 0 1rem;
+    }
+    .nav-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    .logo-icon {
+        width: 25px; /* Ajusta el tamaño del icono */
+        height: 25px;
+    }
     .menu {
         flex-direction: column;
         gap: 0.8rem;
     }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
     .logo {
         margin-bottom: 1rem;
     }
+    .brand-name {
+        font-size: 1.3rem;
+    }
+    .page-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .titles h1 {
+        font-size: 2.5rem;
+    }
+    .titles p {
+        font-size: 1rem;
+    }
+    main{
+        padding: 0.8rem 0.5rem,3.5rem;
+    }
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        max-width: 70%;
+    }
+    .card h2 {
+        font-size: 1rem;
+    }   
+
+    .card p {
+        font-size: 0.9rem;
+    }
+    .card-content {
+        margin-right: 0;
+        align-items: center;
+        text-align: center;
+    }
+    .arrow{
+        font-size: 1.5rem;
+    }
+    .symbol-container {
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    .symbol-image {
+        margin-right: 0; /* Elimina el margen derecho */
+    }
+    .icon-img{
+        font-size: 1.8rem;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 20px;
+    }
+    .select-text {
+        font-size: 0.9rem; /* Tamaño del texto */
+    }
+    footer{
+        width: 100%;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
 }
 
   /* Animación */
@@ -259,5 +311,33 @@ footer {
         transform: translateY(0);
         opacity: 1;
     }
+
 }
 
+@keyframes border-glow {
+    0% {
+        box-shadow: 0 0 0px #c78eff;
+    }
+    50% {
+        box-shadow: 0 0 10px #ba65ff;
+        border-color: #ba65ff;
+    }
+    100% {
+        box-shadow: 0 0 0px #c78eff;
+    }
+}
+@keyframes fadeOutMain {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96); /* opcional: efecto de alejamiento suave */
+    }
+}
+
+/* Clase que aplicaremos al body */
+main.fade-out {
+    animation: fadeOutMain 0.6s ease forwards;
+}
