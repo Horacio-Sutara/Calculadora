@@ -21,8 +21,10 @@ class Metodos_raices:
                                             'asin': sp.asin, 'acos': sp.acos, 'atan': sp.atan,
                                             'exp': sp.exp, 'ln': sp.ln})
         self.func = sp.lambdify(self.x, self.expr, modules=['numpy'])
-        a,b=(-7,intervalo[1])
-        self.a, self.b = intervalo if expr_str=="exp(x)" else a,b
+        if expr_str=="exp(x)":
+            intervalo=(-7,intervalo[1])
+        self.a, self.b = intervalo 
+
         self.puntos = self.detectar_cambios_signo(self.func,self.a, self.b, subintervalos + 1)
         self.Metodos={ "Newton Raphson" : Metodo_newton_raphson.Metodo_Newton_Raphson(expr_str, error=1e-9,iteracciones=30).buscar_raiz
                 ,"Secante": Metodo_secante.MetodoSecante(expr_str, error=tol*0.001,iteracciones=40).buscar_raiz
