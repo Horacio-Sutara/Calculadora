@@ -62,6 +62,8 @@ class Metodos_raices:
 
             except:
                 continue  # Evita problemas como división por 0
+        if band:
+            candidatos.append((ant_x0, ant_x1))
         print("candidatos:", candidatos)
         return candidatos
 
