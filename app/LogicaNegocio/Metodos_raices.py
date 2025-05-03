@@ -42,6 +42,7 @@ class Metodos_raices:
         ant_x0=0
         ant_x1=0
         band=False
+        mantener=False
         for i in range(len(x_vals) - 1):
             x0, x1 = x_vals[i], x_vals[i+1]
             try:
@@ -56,14 +57,15 @@ class Metodos_raices:
                     band=True
                 elif actual>ant and band:
                     band=False
+                    mantener=False
                     ant=actual
                     #print("entro")
                     candidatos.append((ant_x0, ant_x1))
-                if actual>1 and not band:
+                if actual>1 and not mantener:
                     ant=actual
+                    mantener=True
                     ant_x0=x0
                     ant_x1=x1
-                    band=True
 
             except:
                 continue  # Evita problemas como división por 0
