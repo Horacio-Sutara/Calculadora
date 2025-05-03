@@ -188,6 +188,12 @@ class Ecuacion_procesar:
             a = float(interseccion.start) if interseccion.start.is_finite else float('-inf')
             b = float(interseccion.end) if interseccion.end.is_finite else float('inf')
             print("nuevo intervalo")
+            if self.resultado(a) == False and self.resultado(b) == False:
+                return (a + 1e-8, b - 1e-8), True
+            elif self.resultado(a) == False:
+                return (a + 1e-8, b), True
+            elif self.resultado(b) == False:
+                return (a, b - 1e-8), True
             return (a, b), True
         elif interseccion is S.EmptySet:
             return dominio, False
@@ -219,7 +225,7 @@ class Ecuacion_procesar:
 
 
 if __name__ == "__main__":
-    print("primera ecuacion:")
+    """print("primera ecuacion:")
     ecuacion = Ecuacion_procesar("x**2-24=76")
     print(ecuacion.reconocer())
     print(ecuacion.procesar_ecuacion())
@@ -253,7 +259,7 @@ if __name__ == "__main__":
     print(ecuacion.resultado(0))
     print(type(ecuacion.resultado(0)))
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
-    print(dominio,sub_intervalo)
+    print(dominio,sub_intervalo)"""
 
     print("septima ecuacion:")
     ecuacion = Ecuacion_procesar("ln(x)")
@@ -265,7 +271,7 @@ if __name__ == "__main__":
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(1,10)
     print(dominio,sub_intervalo)
 
-    print("octava ecuacion:")
+    """print("octava ecuacion:")
     ecuacion = Ecuacion_procesar("x-sqrt(x)")
     print(ecuacion.reconocer())
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
@@ -276,4 +282,4 @@ if __name__ == "__main__":
     print(ecuacion.reconocer())
     print(ecuacion.resultado(0))
     dominio,sub_intervalo=ecuacion.verificar_dominio_y_subintervalo(-10,10)
-    print(dominio,sub_intervalo)
+    print(dominio,sub_intervalo)"""

@@ -28,7 +28,7 @@ def calcular_raices():
         intervalo_str = data.get('intervalo', (-10, 10))
         a, b = tuple(map(float, intervalo_str.split(';'))) if intervalo_str else (-10, 10)
         intervalo, validar = ecuacion.verificar_dominio_y_subintervalo(a, b)
-
+        print("Intervalo:", intervalo, "Validar:", validar)
         if not validar:
             return render_template('error_raices.html', titulo="No tiene dominio válido.")
         if not validar_expresion_real(funcion):

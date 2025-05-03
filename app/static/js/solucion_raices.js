@@ -22,14 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Obtener los límites del eje X
     const xMin = Math.min(...plotData.x);
     const xMax = Math.max(...plotData.x);
-
+    min=xMax*-1;
+    // Configurar el layout
     const layout = {
         title: `Gráfica de ${plotData.funcion}`,
         xaxis: { title: 'x' , 
         },
         yaxis: {
             title: 'f(x)',
-            range: [xMin, xMax],  // Forzar a que Y tenga el mismo rango que X
+            range: [min, xMax],  // Forzar a que Y tenga el mismo rango que X
         },
         showlegend: true
     };
