@@ -39,19 +39,26 @@ class Metodos_raices:
         x_vals = np.linspace(a, b, num_subintervalos + 1)
         candidatos = []
         ant=10
+        ant_x0=0
+        ant_x1=0
+        band=False
         for i in range(len(x_vals) - 1):
             x0, x1 = x_vals[i], x_vals[i+1]
             try:
                 actual=(abs(f(x1))+abs(f(x0)))/2
+                #print("actual: ",i,"- ",actual)
                 if np.sign(f(x0)) != np.sign(f(x1)):
                     candidatos.append((x0, x1))
-                elif actual<ant and actual<1e-5 :
+                elif actual<ant and actual<1e-3 :
                     ant=actual
+                    ant_x0=x0
+                    ant_x1=x1
                     band=True
                 elif actual>ant and band:
                     band=False
-                    ant=10
-                    candidatos.append((x0, x1))
+                    ant=actual
+                    #print("entro")
+                    candidatos.append((ant_x0, ant_x1))
 
             except:
                 continue  # Evita problemas como división por 0
