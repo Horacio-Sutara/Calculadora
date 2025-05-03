@@ -21,8 +21,6 @@ class Metodos_raices:
                                             'asin': sp.asin, 'acos': sp.acos, 'atan': sp.atan,
                                             'exp': sp.exp, 'ln': sp.ln})
         self.func = sp.lambdify(self.x, self.expr, modules=['numpy'])
-        if expr_str=="exp(x)":
-            intervalo=(-7,intervalo[1])
         self.a, self.b = intervalo 
 
         self.puntos = self.detectar_cambios_signo(self.func,self.a, self.b, subintervalos + 1)
@@ -40,16 +38,24 @@ class Metodos_raices:
         """
         x_vals = np.linspace(a, b, num_subintervalos + 1)
         candidatos = []
-
+        ant=10
         for i in range(len(x_vals) - 1):
             x0, x1 = x_vals[i], x_vals[i+1]
             try:
+                actual=(abs(f(x1))+abs(f(x0)))/2
                 if np.sign(f(x0)) != np.sign(f(x1)):
                     candidatos.append((x0, x1))
-                elif abs(f(x1))<0.0005 and abs(f(x0))<0.0005:
+                elif actual<ant and actual<1e-5 :
+                    ant=actual
+                    band=True
+                elif actual>ant and band:
+                    band=False
+                    ant=10
                     candidatos.append((x0, x1))
+
             except:
                 continue  # Evita problemas como división por 0
+        print("candidatos:", candidatos)
         return candidatos
 
     def encontrar_raices(self):
