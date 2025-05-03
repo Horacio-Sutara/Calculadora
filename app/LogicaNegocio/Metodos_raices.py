@@ -59,6 +59,11 @@ class Metodos_raices:
                     ant=actual
                     #print("entro")
                     candidatos.append((ant_x0, ant_x1))
+                if actual>1 and not band:
+                    ant=actual
+                    ant_x0=x0
+                    ant_x1=x1
+                    band=True
 
             except:
                 continue  # Evita problemas como división por 0
