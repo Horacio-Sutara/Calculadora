@@ -23,11 +23,9 @@ def resolver():
     return calculadora_basica.calcular()
     #return calcular()
 
-
 @app.route('/raices')
 def raices():
     return render_template('raices.html')
-
 
 # Ruta para la calculadora de raíces
 @app.route('/calcular_raices', methods=['POST'])
@@ -49,5 +47,5 @@ def solucion_sistema():
     return render_template('solucion_sistema.html')
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000
+# if __name__ == '__main__':
+#     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000
