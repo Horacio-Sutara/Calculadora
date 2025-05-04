@@ -192,10 +192,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const limpio = intervalo.replace(/[()]/g, '');
             const partes = limpio.split(';').map(p => p.trim());
 
+            console.log(typeof(partes))
+
             if (partes.length !== 2 || isNaN(parseFloat(partes[0])) || isNaN(parseFloat(partes[1]))) {
                 alert("El intervalo debe tener el formato A;B o (A;B), donde A y B son números.");
                 return;
             }
+
+            const inicio = parseFloat(partes[0]);
+            const fin = parseFloat(partes[1]);
+
+            if (inicio > fin) {
+                alert("El inicio del intervalo no puede ser mayor que el final (A ≤ B).");
+                return;
+            }
+            
         }
 
         const intervaloNormalizado = intervalo.replace(/[()]/g, '').trim();
