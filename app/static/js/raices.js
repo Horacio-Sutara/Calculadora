@@ -202,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const inicio = parseFloat(partes[0]);
             const fin = parseFloat(partes[1]);
 
-            if (inicio > fin) {
-                alert("El inicio del intervalo no puede ser mayor que el final (A ≤ B).");
+            if (inicio >= fin) {
+                alert("El inicio del intervalo no puede ser mayor ni igual que el final (A < B).");
                 return;
             }
             
