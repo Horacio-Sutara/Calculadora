@@ -145,7 +145,7 @@ header {
 }
 /* === CALCULADORA === */
 .calculadora {
-    background-color: #222; /* Fondo negro de la calculadora */
+    background-color: #222; 
     border-radius: 20px;
     width: 330px;
     padding: 1.5rem 0.8rem;
@@ -161,7 +161,7 @@ header {
     position: absolute;
     top: 6px;
     right: 12px;
-    color: #fff; /* Color violeta */
+    color: #fff; 
     font-size: 0.75rem;
     font-weight: bold;
 }
@@ -289,7 +289,7 @@ footer {
         align-items: center;
     }
     .logo-icon {
-        width: 25px; /* Ajusta el tamaño del icono */
+        width: 25px;
         height: 25px;
     }
     .menu {
@@ -313,7 +313,7 @@ footer {
     }
     .contenedor-flex {
         flex-direction: column;
-        gap: 2rem; /* Menos espacio para celulares */
+        gap: 2rem; 
         align-items: center;
         justify-content: center;
         padding: 2rem 1rem;

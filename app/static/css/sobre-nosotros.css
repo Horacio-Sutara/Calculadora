@@ -9,8 +9,8 @@ body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Apila header, contenido y footer verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
     background-color: #fff;
     position: relative;
 }
@@ -38,7 +38,7 @@ header {
     gap: 0.5rem;
 }
 .logo-icon {
-    width: 30px; /* Ajusta el tamaño del icono */
+    width: 30px;
     height: 30px;
 }
 
@@ -84,7 +84,7 @@ main{
     max-width: 900px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #f3e8ff; /* violeta muy claro */
+    background: #f3e8ff;
     border-left: 6px solid #c78eff;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -117,10 +117,10 @@ main{
     margin: 30px auto;
     position: relative;
     border-radius: 20px;
-    flex: 1 1 calc(50% - 40px); /* Dos tarjetas por fila */
+    flex: 1 1 calc(50% - 40px); 
     max-width: 320px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: white; /* o el color que quieras */
+    background-color: white; 
 }
 
 .card__back, .card__front{
@@ -163,7 +163,7 @@ main{
 }
 .card__back .contacto i {
     margin-right: 8px;
-    color:black; /* color azul linkedin */
+    color:black; 
 }
 .card__worker{
     max-height: 220px;
@@ -185,11 +185,113 @@ main{
     margin: 6px 0;
     display: block;
 }
+/* Estilo para mision vision y valores */
+.about-us {
+    background-color:#f8f8f8;
+    border-radius: 10px;
+    padding: 60px 0;
+    font-family: 'Segoe UI', sans-serif;
+    animation: fadeIn 1s ease-in-out;
+}
 
+.about-us .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border-radius: 10px;
+
+}
+
+.about-item {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid #c78eff; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.about-item h2 {
+    font-size: 2.3rem;
+    color: #7e22ce;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.about-item h3 {
+    font-size: 1.5rem;
+    color: #7e22ce;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.about-item p {
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.7;
+    text-align: justify;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInText 1.5s ease-in-out forwards;
+}
+
+.about-item .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-item .card-item {
+    border: 1.5px solid #c78eff;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-item .card-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.about-item .card-item strong {
+    color: #7e22ce;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* FOOTER */
 footer {
     width: 100%;
-    margin-top: auto; /* Lo empuja hacia abajo */
+    margin-top: auto; 
     background-color: #222;
     color: #fff;
     padding: 1rem 0;
@@ -200,7 +302,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+    flex-wrap: wrap;
 }
 
 
@@ -217,7 +319,7 @@ footer {
         align-items: center;
     }
     .logo-icon {
-        width: 25px; /* Ajusta el tamaño del icono */
+        width: 25px; 
         height: 25px;
     }
     .menu {
@@ -239,7 +341,7 @@ footer {
     }
     .card__container {
         margin-top: 3rem;
-        grid-template-columns: 1fr; /* 1 tarjeta por fila en mobile */
+        grid-template-columns: 1fr;
         padding: 0 1rem;
     }
     .about-section {

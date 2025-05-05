@@ -341,7 +341,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+    flex-wrap: wrap; 
 }
 
 /* === ANIMACIÓN SUAVE === */

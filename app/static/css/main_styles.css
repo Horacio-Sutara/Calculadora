@@ -169,19 +169,19 @@ main {
 .symbol-image {
     width: 25px;
     height: auto;
-    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    margin-right: 10px;
 }
 
 .select-text {
-    color: #b0b0b0; /* Gris clarito */
-    font-size: 1rem; /* Tamaño del texto */
-    font-weight: 500; /* Un poco de énfasis */
+    color: #b0b0b0; 
+    font-size: 1rem; 
+    font-weight: 500; 
 }
 
 /* FOOTER */
 footer {
     width: 100%;
-    margin-top: auto; /* Lo empuja hacia abajo */
+    margin-top: auto; 
     background-color: #222;
     color: #fff;
     padding: 1rem 0;
@@ -192,7 +192,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+    flex-wrap: wrap; 
 }
 
 /* MEDIAS QUERIS */
@@ -210,7 +210,7 @@ footer {
         align-items: center;
     }
     .logo-icon {
-        width: 25px; /* Ajusta el tamaño del icono */
+        width: 25px; 
         height: 25px;
     }
     .menu {
@@ -269,7 +269,7 @@ footer {
         gap: 0.5rem;
     }
     .symbol-image {
-        margin-right: 0; /* Elimina el margen derecho */
+        margin-right: 0; 
     }
     .icon-img{
         font-size: 1.8rem;
@@ -279,7 +279,7 @@ footer {
         width: 20px;
     }
     .select-text {
-        font-size: 0.9rem; /* Tamaño del texto */
+        font-size: 0.9rem; 
     }
     footer{
         width: 100%;

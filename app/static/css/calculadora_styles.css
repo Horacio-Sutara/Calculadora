@@ -9,8 +9,8 @@ body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Apila header, contenido y footer verticalmente */
-    align-items: center; /* Centra horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
     background-color: #fff;
     position: relative;
     overflow-x: hidden;
@@ -39,7 +39,7 @@ header {
     gap: 0.5rem;
 }
 .logo-icon {
-    width: 30px; /* Ajusta el tamaño del icono */
+    width: 30px; 
     height: 30px;
 }
 
@@ -72,11 +72,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 1rem; /* espacio entre header y footer */
-    min-height: calc(100vh - 140px); /* evita que tape el footer y header (aprox 2 x 70px) */
+    padding: 1rem 1rem; 
+    min-height: calc(100vh - 140px); 
 }
 .calculadora {
-    background-color: #222; /* Fondo negro de la calculadora */
+    background-color: #222; 
     border-radius: 20px;
     width: 330px;
     margin: 0;
@@ -94,24 +94,24 @@ header {
     position: absolute;
     top: 6px;
     right: 12px;
-    color: #fff; /* Color violeta */
+    color: #fff; 
     font-size: 0.75rem;
     font-weight: bold;
 }
 
-/* Pantalla - MODIFICADA para hacerla más grande y acorde a la temática */
+
 .pantalla {
-    background-color: #fff; /* Fondo más oscuro para la pantalla */
+    background-color: #fff; 
     width: 100%;
-    height: 70px; /* Aumentado de 50px a 70px */
-    margin-bottom: 1.5rem; /* Aumentado el margen inferior */
-    border-radius: 12px; /* Bordes más redondeados */
+    height: 70px; 
+    margin-bottom: 1.5rem; 
+    border-radius: 12px; 
     text-align: right;
-    padding: 0.6rem 1rem; /* Padding aumentado */
-    color: #1a1a1a; /* Texto blanco para mejor contraste */
+    padding: 0.6rem 1rem; 
+    color: #1a1a1a; 
     overflow-x: auto;
-    border: 1px solid #444; /* Borde sutil */
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra interna */
+    border: 1px solid #444; 
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); 
 }
 
   /* Estilo para el input dentro de la pantalla */
@@ -185,7 +185,7 @@ header {
 /* === FOOTER === */
 footer {
     width: 100%;
-    margin-top: auto; /* Lo empuja hacia abajo */
+    margin-top: auto; 
     background-color: #222;
     color: #fff;
     padding: 1rem 0;
@@ -196,7 +196,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* En caso de que los elementos no quepan en una sola línea */
+    flex-wrap: wrap; 
 }
 
 
