@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     botones.forEach(boton => {
         boton.addEventListener('click', () => {
             const valor = boton.textContent;
-
+            if (pantalla.value === 'Error') {
+                pantalla.value = '';
+                vector = [""];
+            }
             // Traducimos funciones especiales a su formato para cálculo
             switch (valor) {
                 case 'sen': pantalla.value += 'sin('; break;
@@ -29,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón igual "="
     document.querySelector('.btn-especial-igual').addEventListener('click', () => {
-        const expresionOriginal = pantalla.value;
+        let expresionOriginal = pantalla.value;
+        expresionOriginal = expresionOriginal.replace(/(\d)([a-zA-Z\(])/g, '$1*$2');
+        expresionOriginal = expresionOriginal.replace(/(\))(\d|[a-zA-Z])/g, '$1*$2')
     
         fetch('/resolver', {
             method: 'POST',

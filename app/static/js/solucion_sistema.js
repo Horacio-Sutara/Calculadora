@@ -137,6 +137,7 @@ window.onload = function () {
 
         historialAgrupado.forEach((fila, index) => {
             const tr = document.createElement("tr");
+            tr.classList.add("fila-oculta"); // 🔥 Ocultar de entrada
         
             const tdIteracion = document.createElement("td");
             tdIteracion.textContent = index + 1;
@@ -144,18 +145,23 @@ window.onload = function () {
         
             for (let i = 0; i < cantidadVariables; i++) {
                 const td = document.createElement("td");
-            
+        
                 if (fila[i] !== undefined && fila[i] !== "") {
                     td.textContent = formatearNumero(fila[i]);
                 } else {
                     td.textContent = "–";
-                    td.style.color = "#bbb"; // gris para vacíos
+                    td.style.color = "#bbb";
                 }
-            
+        
                 tr.appendChild(td);
             }
         
             tbody.appendChild(tr);
+        
+            // ⏱ Mostrar de a poco con delay
+            setTimeout(() => {
+                tr.classList.add("fila-mostrar");
+            }, 200 * index); // cada fila espera 200ms más
         });
 
         tabla.appendChild(tbody);

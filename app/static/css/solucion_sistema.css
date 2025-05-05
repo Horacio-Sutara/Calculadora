@@ -342,3 +342,13 @@ footer {
         transform: scale(0.96);
     }
 }
+.fila-oculta {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fila-mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}

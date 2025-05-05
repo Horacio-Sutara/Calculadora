@@ -67,14 +67,21 @@ header {
 
 
 /*Main*/
+.main-contenido {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 .contenedor-flex {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5rem;
-    padding: 1.5rem;
+    padding: 2rem 1rem;
     width: 100%;
-    animation: fadeIn 0.8s ease;
+    min-height: calc(100vh - 130px);
 }
 /*Input*/
 .bloque-inputs {
@@ -309,8 +316,8 @@ footer {
         gap: 2rem; /* Menos espacio para celulares */
         align-items: center;
         justify-content: center;
-        padding: 1rem 0.5rem,0.8rem;
-        min-height: calc(100vh - 130px);
+        padding: 2rem 1rem;
+        min-height: auto;
     }
     .bloque-inputs,
     .calculadora {
