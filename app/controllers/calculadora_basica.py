@@ -13,6 +13,10 @@ def calcular():
     if "√" in expresion:
         expresion=expresion.replace("√","sqrt")
         print("Hola, estoy en el calculadora.py\n",expresion, type(expresion))
+    if "π" in expresion:
+        expresion=expresion.replace("π","pi")
+    if "e" in expresion:
+        expresion=expresion.replace("e","exp(1)")
     try:
         # Prepará un entorno seguro para evaluar
         datos=expresion.split(";")
