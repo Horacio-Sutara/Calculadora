@@ -1,5 +1,5 @@
 <h1>
-  <img src="app/static/Image/icono-logo.svg" alt="BETAsolve Logo" width="40" style="vertical-align: middle;"/>
+  <img src="app/static/Image/icono-logo.svg" alt="BETAsolve Logo" width="30" style="vertical-align: middle;"/>
   BetaSolve
 </h1>
 
@@ -66,7 +66,7 @@ Su principal objetivo es hacer el aprendizaje más accesible a través de una pl
   Calculadora basica
 </h3>
 
-Realiza operaciones aritméticas comunes y **evalua funciones** en puntos especificos para analisis rapidos.
+✅ Realiza operaciones aritméticas comunes y **evalua funciones** en puntos especificos para analisis rapidos.
 
 Para evaluar una función en un punto específico, utiliza la siguiente sintaxis:
 `función ; valor`
@@ -86,6 +86,7 @@ Encuentra ceros de funciones mediante **5 métodos numéricos**:
   - Regula falsi
 
 ✅ Permite ingresar funciones personalizadas, definir intervalos y visualizar gráficamente cada iteración.
+
 💡 El sistema sugiere el método más eficiente según la función ingresada.
 <h3>
   <img src="app/static/Image/matriz-icono.svg" alt="Calculadora matrices Logo" width="20" style="vertical-align: middle;"/>
@@ -98,14 +99,14 @@ Resuelve sistemas de hasta **5 incógnitas** .El usuario puede **elegir el méto
   - Seidel
   - Jacobi
 
-📌 Permite introducir matrices, visualizar los pasos intermedios y comprender el proceso completo de resolución.
+✅ Permite introducir matrices, visualizar los pasos intermedios y comprender el proceso completo de resolución.
 
 ---
 
 ## 🛠️ Tecnologías Usadas
 
 <p>
-  &nbsp;&nbsp;<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" title="HTML5"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" title="HTML5"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" title="CSS3"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" title="JavaScript"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" title="Python"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,7 +115,7 @@ Resuelve sistemas de hasta **5 incógnitas** .El usuario puede **elegir el méto
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="40" title="Matplotlib"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
-<p align="center">
+<p>
   <b>HTML</b> &nbsp; • &nbsp;
   <b>CSS</b> &nbsp; • &nbsp;
   <b>JavaScript</b> &nbsp; • &nbsp;

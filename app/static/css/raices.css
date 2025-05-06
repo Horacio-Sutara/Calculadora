@@ -73,6 +73,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
+    
 }
 .contenedor-flex {
     display: flex;
@@ -82,6 +83,7 @@ header {
     padding: 2rem 1rem;
     width: 100%;
     min-height: calc(100vh - 130px);
+    animation: subirDesdeAbajo 0.8s ease-out forwards;
 }
 /*Input*/
 .bloque-inputs {
@@ -256,14 +258,14 @@ footer {
 }
 
   /* Animación */
-@keyframes fadeIn {
+@keyframes subirDesdeAbajo {
     from {
+        transform: translateY(50px);
         opacity: 0;
-        transform: translateY(20px);
     }
     to {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
     }
 }
 .fade-out {

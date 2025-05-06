@@ -240,7 +240,7 @@ document.querySelectorAll('.volver-btn').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault(); // Evita la navegación inmediata
 
-        const main = document.querySelector('.contenedor-flex');
+        const main = document.querySelector('.main-contenido');
         main.classList.add('fade-out');
 
         setTimeout(() => {
