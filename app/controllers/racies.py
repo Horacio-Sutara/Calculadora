@@ -49,7 +49,9 @@ def calcular_raices():
             funcion = funcion.replace("√", "sqrt")
         if "π" in funcion:
             funcion = funcion.replace("π", "pi")
-
+        if "e" in funcion:
+            funcion = funcion.replace("e", "(exp(1))")
+        print(funcion)
         ecuacion = Ecuacion_procesar.Ecuacion_procesar(funcion)
         if not ecuacion.reconocer():
             return render_template('error_raices.html', titulo='No se pudo reconocer la función.')

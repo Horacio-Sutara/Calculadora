@@ -159,7 +159,9 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         
         // Reemplazar √ por sqrt para la validación
-        const funcionNormalizada = funcion.replace(/√/g, 'sqrt');
+        let funcionNormalizada = funcion.replace(/√/g, 'sqrt');
+        funcionNormalizada = funcionNormalizada.replace(/π/g, '3.14159');
+        funcionNormalizada = funcionNormalizada.replace(/e/g, 'exp(1)');
 
         if (!regexValida.test(funcionNormalizada)) {
             alert("La función contiene caracteres inválidos.");
