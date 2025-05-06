@@ -12,7 +12,7 @@ from LogicaNegocio.utils.utils import validar_intervalo, validar_expresion_real
 
 app = Flask(__name__)
 
-@app.route('/calcular_raices', methods=['POST'])  # Asegúrate de tener esto en tu Flask app
+"""
 def iniciar_procesamiento(funcion, intervalo):
     cant_procesos = cpu_count()
     puntos = np.linspace(intervalo[0], intervalo[1], num=cant_procesos + 1)
@@ -36,7 +36,9 @@ def iniciar_procesamiento(funcion, intervalo):
 def worker(funcion, intervalo, queue):
     metodos = Metodos_raices(funcion, intervalo=intervalo)
     resultado = metodos.encontrar_raices()
-    queue.put(resultado)  # manda el resultado al proceso principal
+    queue.put(resultado)  # manda el resultado al proceso principal """
+
+@app.route('/calcular_raices', methods=['POST'])  # Asegúrate de tener esto en tu Flask app
 
 def calcular_raices():
     try:
@@ -65,13 +67,14 @@ def calcular_raices():
             return render_template('error_raices.html', titulo="La función contiene valores no reales.")
 
         metodos_raices = Metodos_raices(funcion, intervalo=intervalo)
-        result=iniciar_procesamiento(funcion,intervalo)
-        resultado = [item for sublist in result if sublist for item in sublist]
-        raices = []
-        for item in resultado:
-            if item not in raices:
-                raices.append(item)
-        raices = sorted(raices, key=lambda x: x[0])
+        raices=metodos_raices.encontrar_raices()
+        #result=iniciar_procesamiento(funcion,intervalo)
+        #resultado = [item for sublist in result if sublist for item in sublist]
+        #raices = []
+        #for item in resultado:
+            #if item not in raices:
+                #raices.append(item)
+        #raices = sorted(raices, key=lambda x: x[0])
 
         # Crear datos para Plotly
         x_vals = np.linspace(intervalo[0], intervalo[1], int((abs(intervalo[0])+(intervalo[1]))/0.025))
