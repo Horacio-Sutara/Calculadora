@@ -69,7 +69,7 @@ def calcular_raices():
         for item in resultado:
             if item not in raices:
                 raices.append(item)
-        print("Raices:", raices, type(raices), list(raices))
+        raices = sorted(raices, key=lambda x: x[0])
 
         # Crear datos para Plotly
         x_vals = np.linspace(intervalo[0], intervalo[1], int((abs(intervalo[0])+(intervalo[1]))/0.025))
