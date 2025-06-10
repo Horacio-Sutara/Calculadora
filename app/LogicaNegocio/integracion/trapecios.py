@@ -23,7 +23,7 @@ def trapecios(funcion, a, b, n):
         #error al procesar la ecuación
         return False
     
-    for i in range(1, n-1):  #suma de los puntos intermedios
+    for i in range(1, n):  #suma de los puntos intermedios
         try :
             valor=ecuacion.resultado(puntos[i])  #evaluar el punto
             if valor is bool:

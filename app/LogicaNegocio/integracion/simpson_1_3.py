@@ -30,5 +30,6 @@ def simpson_1_3(funcion, a, b, n):
         if valor is bool or valor2 is bool:
             return False
         resultado += 4 * h * valor/ 3  #suma de los puntos impares
-        resultado += 2 * h * valor2 / 3  #suma de los puntos pares
+        if i+1 < n:
+            resultado += 2 * h * valor2 / 3  #suma de los puntos pares
     return resultado
