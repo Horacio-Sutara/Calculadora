@@ -7,8 +7,8 @@ from sympy.calculus.util import continuous_domain
 from sympy.utilities.lambdify import lambdify
 
 class Ecuacion_procesar:
-    def __init__(self,nombre_archivo):
-        self.ecuacion=nombre_archivo.replace("X","x")
+    def __init__(self,funcion):
+        self.ecuacion=funcion.replace("X","x")
     
     def remplazar(self,x='x',y='y',excluir_anterior='e'):
         ecuaciones=[]
