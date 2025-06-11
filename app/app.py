@@ -46,6 +46,13 @@ def resolver_sistema():
 def solucion_sistema():
     return render_template('solucion_sistema.html')
 
+@app.route('/integrales')
+def integrales():
+    return render_template('integrales.html')
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000
