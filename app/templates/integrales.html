@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/integrales.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/raices.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
     <title>BetaSolve - Integrales</title>
 </head>
@@ -20,9 +20,105 @@
             </div>
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
-                <a href="{{ url_for('integrales') }}" class="nav-link volver-btn">Volver atras</a>
+                <a href="/" class="nav-link volver-btn">Volver atras</a>
             </div>
         </nav>
     </header>
-    
+
+    <!-- Espacio de bloques izquierdo -->
+    <main class="main-contenido">
+        <div class="contenedor-flex">
+            <div class="bloque-inputs">
+                <div class="campo">
+                    <label>Ingrese la función:</label>
+                    <input type="text" id="funcionInput" class="display-funcion" placeholder="Ej. x^2 + 2x">
+                </div>
+                <div class="campo">
+                    <label>Ingrese el intervalo (opcional (a;b)):</label>
+                    <input type="text" id="intervaloInput" class="display-intervalo" placeholder="Ej. -10; 10">
+                </div>
+                <div class="campo">
+                    <label>Ingrese el valor de N:</label>
+                    <input type="text" id="nInput" class="display-intervalo" placeholder="Ej. 10">
+                </div>
+                <div class="campo">
+                    <label>Ingrese el nombre del método ("Trapecios","Simpson 1/3","Simpson 3/8"):</label>
+                    <input type="text" id="metodoInput" class="display-intervalo" placeholder="Ej. Trapecios">
+                </div>
+                <button class="btn-calcular" id="btnCalcularRaices">CALCULAR RAÍCES</button>
+            </div>
+
+            <!-- CALCULADORA -->
+            <div class="calculadora">
+                
+                <div class="titulo">BetaSolve</div> 
+        
+               
+                <div class="pantalla"></div>
+        
+                
+                <div class="buttons-header">
+                    <div class="row-header">
+                        <button class="btn-header">sen</button>
+                        <button class="btn-header">cos</button>
+                        <button class="btn-header">tan</button>
+                        <button class="btn-header">e</button>
+                        <button class="btn-header">In</button>
+                        <button class="btn-header">^</button>
+                    </div>
+                    <div class="row-header">
+                        <button class="btn-header">asen</button>
+                        <button class="btn-header">acos</button>
+                        <button class="btn-header">atan</button>
+                        <button class="btn-header">(</button>
+                        <button class="btn-header">)</button>
+                        <button class="btn-header">√</button>
+                    </div>
+                    <div class="row-header">
+                        <button class="btn-header">X</button>
+                        <button class="btn-header">;</button>
+                        <button class="btn-header">π</button>
+                        <button class="btn-especial">Del</button>
+                        <button class="btn-especial">C</button>
+                    </div>
+                </div>
+        
+                <div class="buttons-math">
+                    <div class="row-math">
+                        <button class="btn-math">7</button>
+                        <button class="btn-math">8</button>
+                        <button class="btn-math">9</button>
+                        <button class="btn-math">*</button>
+                    </div>
+                    <div class="row-math">
+                        <button class="btn-math">4</button>
+                        <button class="btn-math">5</button>
+                        <button class="btn-math">6</button>
+                        <button class="btn-math">/</button>
+                    </div>
+                    <div class="row-math">
+                        <button class="btn-math">1</button>
+                        <button class="btn-math">2</button>
+                        <button class="btn-math">3</button>
+                        <button class="btn-math">+</button>
+                    </div>
+                    <div class="row-math">
+                        <button class="btn-math">.</button>
+                        <button class="btn-math">0</button>
+                        <button class="btn-math">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/integrales.js') }}"></script>
+
+
 </html>

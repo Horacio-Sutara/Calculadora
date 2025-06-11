@@ -16,7 +16,7 @@ def calcular_integral():
         return jsonify({'error': 'Expresión no válida'}), 400
 
     # Validar el intervalo
-    if not validar_intervalo(a, b):
+    if not validar_intervalo(funcion,(a,b)):
         return jsonify({'error': 'Intervalo no válido'}), 400
 
     resultado, metodo, a, b, n, funciono = Metodos_integracion.calcular_integral(funcion, metodo, a, b, n)

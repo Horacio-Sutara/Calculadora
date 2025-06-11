@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solucion_sistema.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>BetaSolve - Integrales</title>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-section nav-logo">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <span class="brand-name">BetaSolve</span>
+            </div>
+            <div class="nav-section nav-title">
+                <img src="{{ url_for('static', filename='Image/integral-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <h1 class="page-title">Integrales</h1>
+            </div>
+            <div class="nav-section nav-home">
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="{{ url_for('integrales') }}" class="nav-link volver-btn">Volver atras</a>
+            </div>
+        </nav>
+    </header>
+    <main class="resultado-integral">
+        <h2>Resultado del Cálculo</h2>
+        <p id="resultado"></p>
+        <p id="metodo"></p>
+        <p id="intervalo"></p>
+        <p id="n"></p>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/solucion_integral.js') }}"></script>
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
+        </div>
+    </footer>
+</html>
