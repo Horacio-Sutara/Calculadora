@@ -17,23 +17,23 @@ def trapecios(funcion, a, b, n):
     try:
         valor=ecuacion.resultado(puntos[0])  #evaluar el primer punto
         if valor is bool:
-            return False
+            return 0,False
         resultado=h*((valor) + ecuacion.resultado(puntos[-1])) / 2  #suma de los extremos
     except Exception as e:
         #error al procesar la ecuación
-        return False
+        return 0,False
     
     for i in range(1, n):  #suma de los puntos intermedios
         try :
             valor=ecuacion.resultado(puntos[i])  #evaluar el punto
             if valor is bool:
-                return False
+                return 0,False
             resultado += h * valor
         except Exception as e:
             #error al procesar la ecuación
-            return False
+            return 0,False
         
-    return  resultado
+    return  resultado,True
 
 if __name__ == "__main__":
     funcion = "x**2 + 2*x + 1"  # Ejemplo de función
