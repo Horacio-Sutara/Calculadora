@@ -207,10 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (inicio >= fin) {
                 alert("El inicio del intervalo no puede ser mayor ni igual que el final (A < B).");
                 return;
-            }
-            
+            }   
         }
-
         const intervaloNormalizado = intervalo.replace(/[()]/g, '').trim();
         console.log(intervaloNormalizado)
 

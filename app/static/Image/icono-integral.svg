@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Ejes -->
+  <line x1="8" y1="56" x2="56" y2="56" stroke="#B700FF" stroke-width="2" stroke-linecap="round"/>
+  <line x1="8" y1="56" x2="8" y2="8" stroke="#B700FF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Área bajo la curva -->
+  <path d="M8 56 Q16 36, 24 40 Q32 44, 40 32 Q48 20, 56 28 L56 56 Z" fill="#B700FF" fill-opacity="0.2"/>
+
+  <!-- Curva -->
+  <path d="M8 56 Q16 36, 24 40, 32 44, 40 32, 48 20, 56 28" stroke="#B700FF" stroke-width="2" fill="none"/>
+
+  <!-- Texto f(x) -->
+  <text x="45" y="18" fill="#B700FF" font-size="6" font-family="Arial">f(x)</text>
+</svg>
