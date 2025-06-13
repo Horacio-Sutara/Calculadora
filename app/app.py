@@ -34,6 +34,7 @@ def calcular_raices():
     print("Recibido")
     return racies.calcular_raices()
 
+
 @app.route('/sistemas_ecuaciones')
 def sistemas_ecuaciones():
     return render_template('sistemas.html')
