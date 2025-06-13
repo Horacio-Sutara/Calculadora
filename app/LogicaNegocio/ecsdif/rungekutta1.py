@@ -1,4 +1,4 @@
-from ecdif import FuncionXYProcesar
+from ecsdif.ecdif import FuncionXYProcesar
 
 def rungekutta1(f, x0, y0, xn, n=100):
 

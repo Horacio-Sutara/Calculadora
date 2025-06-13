@@ -1,5 +1,5 @@
 from flask import Flask,render_template,session
-from controllers import racies,calculadora_basica,ecuaciones,integrales as integr
+from controllers import racies,calculadora_basica,ecuaciones, ecs_difs, integrales as integr
 #from controllers.calculadora import calcular
 app = Flask(__name__)
 app.secret_key = 'clave-secreta'
@@ -60,6 +60,16 @@ def calcular_integral():
 @app.route('/solucion_integral')
 def solucion_integral():
     return render_template('solucion_integral.html')
+
+@app.route('/ecuaciones_diferenciales')
+def ecuaciones_diferenciales():
+    return render_template('ecuaciones.html')
+
+@app.route('/resolver_ecuacion', methods=['POST'])
+def resolver_ecuacion():
+    # Llamamos a la función en el controlador 'ecuaciones.py'
+    print("Recibido")
+    return ecs_difs.calcular_solucion()
 
 @app.route('/ecuaciones')
 def ecuaciones():
