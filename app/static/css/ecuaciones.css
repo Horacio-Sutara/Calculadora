@@ -114,7 +114,7 @@ header {
     align-self: flex-end;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.display-funcion,.display-puntox, .display-puntoy {
+.display-funcion,.display-puntox, .display-puntoy , .display-final{
     background-color: #222;
     border: 1px solid #c78eff;
     border-radius: 8px;
@@ -124,7 +124,7 @@ header {
     color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-.display-funcion:focus, .display-puntox:focus, .display-puntoy:focus {
+.display-funcion:focus, .display-puntox:focus, .display-puntoy:focus, .display-final:focus {
     outline: none; 
     border-color: #8a2be2; 
     box-shadow: 0 0 8px rgba(138, 43, 226, 0.5); 
@@ -132,7 +132,7 @@ header {
     background-color: #111; 
     padding: 1.3rem 0.8rem; 
 }
-.display-funcion::placeholder, .display-puntox::placeholder, .display-puntoy::placeholder {
+.display-funcion::placeholder, .display-puntox::placeholder, .display-puntoy::placeholder, .display-final::placeholder {
     color: #c78eff; 
     opacity: 0.7; 
 }

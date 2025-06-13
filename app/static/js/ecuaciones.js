@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const pantallaFuncion = document.getElementById('displayFuncion');
     const pantallaX0 = document.querySelector('.display-puntox');
     const pantallaY0 = document.querySelector('.display-puntoy');
+    const pantallaXn = document.querySelector('.display-final');
     const inputH = document.getElementById('valorH');
     const inputN = document.getElementById('valorN');
     const botones = document.querySelectorAll('.btn-math, .btn-header, .btn-especial');
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Aplica en todos
-    [pantallaFuncion, pantallaX0, pantallaY0, inputH, inputN].forEach(bloquearYRegistrar);
+    [pantallaFuncion, pantallaX0, pantallaY0, pantallaXn,inputH, inputN].forEach(bloquearYRegistrar);
 
     botones.forEach(boton => {
         boton.addEventListener('click', e => {
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const funcion = pantallaFuncion.value.trim();
         const x0 = pantallaX0.value.trim();
         const y0 = pantallaY0.value.trim();
+        const xn = pantallaXn.value.trim();
         const h = inputH.value.trim();
         const n = inputN.value.trim();
         const modoSeleccionado = modo.value;
@@ -77,6 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (y0 === '' || isNaN(y0)) {
             alert('Y0 debe ser un número válido.');
+            return;
+        }
+        if (xn === '' || isNaN(xn)) {
+            alert('Xn debe ser un número válido.');
             return;
         }
         if (!metodoSeleccionado) {
@@ -103,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                funcion, x0, y0, h, n, modo: modoSeleccionado, metodo: metodoSeleccionado
+                funcion, x0, y0, xn, h, n, modo: modoSeleccionado, metodo: metodoSeleccionado
             })
         })
         .then(res => res.text())
