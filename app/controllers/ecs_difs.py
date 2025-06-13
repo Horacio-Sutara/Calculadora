@@ -26,4 +26,7 @@ def calcular_solucion():
     y0 = data['y0'] # Valor inicial de y
     xn = data['xn'] # Valor final de x
     n = data['n'] # Número de pasos
+    d = data['d'] # Valor de d
     metodo = data['metodo']
+
+    
