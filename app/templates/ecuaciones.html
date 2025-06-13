@@ -5,31 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
     <title>Raices BetaSolve</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/raices.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ecuaciones.css') }}"/>
 </head>
 <body>
     <header>
         <nav class="nav">
-            <!-- Logo principal -->
             <div class="nav-section nav-logo">
                 <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
                 <span class="brand-name">BetaSolve</span>
             </div>
-    
-            <!-- Título de la calculadora -->
             <div class="nav-section nav-title">
-                <img src="{{ url_for('static', filename='Image/funcion-icono.svg') }}" alt="Ícono de calculadora" class="logo-icon">
-                <h1 class="page-title">Busqueda de Raices</h1>
+                <img src="{{ url_for('static', filename='Image/dydx-icono.svg') }}" alt="Ícono ecuaciones diferenciales" class="logo-icon">
+                <h1 class="page-title">Ecuaciones diferenciales</h1>
             </div>
-    
-            <!-- Enlace de regreso al inicio -->
             <div class="nav-section nav-home">
                 <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
                 <a href="/" class="nav-link volver-btn">Volver al Inicio</a>
             </div>
         </nav>
     </header>
-    <!-- Espacio de bloques izquierdo -->
     <main class="main-contenido">
         <div class="contenedor-flex">
             <div class="bloque-inputs">
@@ -38,12 +32,11 @@
                     <input type="text" id="displayFuncion" class="display-funcion" placeholder="Ej. x^2 + 2x">
                 </div>
                 <div class="campo">
-                    <label>Ingrese el intervalo (opcional):</label>
+                    <label>Ingrese el intervalo:</label>
                     <input type="text" id="displayIntervalo" class="display-intervalo" placeholder="Ej. -10; 10">
                 </div>
-                <button class="btn-calcular" id="btnCalcularRaices">CALCULAR RAÍCES</button>
+                <button class="btn-calcular" id="btnCalcular">CALCULAR</button>
             </div>
-            <!-- CALCULADORA -->
             <div class="calculadora">
                 
                 <div class="titulo">BetaSolve</div> 
@@ -108,6 +101,5 @@
         <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
     </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/raices.js') }}"></script>
 </body>
 </html>

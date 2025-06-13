@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solucion_integral.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>BetaSolve - Integrales</title>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-section nav-logo">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <span class="brand-name">BetaSolve</span>
+            </div>
+            <div class="nav-section nav-title">
+                <img src="{{ url_for('static', filename='Image/icono-integral.svg') }}" alt="Ícono de calculadora" class="logo-icon">
+                <h1 class="page-title">Integrales</h1>
+            </div>
+            <div class="nav-section nav-home">
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="{{ url_for('integrales') }}" class="nav-link volver-btn">Volver atras</a>
+            </div>
+        </nav>
+    </header>
+    <main class="resultado-integral">
+        <div class="tarjeta-resultado animacion-aparicion">
+            <h2>Solucion</h2>
+            <p class="funcion-usuario"><strong>f(x) =</strong> <span id="funcion"></span></p>
+        
+            <div class="valor-final">
+                <span id="resultado" class="valor"></span>
+            </div>
+            <p><strong>Método utilizado:</strong> <span id="metodo"></span></p>
+            <p><strong>Intervalo:</strong> <span id="intervalo"></span></p>
+            <p><strong>Cantidad de subintervalos (n):</strong> <span id="n"></span></p>
+        </div>
+        
+        <div id="graficoIntegral" class="grafico-integral"></div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/solucion_integral.js') }}"></script>
+    <footer>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
+        </div>
+    </footer>
+</html>

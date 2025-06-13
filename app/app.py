@@ -1,5 +1,5 @@
 from flask import Flask,render_template,session
-from controllers import racies,calculadora_basica,ecuaciones
+from controllers import racies,calculadora_basica,ecuaciones,integrales as integr
 #from controllers.calculadora import calcular
 app = Flask(__name__)
 app.secret_key = 'clave-secreta'
@@ -47,6 +47,23 @@ def resolver_sistema():
 def solucion_sistema():
     return render_template('solucion_sistema.html')
 
+@app.route('/integrales')
+def integrales():
+    return render_template('integrales.html')
+
+@app.route('/calcular_integral', methods=['POST'])
+def calcular_integral():
+    # Llamamos a la función en el controlador 'integrales.py'
+    print("Recibido")
+    return integr.calcular_integral()
+
+@app.route('/solucion_integral')
+def solucion_integral():
+    return render_template('solucion_integral.html')
+
+@app.route('/ecuaciones')
+def ecuaciones():
+    return render_template('ecuaciones.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000

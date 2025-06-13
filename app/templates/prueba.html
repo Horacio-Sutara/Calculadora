@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visualización Métodos de Integración</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    .grafico-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .grafico {
+      width: 30%;
+      min-width: 300px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Comparativa: Trapecio, Simpson 1/3, Simpson 3/8</h2>
+  <div class="grafico-container">
+    <div id="graficoTrapecio" class="grafico"></div>
+    <div id="graficoSimpson13" class="grafico"></div>
+    <div id="graficoSimpson38" class="grafico"></div>
+  </div>
+
+  <script>
+    function f(x) { return x * x; }
+
+    const a = 0, b = 100, n = 30; // n múltiplo de 6
+    const h = (b - a) / n;
+
+    const fx = [], fy = [];
+    for (let x = a; x <= b; x += 0.02) {
+      fx.push(x); fy.push(f(x));
+    }
+
+    const baseFunc = {
+      x: fx, y: fy,
+      type: 'scatter', mode: 'lines',
+      line: { color: 'black' },
+      name: 'f(x) = x²'
+    };
+
+    const layout = (title) => ({
+      title,
+      xaxis: { title: 'x' },
+      yaxis: { title: 'f(x)' }
+    });
+
+    Plotly.newPlot('graficoTrapecio', [baseFunc], layout('Método Trapecio'));
+    Plotly.newPlot('graficoSimpson13', [baseFunc], layout('Método Simpson 1/3'));
+    Plotly.newPlot('graficoSimpson38', [baseFunc], layout('Método Simpson 3/8'));
+
+    let delay = 500;
+
+    // 🟥 Trapecios
+    for (let i = 0; i < n; i++) {
+      const x0 = a + i*h, x1 = x0 + h;
+      const y0 = f(x0), y1 = f(x1);
+      const trace = {
+        x: [x0, x0, x1, x1],
+        y: [0, y0, y1, 0],
+        type: 'scatter',
+        fill: 'toself',
+        fillcolor: 'rgba(255, 100, 100, 0.4)',
+        line: { color: 'red' },
+        showlegend: false
+      };
+      setTimeout(() => {
+        Plotly.addTraces('graficoTrapecio', trace);
+      }, delay);
+      delay += 100;
+    }
+
+    // 🟩 Simpson 1/3
+    delay = 500;
+    for (let i = 0; i < n; i += 2) {
+      const x0 = a + i*h, x1 = x0 + h, x2 = x0 + 2*h;
+      const trace = {
+        x: [x0, x1, x2],
+        y: [f(x0), f(x1), f(x2)],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(100, 255, 100, 0.4)',
+        line: { shape: 'spline', color: 'green' },
+        showlegend: false
+      };
+      setTimeout(() => {
+        Plotly.addTraces('graficoSimpson13', trace);
+      }, delay);
+      delay += 150;
+    }
+
+    // 🟦 Simpson 3/8
+    delay = 500;
+    for (let i = 0; i < n; i += 3) {
+      const x0 = a + i*h, x1 = x0 + h, x2 = x0 + 2*h, x3 = x0 + 3*h;
+      const trace = {
+        x: [x0, x1, x2, x3],
+        y: [f(x0), f(x1), f(x2), f(x3)],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(100, 150, 255, 0.4)',
+        line: { shape: 'spline', color: 'blue' },
+        showlegend: false
+      };
+      setTimeout(() => {
+        Plotly.addTraces('graficoSimpson38', trace);
+      }, delay);
+      delay += 200;
+    }
+  </script>
+</body>
+</html>

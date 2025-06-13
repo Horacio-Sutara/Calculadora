@@ -18,18 +18,18 @@ def simpson_1_3(funcion, a, b, n):
         valor = ecuacion.resultado(puntos[0])  #evaluar el primer punto
         valor2 = ecuacion.resultado(puntos[-1])  #evaluar el segundo punto
         if valor is bool or valor2 is bool:
-            return False
+            return 0,False
         resultado = h * (valor + valor2) / 3  #suma de los extremos
     except Exception as e:
         #error al procesar la ecuación
-        return False
+        return 0,False
     
     for i in range(1,n,2):
         valor = ecuacion.resultado(puntos[i])
         valor2 = ecuacion.resultado(puntos[i + 1])
         if valor is bool or valor2 is bool:
-            return False
+            return 0,False
         resultado += 4 * h * valor/ 3  #suma de los puntos impares
         if i+1 < n:
             resultado += 2 * h * valor2 / 3  #suma de los puntos pares
-    return resultado
+    return resultado,True
