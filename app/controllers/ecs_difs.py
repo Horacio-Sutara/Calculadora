@@ -19,3 +19,11 @@ def calcular_solucion():
     if "e" in funcion:
         funcion = funcion.replace("e", "(exp(1))")
     print(funcion)
+    ecuacion = ecdif.FuncionXYProcesar(funcion)
+    if not ecuacion.reconocer():
+        return render_template('error_ecuaciones.html', titulo='No se pudo reconocer la función.')
+    x0 = data['x0']
+    y0 = data['y0'] # Valor inicial de y
+    xn = data['xn'] # Valor final de x
+    n = data['n'] # Número de pasos
+    metodo = data['metodo']

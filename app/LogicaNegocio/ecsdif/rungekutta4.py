@@ -1,6 +1,6 @@
-from ecsdif.ecdif import FuncionXYProcesar
+from .ecdif import FuncionXYProcesar
 
-def rungekutta4(f, x0, y0, xn, n=100):
+def rungekutta4(f, x0, y0, xn, h=None, n=None):
     ecuacion = FuncionXYProcesar(f)
     if not ecuacion.reconocer():
         raise ValueError("La función no es válida o contiene variables no permitidas.")
@@ -13,10 +13,13 @@ def rungekutta4(f, x0, y0, xn, n=100):
     if not isinstance(n, int):
         raise ValueError("El número de pasos n debe ser un entero.")
     
-    puntos= [(x0, y0)]  # Lista para almacenar los puntos (x, y)
-    h = (xn - x0) / n #Tamaño del paso
+    if h is None and n is None:
+        n = 100
+    if h is None:
+        h = (xn - x0) / n #Tamaño del paso
     if h <= 0:
         raise ValueError("El paso h debe ser positivo y mayor que cero.")
+    puntos = [(x0, y0)]  # Lista para almacenar los puntos (x, y)
     
     while x0 < xn:
         k1 = h * ecuacion.resultado(x0, y0)
