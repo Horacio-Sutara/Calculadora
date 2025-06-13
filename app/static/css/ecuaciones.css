@@ -1,0 +1,332 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #fff;
+    position: relative;
+    overflow-x: hidden;
+}
+header {
+    background: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.nav-section{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo-icon {
+    width: 30px; 
+    height: 30px;
+}
+
+.brand-name {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.page-title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #c78eff;
+}
+
+.main-contenido {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+.contenedor-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    min-height: calc(100vh - 130px);
+    animation: subirDesdeAbajo 0.8s ease-out forwards;
+}
+.bloque-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    background-color: #222;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    
+}
+
+.campo label {
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    display: block;
+    font-size: 0.95rem;
+}
+.btn-calcular {
+    background-color: #c78eff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.display-funcion,.display-intervalo {
+    background-color: #222;
+    border: 1px solid #c78eff;
+    border-radius: 8px;
+    padding: 1.3rem 0.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.display-funcion:focus, .display-intervalo:focus {
+    outline: none; 
+    border-color: #8a2be2; 
+    box-shadow: 0 0 8px rgba(138, 43, 226, 0.5); 
+    transform: scale(1.02);
+    background-color: #111; 
+    padding: 1.3rem 0.8rem; 
+}
+.display-funcion::placeholder, .display-intervalo::placeholder {
+    color: #c78eff; 
+    opacity: 0.7; 
+}
+.btn-calcular:hover {
+    background-color: #a259e4;
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+/* === CALCULADORA === */
+.calculadora {
+    background-color: #222; 
+    border-radius: 20px;
+    width: 330px;
+    padding: 1.5rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+/* "BetaSolve" en la esquina superior derecha */
+.calculadora .titulo {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    color: #fff; 
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Pantalla */
+.pantalla {
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    color: #000;
+    overflow-x: auto;
+}
+/* Contenedor de botones */
+/* === HEADER - FILAS DE BOTONES DE FUNCIONES === */
+
+.buttons-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.row-math, .row-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+}
+.row-math:first-child {
+    margin-top: 1.2rem;
+}
+
+/* === BOTONES=== */
+.btn-header,.btn-math,  .btn-especial {
+    flex: 1;                       
+    min-width: 0;                
+    font-size: 1rem;
+    padding: 0.2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-align: center;
+}
+.btn-math { 
+    margin-bottom:10px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+}
+.btn-header, .btn-especial:not(.igual) {
+    height: 40px;
+    font-size: 0.8rem;
+    padding: 0.3rem;
+}
+.btn-header:hover, .btn-math:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+/* === BOTONES ESPECIALES (Del, C, =) === */
+.btn-especial {
+    background-color:#c78eff;
+    font-weight: bold;
+}
+
+.btn-especial:hover {
+    background-color: #a259e4;
+    transform: scale(1.08);
+}
+/* === FOOTER === */
+footer {
+    width: 100%;
+    margin-top: auto; 
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; 
+}
+
+  /* Animación */
+@keyframes subirDesdeAbajo {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.fade-out {
+    animation: fadeOutMain 0.5s ease forwards;
+}
+
+@keyframes fadeOutMain {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+/* MEDIAS QUERIS */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0.5rem 0;
+    }
+    .nav {
+        padding: 0 1rem;
+    }
+    .nav-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    .logo-icon {
+        width: 25px;
+        height: 25px;
+    }
+    .menu {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .logo {
+        margin-bottom: 1rem;
+    }
+    .brand-name {
+        font-size: 1.3rem;
+    }
+    .nav-logo{
+        display: none;
+    }
+    .page-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    .contenedor-flex {
+        flex-direction: column;
+        gap: 2rem; 
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+    .bloque-inputs,
+    .calculadora {
+        width: 100%;
+        max-width: 340px;
+    }
+    footer{
+        width: 100%;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

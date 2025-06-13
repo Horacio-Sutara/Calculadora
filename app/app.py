@@ -60,5 +60,9 @@ def calcular_integral():
 def solucion_integral():
     return render_template('solucion_integral.html')
 
+@app.route('/ecuaciones')
+def ecuaciones():
+    return render_template('ecuaciones.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Ejecuta la app en modo de desarrollo en el puerto 5000
