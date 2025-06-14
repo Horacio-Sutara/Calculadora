@@ -24,9 +24,49 @@
             </div>
         </nav>
     </header>
+
+    
+    <h1>Eucación diferencial: </h1>
+
+    <h2><strong>y' = {{ funcion_original }}</strong></h2>
+
+    <div id="grafico" style="width: 100%; height: 600px;"></div>
+
+    <!-- Datos en elementos ocultos para que el JS los lea -->
+    <script type="application/json" id="x-data">{{ x_vals | tojson }}</script>
+    <script type="application/json" id="y-data">{{ y_vals | tojson }}</script>
+
+
+    <h2>Método utilizado: {{ metodo }}</h2>
+    <h2>Tamaño del paso h:{{ h }}</h2>
+    <h2>Tabla de resultados</h2>
+    <table>
+        <thead>
+            
+            <tr>
+                <th>i</th>
+                <th>x<sub>i</sub></th>
+                <th>y<sub>i</sub></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in tabla %}
+            <tr>
+                <td>{{ fila.i }}</td>
+                <td>{{ fila.x }}</td>
+                <td>{{ fila.y }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <footer>
-    <div class="footer-content">
-        <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
-    </div>
+        <div class="footer-content">
+            <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
+        </div>
     </footer>
-    </body>
+    <!-- Scripts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/solucion_edo.js') }}"></script>
+</body>
+</html>

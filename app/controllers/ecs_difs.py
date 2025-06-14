@@ -61,7 +61,7 @@ def calcular_solucion():
 
     tabla = [
         {'i': i, 'x': p[0], 'y': p[1]}
-        for i, p in enumerate(result)
+        for i, p in enumerate(puntos)
     ]
 
     return render_template(

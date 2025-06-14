@@ -70,8 +70,63 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
-    
-}footer {
+}
+
+h1 {
+    font-size: 2rem; 
+    margin-top: 2rem; 
+    text-align: center; 
+    color: #000000; 
+}
+
+/* Título secundario */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Tabla estilizada */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+    border-radius: 8px;  
+    background-color: #fff;  
+}
+
+/* Encabezado */
+thead {
+    background-color: #c78eff;  
+    color: #fff; 
+    text-transform: uppercase;  
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid#ddd;  
+    font-size: 1rem;
+}
+tbody tr {
+    background-color: #f7f7f7; 
+    transition: background-color 0.3s ease;
+}
+tbody tr {
+    transition: background-color 0.3s ease;  
+}
+td {
+    border-bottom: 2px solid #ddd;  
+}
+table {
+    border: 2px solid #ddd; 
+}
+
+footer {
     width: 100%;
     margin-top: auto; 
     background-color: #222;
