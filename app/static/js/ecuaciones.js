@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     case 'acos': campoActivo.value += 'acos('; break;
                     case 'atan': campoActivo.value += 'atan('; break;
                     case 'X': campoActivo.value += 'x'; break;
+                    case 'Y': pantallaFuncion.value += 'y'; break;
                     case 'π': campoActivo.value += 'π'; break;
                     default: campoActivo.value += valor;
                 }
