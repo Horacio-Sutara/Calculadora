@@ -85,6 +85,16 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Xn debe ser un número válido.');
             return;
         }
+        if (parseFloat(x0) > parseFloat(xn)) {
+            alert('El valor de X0 no puede ser mayor que Xn.');
+            return;
+        }
+        if (modoSeleccionado== 'h'){
+            if (parseFloat(h)>parseFloat(xn)){
+                alert('El valor de h no puede ser mayor que Xn.');
+                return;
+            }
+        }
         if (!metodoSeleccionado) {
             alert('Por favor seleccione un método.');
             return;
