@@ -85,11 +85,12 @@ header {
     text-align: left;
 }
 
-.tarjeta-resultado h2 {
+.tarjeta-resultado h1 {
     text-align: center;
     color: #b700ff;
     font-size: 1.7rem;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
 }
 
 .tarjeta-resultado p {
@@ -123,6 +124,52 @@ funcion-usuario {
     opacity: 0;
     transform: translateY(30px);
     animation: subirDesdeAbajo 0.8s ease-out forwards;
+}
+
+.subtitulo-historial {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    color:  #b700ff;
+    text-align: center;
+    
+}
+
+.tabla-historial-container {
+    width: 90%;
+    max-width: 800px;
+    overflow-x: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+.tabla-historial {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.tabla-historial thead {
+    background-color: #b700ff;
+    color: #fff;
+}
+
+.tabla-historial th, .tabla-historial td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-historial tbody tr:nth-child(even) {
+    background-color: #f9f2ff;
+}
+
+.tabla-historial tbody tr:hover {
+    background-color: #f1e0ff;
+    transition: 0.3s ease;
 }
 footer {
     width: 100%;

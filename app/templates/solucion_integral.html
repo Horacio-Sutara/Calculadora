@@ -24,9 +24,9 @@
             </div>
         </nav>
     </header>
-    <main class="resultado-integral">
+    <main class="resultado-integral ">
         <div class="tarjeta-resultado animacion-aparicion">
-            <h2>Solucion</h2>
+            <h1>Solucion</h1>
             <p class="funcion-usuario"><strong>f(x) =</strong> <span id="funcion"></span></p>
         
             <div class="valor-final">
@@ -35,10 +35,21 @@
             <p><strong>Método utilizado:</strong> <span id="metodo"></span></p>
             <p><strong>Intervalo:</strong> <span id="intervalo"></span></p>
             <p><strong>Cantidad de subintervalos (n):</strong> <span id="n"></span></p>
-            <p><strong>Historial: </strong> <span id="historial"> </span></p>
         </div>
-        
-        <div id="graficoIntegral" class="grafico-integral"></div>
+        <h1 class="subtitulo-historial">Historial de Cálculo</h1>
+        <div class="tabla-historial-container animacion-aparicion">
+            <table class="tabla-historial">
+                <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Área</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaHistorialBody">
+                </tbody>
+            </table>
+        </div>  
     </main>
 
     <script src="{{ url_for('static', filename='js/solucion_integral.js') }}"></script>
