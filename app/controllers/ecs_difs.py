@@ -2,8 +2,7 @@ from flask import Flask, jsonify, request, render_template
 import matplotlib
 matplotlib.use('Agg')
 import numpy as np
-
-from LogicaNegocio.ecsdif import rungekutta1, rungekutta4, ecdif
+from LogicaNegocio.Metodos_edos import Metodos_edos
 
 app = Flask(__name__)
 
@@ -33,3 +32,10 @@ def calcular_solucion():
     ecuacion = ecdif.FuncionXYProcesar(funcion)
     if not ecuacion.reconocer():
         return render_template('error_ecuaciones.html', titulo='No se pudo reconocer la función.')
+    
+    metodos_edos = Metodos_edos(funcion, x0, y0, xn, n, h, modo, metodo)
+
+    result = metodos_edos.calcular_solucion()
+    print("Resultado de la solución:", result)
+    if result is None:
+        return render_template('error_ecuaciones.html', titulo='Error al calcular la solución.')
