@@ -28,7 +28,7 @@ def rungekutta1(f, x0, y0, xn, h=None, n=None):
         x0 = round(x0, 10)
         print(f"El valor de {x0} y el de h{h}")
         points.append((x0, y0))
-    return points
+    return points,h
 
 if __name__ == "__main__":
     # Ejemplo de uso

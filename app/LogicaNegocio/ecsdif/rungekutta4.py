@@ -35,7 +35,7 @@ def rungekutta4(f, x0, y0, xn, h=None, n=None):
         
         puntos.append((x0, y0))
     
-    return puntos
+    return puntos,h
 
 if __name__ == "__main__":
     # Ejemplo de uso
