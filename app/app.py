@@ -65,7 +65,7 @@ def solucion_integral():
 def ecuaciones_diferenciales():
     return render_template('ecuaciones.html')
 
-@app.route('/resolver_ecuacion', methods=['POST'])
+@app.route('/calcular_solucion', methods=['POST'])
 def resolver_ecuacion():
     # Llamamos a la función en el controlador 'ecuaciones.py'
     print("Recibido")

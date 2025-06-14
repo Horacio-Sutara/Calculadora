@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        fetch('/calcular_ecuacion', {
+        fetch('/calcular_solucion', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
