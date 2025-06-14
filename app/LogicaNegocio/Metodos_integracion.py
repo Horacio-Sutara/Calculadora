@@ -8,9 +8,9 @@ def calcular_integral(funcion,metodo, a, b, n):
     }
     if metodo not in metodos:
         print("No existe ese metodo")
-        return None, None, None, None,False
-    resultado,funciono = metodos[metodo](funcion, a, b, n)
-    return resultado,metodo, a, b, n, funciono
+        return None, None, None, None,False,[]
+    resultado,funciono,historial = metodos[metodo](funcion, a, b, n)
+    return resultado,metodo, a, b, n, funciono,historial
 
 if __name__ == "__main__":
     funcion = "x**2 + 2*x + 1"  # Ejemplo de función
