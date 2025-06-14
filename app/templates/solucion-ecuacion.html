@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <title>Raices BetaSolve</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solucion-ecuacion.css') }}"/>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-section nav-logo">
+                <img src="{{ url_for('static', filename='Image/icono-logo.svg') }}" alt="Ícono de BetaSolve" class="logo-icon">
+                <span class="brand-name">BetaSolve</span>
+            </div>
+            <div class="nav-section nav-title">
+                <img src="{{ url_for('static', filename='Image/dydx-icono.svg') }}" alt="Ícono ecuaciones diferenciales" class="logo-icon">
+                <h1 class="page-title">Ecuaciones diferenciales</h1>
+            </div>
+            <div class="nav-section nav-home">
+                <img src="{{ url_for('static', filename='Image/home.svg') }}" alt="Ícono de Home" class="logo-icon">
+                <a href="/" class="nav-link volver-btn">Volver al Inicio</a>
+            </div>
+        </nav>
+    </header>
+    <footer>
+    <div class="footer-content">
+        <p>Horacio Sutara · Aquiles Cancinos · Tomás Mollinedo · María Del Mar Pellicer · <strong>BetaSolve · 2025</strong></p>
+    </div>
+    </footer>
+    </body>
