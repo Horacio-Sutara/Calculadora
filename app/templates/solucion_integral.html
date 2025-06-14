@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/solucion_integral.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='Image/icono-logo.svg') }}" type="image/svg+xml">
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <title>BetaSolve - Integrales</title>
 </head>
 <body>
@@ -24,6 +25,8 @@
             </div>
         </nav>
     </header>
+
+    <div id="grafico" style="width: 100%; height: 500px;"></div>
     <main class="resultado-integral ">
         <div class="tarjeta-resultado animacion-aparicion">
             <h1>Solucion</h1>
@@ -36,7 +39,7 @@
             <p><strong>Intervalo:</strong> <span id="intervalo"></span></p>
             <p><strong>Cantidad de subintervalos (n):</strong> <span id="n"></span></p>
         </div>
-        <h1 class="subtitulo-historial">Historial de Cálculo</h1>
+        <h1 class="subtitulo-historial">Historial de Cálculo de puntos significativos</h1>
         <div class="tabla-historial-container animacion-aparicion">
             <table class="tabla-historial">
                 <thead>

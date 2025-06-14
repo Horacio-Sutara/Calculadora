@@ -1,5 +1,5 @@
 from integracion import trapecios,simpson_1_3,simpson_3_8
-
+from raices import Ecuacion_procesar
 def calcular_integral(funcion,metodo, a, b, n):
     metodos={
         "Trapecios": trapecios.trapecios,
@@ -8,10 +8,22 @@ def calcular_integral(funcion,metodo, a, b, n):
     }
     if metodo not in metodos:
         print("No existe ese metodo")
-        return None, None, None, None,False,[]
-    resultado,funciono,historial = metodos[metodo](funcion, a, b, n)
-    return resultado,metodo, a, b, n, funciono,historial
+        return None, None, None, None,False,[],[]
+    resultado,funciono,historial = metodos[metodo](funcion, a, b,n)
+    return resultado,metodo, a, b, n, funciono,historial, calcular_puntos_grafica(funcion, a, b)
 
+def calcular_puntos_grafica(funcion, a, b, n=1000):
+    """
+    Calcula los puntos para graficar la función en el intervalo [a, b] con n puntos.
+    """
+    puntos=[]
+    paso = (b - a) / n
+    ecuacion=Ecuacion_procesar.Ecuacion_procesar(funcion)
+    for i in range(n + 1):
+        x = a + i * paso
+        y = ecuacion.resultado(x)
+        puntos.append((x, y))
+    return puntos
 if __name__ == "__main__":
     funcion = "x**2 + 2*x + 1"  # Ejemplo de función
     a = 0  # Límite inferior
